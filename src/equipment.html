@@ -1,0 +1,482 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>智能设备</title>
+    <link rel="stylesheet" type="text/css" href="css/font.css"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="css/equipment.page.css"/>
+    <link rel="stylesheet" type="text/css" href="css/datepicker.css"/>
+</head>
+<body>
+<div class="header">
+    <div class="pull-left">
+        <ul class="left clearfix">
+            <li class="left-title">
+                <h1 class="hidden-xs">天琚人才公寓</h1>
+                <button class="visible-xs navbar-toggle lg-nav">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <button class="visible-xs navbar-toggle ft-bar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <button class="visible-xs navbar-toggle sm-nav">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </li>
+            <li class="left-front">
+                <a href="http://apt.2ma2.cn" target="_blank">官网</a>
+            </li>
+        </ul>
+    </div>
+    <div class="pull-right">
+        <ul class="right clearfix">
+            <li class="hidden-xs"></li>
+            <li class="right-account">
+                <p class="right-phone"></p>
+                <ul class="right-oprea">
+                    <li><a href="ownercenter.html">个人中心</a></li>
+                    <li><a href="javascript:void(0);">安全退出</a></li>
+                </ul>
+            </li>
+            <li class="right-message">
+                <a href="message.html">
+                    <img src="images/yg_icon_07.png?v=9957859eb8"/>
+                    <span class="message-nums">8</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="main">
+    <div class="equipment">
+        <div class="pull-left">
+            <div class="pull-container">
+                <div class="pull-content">
+                    <div class="left-header">
+                        <p><i class="icon-Report"></i><span type="role-detail">智能设备</span></p>
+                    </div>
+                    <div class="left-body">
+                        <ul class="tab-bar" id="EquType"></ul>
+                    </div>
+                    <div class="footer"></div>
+                </div>
+            </div>
+        </div>
+        <div class="pull-right">
+            <div class="right-container">
+                <div class="right-content">
+                    <div class="right-header hide">
+                        <div class="form-group">
+                            <div class="drop-container hide" tabIndex="1">
+                                <div class="drop-content">
+                                    <div class="drop-header">
+                                        <span class="drop-result">是否绑定</span>
+                                        <i class="drop-icon icon-drop-down"></i>
+                                    </div>
+                                    <div class="drop-body">
+                                        <ul id="EquBind"></ul>
+                                    </div>
+                                    <div class="drop-footer"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="drop-container hide" tabIndex="1">
+                                <div class="drop-content">
+                                    <div class="drop-header">
+                                        <span class="drop-result">楼盘</span>
+                                        <i class="drop-icon icon-drop-down"></i>
+                                    </div>
+                                    <div class="drop-body">
+                                        <ul id="EquBuilding"></ul>
+                                    </div>
+                                    <div class="drop-footer"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="drop-container hide" tabIndex="1">
+                                <div class="drop-content">
+                                    <div class="drop-header">
+                                        <span class="drop-result">层号</span>
+                                        <i class="drop-icon icon-drop-down"></i>
+                                    </div>
+                                    <div class="drop-body">
+                                        <ul id="EquNumber">
+                                            <li class="drop-option active" data-value="">不限</li>
+                                        </ul>
+                                    </div>
+                                    <div class="drop-footer"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="drop-container hide" tabIndex="1">
+                                <div class="drop-content">
+                                    <div class="drop-header">
+                                        <span class="drop-result">房间</span>
+                                        <i class="drop-icon icon-drop-down"></i>
+                                    </div>
+                                    <div class="drop-body">
+                                        <ul id="EquRoom">
+                                            <li class="drop-option active" data-value="">不限</li>
+                                        </ul>
+                                    </div>
+                                    <div class="drop-footer"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn search">查询</button>
+                            <button class="btn add" data-panel="panel-sm" data-index="0">设备新增</button>
+                        </div>
+                    </div>
+                    <div class="right-body">
+                        <div class="right-table">
+                            <div class="table-header"></div>
+                            <div class="table-body row"></div>
+                            <div class="table-footer"></div>
+                        </div>
+                    </div>
+                    <!--分页-->
+                    <div class="right-footer">
+                        <div class="pagination"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="footer"></div>
+<!--门锁-->
+<div class="panel panel-lg hide">
+    <div class="panel-bg"></div>
+    <div class="panel-content">
+        <div class="panel-modal panel-lock">
+            <div class="panel-header">
+                <h3 class="panel-title">门锁明细</h3>
+            </div>
+            <div class="panel-body">
+                <ul class="tabs row">
+                    <li class="tab col-xs-2 active">明细</li>
+                    <li class="tab col-xs-2">密码</li>
+                    <li class="tab col-xs-2">开锁记录</li>
+                    <li class="tab col-xs-2">操作记录</li>
+                    <li class="tab col-xs-2">异常记录</li>
+                </ul>
+                <div class="result">
+                    <div class="result-header">
+                        <h2 class="result-title">门锁基本信息</h2>
+                    </div>
+                    <div class="result-body">
+                        <div class="table-body row">
+                            <div class="table-item col-xs-12 col-sm-6 col-md-12">
+                                <div class="row-content row">
+                                    <div class="row-header col-xs-6 col-md-12">
+                                        <div class="row-title row">
+                                            <div class="column col-xs-12 col-md-2">名称</div>
+                                            <div class="column col-xs-12 col-md-2">序列号</div>
+                                            <div class="column col-xs-12 col-md-2">状态</div>
+                                            <div class="column col-xs-12 col-md-2">电量</div>
+                                            <div class="column col-xs-12 col-md-2">信号强度</div>
+                                            <div class="column col-xs-12 col-md-2">UUID</div>
+                                        </div>
+                                    </div>
+                                    <div class="row-body col-xs-6 col-md-12">
+                                        <div class="row-item row">
+                                            <div class="column col-xs-12 col-md-2">测试15</div>
+                                            <div class="column col-xs-12 col-md-2">门锁</div>
+                                            <div class="column col-xs-12 col-md-2">未绑定</div>
+                                            <div class="column col-xs-12 col-md-2">测试15</div>
+                                            <div class="column col-xs-12 col-md-2">门锁</div>
+                                            <div class="column col-xs-12 col-md-2">未绑定</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-item col-xs-12 col-sm-6 col-md-12">
+                                <div class="row-content row">
+                                    <div class="row-header col-xs-6 col-md-12">
+                                        <div class="row-title visible-xs visible-sm row">
+                                            <div class="column col-xs-12 col-md-2">名称</div>
+                                            <div class="column col-xs-12 col-md-2">序列号</div>
+                                            <div class="column col-xs-12 col-md-2">状态</div>
+                                            <div class="column col-xs-12 col-md-2">电量</div>
+                                            <div class="column col-xs-12 col-md-2">信号强度</div>
+                                            <div class="column col-xs-12 col-md-2">UUID</div>
+                                        </div>
+                                    </div>
+                                    <div class="row-body col-xs-6 col-md-12">
+                                        <div class="row-item row">
+                                            <div class="column col-xs-12 col-md-2">测试15</div>
+                                            <div class="column col-xs-12 col-md-2">门锁</div>
+                                            <div class="column col-xs-12 col-md-2">未绑定</div>
+                                            <div class="column col-xs-12 col-md-2">测试15</div>
+                                            <div class="column col-xs-12 col-md-2">门锁</div>
+                                            <div class="column col-xs-12 col-md-2">未绑定</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-item col-xs-12 col-sm-6 col-md-12">
+                                <div class="row-content row">
+                                    <div class="row-header col-xs-6 col-md-12">
+                                        <div class="row-title visible-xs visible-sm row">
+                                            <div class="column col-xs-12 col-md-2">名称</div>
+                                            <div class="column col-xs-12 col-md-2">序列号</div>
+                                            <div class="column col-xs-12 col-md-2">状态</div>
+                                            <div class="column col-xs-12 col-md-2">电量</div>
+                                            <div class="column col-xs-12 col-md-2">信号强度</div>
+                                            <div class="column col-xs-12 col-md-2">UUID</div>
+                                        </div>
+                                    </div>
+                                    <div class="row-body col-xs-6 col-md-12">
+                                        <div class="row-item row">
+                                            <div class="column col-xs-12 col-md-2">测试15</div>
+                                            <div class="column col-xs-12 col-md-2">门锁</div>
+                                            <div class="column col-xs-12 col-md-2">未绑定</div>
+                                            <div class="column col-xs-12 col-md-2">测试15</div>
+                                            <div class="column col-xs-12 col-md-2">门锁</div>
+                                            <div class="column col-xs-12 col-md-2">未绑定</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-item col-xs-12 col-sm-6 col-md-12">
+                                <div class="row-content row">
+                                    <div class="row-header col-xs-6 col-md-12">
+                                        <div class="row-title visible-xs visible-sm row">
+                                            <div class="column col-xs-12 col-md-2">名称</div>
+                                            <div class="column col-xs-12 col-md-2">序列号</div>
+                                            <div class="column col-xs-12 col-md-2">状态</div>
+                                            <div class="column col-xs-12 col-md-2">电量</div>
+                                            <div class="column col-xs-12 col-md-2">信号强度</div>
+                                            <div class="column col-xs-12 col-md-2">UUID</div>
+                                        </div>
+                                    </div>
+                                    <div class="row-body col-xs-6 col-md-12">
+                                        <div class="row-item row">
+                                            <div class="column col-xs-12 col-md-2">测试15</div>
+                                            <div class="column col-xs-12 col-md-2">门锁</div>
+                                            <div class="column col-xs-12 col-md-2">未绑定</div>
+                                            <div class="column col-xs-12 col-md-2">测试15</div>
+                                            <div class="column col-xs-12 col-md-2">门锁</div>
+                                            <div class="column col-xs-12 col-md-2">未绑定</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-item col-xs-12 col-sm-6 col-md-12">
+                                <div class="row-content row">
+                                    <div class="row-header col-xs-6 col-md-12">
+                                        <div class="row-title visible-xs visible-sm row">
+                                            <div class="column col-xs-12 col-md-2">名称</div>
+                                            <div class="column col-xs-12 col-md-2">序列号</div>
+                                            <div class="column col-xs-12 col-md-2">状态</div>
+                                            <div class="column col-xs-12 col-md-2">电量</div>
+                                            <div class="column col-xs-12 col-md-2">信号强度</div>
+                                            <div class="column col-xs-12 col-md-2">UUID</div>
+                                        </div>
+                                    </div>
+                                    <div class="row-body col-xs-6 col-md-12">
+                                        <div class="row-item row">
+                                            <div class="column col-xs-12 col-md-2">测试15</div>
+                                            <div class="column col-xs-12 col-md-2">门锁</div>
+                                            <div class="column col-xs-12 col-md-2">未绑定</div>
+                                            <div class="column col-xs-12 col-md-2">测试15</div>
+                                            <div class="column col-xs-12 col-md-2">门锁</div>
+                                            <div class="column col-xs-12 col-md-2">未绑定</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-item col-xs-12 col-sm-6 col-md-12">
+                                <div class="row-content row">
+                                    <div class="row-header col-xs-6 col-md-12">
+                                        <div class="row-title visible-xs visible-sm row">
+                                            <div class="column col-xs-12 col-md-2">名称</div>
+                                            <div class="column col-xs-12 col-md-2">序列号</div>
+                                            <div class="column col-xs-12 col-md-2">状态</div>
+                                            <div class="column col-xs-12 col-md-2">电量</div>
+                                            <div class="column col-xs-12 col-md-2">信号强度</div>
+                                            <div class="column col-xs-12 col-md-2">UUID</div>
+                                        </div>
+                                    </div>
+                                    <div class="row-body col-xs-6 col-md-12">
+                                        <div class="row-item row">
+                                            <div class="column col-xs-12 col-md-2">测试15</div>
+                                            <div class="column col-xs-12 col-md-2">门锁</div>
+                                            <div class="column col-xs-12 col-md-2">未绑定</div>
+                                            <div class="column col-xs-12 col-md-2">测试15</div>
+                                            <div class="column col-xs-12 col-md-2">门锁</div>
+                                            <div class="column col-xs-12 col-md-2">未绑定</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-item col-xs-12 col-sm-6 col-md-12">
+                                <div class="row-content row">
+                                    <div class="row-header col-xs-6 col-md-12">
+                                        <div class="row-title visible-xs visible-sm row">
+                                            <div class="column col-xs-12 col-md-2">名称</div>
+                                            <div class="column col-xs-12 col-md-2">序列号</div>
+                                            <div class="column col-xs-12 col-md-2">状态</div>
+                                            <div class="column col-xs-12 col-md-2">电量</div>
+                                            <div class="column col-xs-12 col-md-2">信号强度</div>
+                                            <div class="column col-xs-12 col-md-2">UUID</div>
+                                        </div>
+                                    </div>
+                                    <div class="row-body col-xs-6 col-md-12">
+                                        <div class="row-item row">
+                                            <div class="column col-xs-12 col-md-2">测试15</div>
+                                            <div class="column col-xs-12 col-md-2">门锁</div>
+                                            <div class="column col-xs-12 col-md-2">未绑定</div>
+                                            <div class="column col-xs-12 col-md-2">测试15</div>
+                                            <div class="column col-xs-12 col-md-2">门锁</div>
+                                            <div class="column col-xs-12 col-md-2">未绑定</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-item col-xs-12 col-sm-6 col-md-12">
+                                <div class="row-content row">
+                                    <div class="row-header col-xs-6 col-md-12">
+                                        <div class="row-title visible-xs visible-sm row">
+                                            <div class="column col-xs-12 col-md-2">名称</div>
+                                            <div class="column col-xs-12 col-md-2">序列号</div>
+                                            <div class="column col-xs-12 col-md-2">状态</div>
+                                            <div class="column col-xs-12 col-md-2">电量</div>
+                                            <div class="column col-xs-12 col-md-2">信号强度</div>
+                                            <div class="column col-xs-12 col-md-2">UUID</div>
+                                        </div>
+                                    </div>
+                                    <div class="row-body col-xs-6 col-md-12">
+                                        <div class="row-item row">
+                                            <div class="column col-xs-12 col-md-2">测试15</div>
+                                            <div class="column col-xs-12 col-md-2">门锁</div>
+                                            <div class="column col-xs-12 col-md-2">未绑定</div>
+                                            <div class="column col-xs-12 col-md-2">测试15</div>
+                                            <div class="column col-xs-12 col-md-2">门锁</div>
+                                            <div class="column col-xs-12 col-md-2">未绑定</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-item col-xs-12 col-sm-6 col-md-12">
+                                <div class="row-content row">
+                                    <div class="row-header col-xs-6 col-md-12">
+                                        <div class="row-title visible-xs visible-sm row">
+                                            <div class="column col-xs-12 col-md-2">名称</div>
+                                            <div class="column col-xs-12 col-md-2">序列号</div>
+                                            <div class="column col-xs-12 col-md-2">状态</div>
+                                            <div class="column col-xs-12 col-md-2">电量</div>
+                                            <div class="column col-xs-12 col-md-2">信号强度</div>
+                                            <div class="column col-xs-12 col-md-2">UUID</div>
+                                        </div>
+                                    </div>
+                                    <div class="row-body col-xs-6 col-md-12">
+                                        <div class="row-item row">
+                                            <div class="column col-xs-12 col-md-2">测试15</div>
+                                            <div class="column col-xs-12 col-md-2">门锁</div>
+                                            <div class="column col-xs-12 col-md-2">未绑定</div>
+                                            <div class="column col-xs-12 col-md-2">测试15</div>
+                                            <div class="column col-xs-12 col-md-2">门锁</div>
+                                            <div class="column col-xs-12 col-md-2">未绑定</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="result-footer"></div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-modal panel-meter">
+            <div class="panel-header">
+                <h3 class="panel-title">电表明细</h3>
+            </div>
+            <div class="panel-body">
+                <ul class="tabs row">
+                    <li class="tab col-xs-2 active">明细</li>
+                    <li class="tab col-xs-2">基础操作</li>
+                    <li class="tab col-xs-2">购电记录</li>
+                    <li class="tab col-xs-2">电量查询</li>
+                    <li class="tab col-xs-2">操作记录</li>
+                    <li class="tab col-xs-2">异常记录</li>
+                </ul>
+                <div class="result row">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel panel-sm hide">
+    <div class="panel-bg"></div>
+    <div class="panel-content">
+        <div class="panel-modal device-add">
+            <div class="panel-header">
+                <h3 class="panel-title">设备新增</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="form-label">类型</label>
+                    <div class="drop-container hide" tabIndex="1">
+                        <div class="drop-content">
+                            <div class="drop-header">
+                                <span class="drop-result">请选择类型</span>
+                                <i class="drop-icon icon-drop-down"></i>
+                            </div>
+                            <div class="drop-body">
+                                <ul id="AddType"></ul>
+                            </div>
+                            <div class="drop-footer"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label" for="Add_Name">名称</div>
+                    <input class="form-input form-text" id="Add_Name" type="text" placeholder="请输入名称"/>
+                </div>
+                <div class="form-group">
+                    <div class="form-label" for="Add_Number">序列号</div>
+                    <input class="form-input form-text" id="Add_Number" type="" placeholder="请输入序列号"/>
+                </div>
+                <div class="form-group">
+                    <div class="form-label" for="Add_UUID">UUID</div>
+                    <input class="form-input form-text" id="Add_UUID" type="text" placeholder="请输入UUID"/>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <button class="btn cancel">取消</button>
+                <button class="btn confirm" onclick="mg.exeAddDevices();">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="libs/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="libs/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/components-pickers.js"></script>
+<script type="text/javascript" src="js/tools.js"></script>
+<script type="text/javascript" src="js/equipment.page.js"></script>
+</body>
+</html>
+
+

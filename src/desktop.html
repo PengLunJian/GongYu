@@ -1,0 +1,275 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>桌面</title>
+    <link href="css/plugins.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="css/calendar.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="css/desktop.page.css"/>
+    <link rel="stylesheet" type="text/css" href="css/datepicker.css"/>
+    <script type="text/javascript" src="libs/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="libs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/components-pickers.js"></script>
+</head>
+<body>
+<div class="header">
+    <div class="pull-left">
+        <ul class="left clearfix">
+            <li class="left-title">
+                <h1 class="hidden-xs">天琚人才公寓</h1>
+                <button class="visible-xs navbar-toggle lg-nav">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </li>
+            <li class="left-front">
+                <a href="http://apt.2ma2.cn" target="_blank">官网</a>
+            </li>
+        </ul>
+    </div>
+    <div class="pull-right">
+        <ul class="right clearfix">
+            <li class="hidden-xs"></li>
+            <li class="right-account">
+                <p class="right-phone"></p>
+                <ul class="right-oprea">
+                    <li><a href="ownercenter.html">个人中心</a></li>
+                    <li><a href="javascript:void(0);">安全退出</a></li>
+                </ul>
+            </li>
+            <li class="right-message">
+                <a href="message.html">
+                    <img src="images/yg_icon_07.png?v=9957859eb8"/>
+                    <span class="message-nums">8</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="main">
+    <div class="desktop row">
+        <div class="group pull-left">
+            <div class="group-box">
+                <div class="group-header">
+                    <span>待办</span>
+                    <div class="date row">
+                        <i class="iconfont icon-prev"></i>
+                        <p class="date-time"></p>
+                        <i class="iconfont icon-next"></i>
+                    </div>
+                    <a href="javascript:void(0);" class="btn-drop pull-right">收起日历</a>
+                </div>
+                <div class="group-body">
+                    <div class="group-drop">
+                        <div class="date-list"></div>
+                    </div>
+                </div>
+                <div class="group-footer"></div>
+            </div>
+            <div class="group-box">
+                <div class="group-header">
+                    <a href="javascript:void(0);" class="back-today">回到今天</a>
+                    <a href="javascript:void(0);" class="note-add pull-right" data-panel="panel-sm"
+                       data-index="0">添加提醒</a>
+                </div>
+                <div class="group-body">
+                    <ul class="tab-bar row">
+                        <li class="col-xs-6 active">待办提醒<span>0</span></li>
+                        <li class="col-xs-6">已处理提醒<span>0</span></li>
+                    </ul>
+                    <ul class="suspend"></ul>
+                </div>
+                <div class="group-footer"></div>
+            </div>
+        </div>
+        <div class="group pull-right">
+            <div class="row group-list">
+                <div class="col-xs-12 col-md-6 column">
+                    <div class="column-content">
+                        <div class="column-header">
+                            <h3 class="pull-left column-title">客户统计<span>（2017.1.15-2017.1.31）</span></h3>
+                            <a href="customer.html" class="pull-right column-link">进入客户</a>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="column-body">
+                            <ul class="column-list">
+                                <li class="list-item row">
+                                    <p class="pull-left list-title"><i class="icon-yellow"></i>待分配</p>
+                                    <span class="pull-right list-count">0</span>
+                                </li>
+                                <li class="list-item row">
+                                    <p class="pull-left list-title"><i class="icon-green"></i>跟进中</p>
+                                    <span class="pull-right list-count">0</span>
+                                </li>
+                                <li class="list-item row">
+                                    <p class="pull-left list-title"><i class="icon-blue"></i>已签约</p>
+                                    <span class="pull-right list-count">0</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="column-footer"></div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6 column">
+                    <div class="column-content">
+                        <div class="column-header">
+                            <h3 class="pull-left column-title">合同统计<span>（2017.1.15-2017.1.31）</span></h3>
+                            <a href="contract.html" class="pull-right column-link">进入合同</a>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="column-body">
+                            <ul class="column-list">
+                                <li class="list-item row">
+                                    <p class="pull-left list-title"><i class="icon-yellow"></i>已预签</p>
+                                    <span class="pull-right list-count">0</span>
+                                </li>
+                                <li class="list-item row">
+                                    <p class="pull-left list-title"><i class="icon-green"></i>待续签</p>
+                                    <span class="pull-right list-count">0</span>
+                                </li>
+                                <li class="list-item row">
+                                    <p class="pull-left list-title"><i class="icon-blue"></i>已签约</p>
+                                    <span class="pull-right list-count">0</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="column-footer"></div>
+                    </div>
+                </div>
+                <div class="col-xs-12 column">
+                    <div class="column-content">
+                        <div class="column-header">
+                            <h3 class="pull-left column-title">物业统计<span>（2017.1.15-2017.1.31）</span></h3>
+                            <a href="property.html" class="pull-right column-link">进入物业</a>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="column-body">
+                            <div class="column-prop row">
+                                <div class="prop-header col-xs-6 col-sm-12 row">
+                                    <div class="col-xs-12 col-sm-2 text-center">物业</div>
+                                    <div class="col-xs-12 col-sm-2 text-center">房间</div>
+                                    <div class="col-xs-12 col-sm-2 text-center">空置</div>
+                                    <div class="col-xs-12 col-sm-2 text-center">预定</div>
+                                    <div class="col-xs-12 col-sm-2 text-center">已租</div>
+                                    <div class="col-xs-12 col-sm-2 text-center">退租</div>
+                                </div>
+                                <div class="prop-content col-xs-6 col-sm-12 row">
+                                    <div class="col-xs-12 col-sm-2 text-center">0</div>
+                                    <div class="col-xs-12 col-sm-2 text-center">0</div>
+                                    <div class="col-xs-12 col-sm-2 text-center">0</div>
+                                    <div class="col-xs-12 col-sm-2 text-center">0</div>
+                                    <div class="col-xs-12 col-sm-2 text-center">0</div>
+                                    <div class="col-xs-12 col-sm-2 text-center">0</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column-footer"></div>
+                    </div>
+                </div>
+                <div class="col-xs-12 column">
+                    <div class="column-content">
+                        <div class="column-header">
+                            <h3 class="pull-left column-title">账单统计<span>（2017.1.15-2017.1.31）</span></h3>
+                            <a href="bill.html" class="pull-right column-link">进入账单</a>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="column-body">
+                            <div class="column-bill row">
+                                <div class="col-xs-6 col-sm-3">
+                                    <div class="bill-item yellow">￥0<p>逾期收</p></div>
+                                </div>
+                                <div class="col-xs-6 col-sm-3">
+                                    <div class="bill-item red">￥0<p>逾期付</p></div>
+                                </div>
+                                <div class="col-xs-6 col-sm-3">
+                                    <div class="bill-item green">￥0<p>待收</p></div>
+                                </div>
+                                <div class="col-xs-6 col-sm-3">
+                                    <div class="bill-item blue">￥0<p>待付</p></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column-footer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer"></div>
+
+<div class="panel panel-lg hide">
+    <div class="panel-bg"></div>
+    <div class="panel-content">
+        <div class="panel-header"></div>
+        <div class="panel-body">
+            <button class="btn btn-default save">Save</button>
+        </div>
+        <div class="panel-footer"></div>
+    </div>
+</div>
+<div class="panel panel-sm hide">
+    <div class="panel-bg"></div>
+    <div class="panel-content">
+        <div class="panel-modal panel-add show">
+            <div class="panel-header">
+                <h3 class="panel-title">提醒事项</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="form-label" for="add-date">日期</label>
+                    <input class="form-input form-date group-date1" type="text" id="add-date"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">提醒内容</label>
+                    <textarea placeholder="请输入内容..." class="form-textarea"></textarea>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <button class="btn cancel">取消</button>
+                <button class="btn confirm" onclick="dp.addNote()">保存</button>
+            </div>
+        </div>
+        <div class="panel-modal panel-edit">
+            <div class="panel-header">
+                <h3 class="panel-title">提醒事项</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="form-label" for="edit-date">日期</label>
+                    <input class="form-input form-date group-date1" type="text" id="edit-date"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">提醒内容</label>
+                    <textarea placeholder="请输入内容..." class="form-textarea"></textarea>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="pull-left">
+                    <button class="btn delete" onclick="dp.deleteNote();">删除</button>
+                </div>
+                <div class="pull-right">
+                    <button class="btn cancel">取消</button>
+                    <button class="btn confirm" onclick="dp.disposeNote()">已处理</button>
+                    <button class="btn confirm" onclick="dp.editNote()">保存</button>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/tools.js"></script>
+<script type="text/javascript" src="js/desktop.page.js"></script>
+</body>
+</html>

@@ -1,0 +1,431 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>历史合同新增</title>
+    <link rel="stylesheet" type="text/css" href="iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"/>
+    <!--<link rel="stylesheet" type="text/css" href="css/common_css.css" />-->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/common.css" />
+    <link rel="stylesheet" type="text/css" href="css/datepicker.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery.mCustomScrollbar.css" />
+    <script type="text/javascript" src="libs/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="libs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/components-pickers.js"></script>
+</head>
+<style>
+    body {
+        background: #fff;
+    }
+
+    .top-modal-bottom {
+        position: fixed;
+        bottom: 0px;
+    }
+</style>
+<body style="overflow:hidden;">
+<div class="fq-contain-dv mCustomScrollbar" style="max-height:600px;">
+    <div>
+        <div class="property-contract-add">
+            <div class="modal-property-data-sec">
+                <p>历史合同新增</p>
+                <p onclick="CustomerSel()">从客户中选取</p>
+                <div class="clear"></div>
+            </div>
+            <table class="modal-data-table">
+                <tr>
+                    <td>姓名</td>
+                    <td id="historyCustomerName_Add"></td>
+                </tr>
+                <tr>
+                    <td>手机号码</td>
+                    <td><input type="text" name="" id="historyContractPhone_Add" value=""></td>
+                </tr>
+                <tr>
+                    <td>证件号码</td>
+                    <td><input type="text" name="" id="historyCardID_Add" value=""></td>
+                </tr>
+            </table>
+            <div class="modal-property-data-sec">
+                <p>房间资料</p>
+
+                <div class="clear"></div>
+            </div>
+            <table class="modal-data-table">
+                <tr>
+                    <td>物业</td>
+                    <td id="historyBuildingName_Add"></td>
+                </tr>
+                <tr>
+                    <td>面积</td>
+                    <td id="historySquare_Add"></td>
+                </tr>
+                <tr>
+                    <td>户型</td>
+                    <td id="historyLayout_Add"></td>
+                </tr>
+            </table>
+            <div class="modal-property-data-sec">
+                <p>合同资料</p>
+
+                <div class="clear"></div>
+            </div>
+            <div class="modal-dv-row">
+                <p>编号<sup>*</sup></p>
+
+                <div><input type="text" name="" id="historyContractNumber_Add" value=""></div>
+            </div>
+            <div class="modal-dv-row">
+                <p>租金<sup>*</sup></p>
+
+                <div class="top-modal-ip-wraper">
+                    <input type="text" name="" id="historyPrice_Add" value=""
+                           style="padding-right: 40px;"><span
+                        style="width: 40px;text-align: right;padding-right: 10px;">元/月</span>
+                </div>
+            </div>
+            <div class="modal-dv-row">
+                <p>押金<sup>*</sup></p>
+
+                <div class="top-modal-ip-wraper">
+                    <input type="text" name="" id="historyDeposit_Add" value=""
+                           style="padding-right: 30px;"><span
+                        style="width: 40px;text-align: right;padding-right: 10px;">元</span>
+                </div>
+            </div>
+            <div class="modal-dv-row">
+                <p>付押方式<sup>*</sup></p>
+
+                <div>
+                    <div type="click" class="fq-xiala" id="historyPayType">
+                        <span class="fq-xiala-sel"></span><i class="icon iconfont icon-xiala"></i>
+                        <ul></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-dv-row" style="width: auto;">
+                <p>起租/退租<sup>*</sup></p>
+
+                <div class="modal-property-data-contract-dv">
+                    <div class="date-wraper" style="width: 150px;display: inline-block;">
+                        <input class="group-date1" type="text" id="historyInDate" value="2017-01-20"><i
+                            class="icon iconfont icon-gongzuotai"></i>
+                    </div>
+                    <div class="date-wraper" style="width: 150px;margin-left: 10px;display: inline-block;">
+                        <input class="group-date2" type="text" id="historyOutDate" placeholder="退租日期"><i
+                            class="icon iconfont icon-gongzuotai"></i>
+                    </div>
+                    <span>3个月</span><span>6个月</span><span>1年</span>
+                </div>
+            </div>
+            <div class="modal-dv-row">
+                <p>入住人数<sup>*</sup></p>
+
+                <div><input type="text" name="" id="historyPeople_Add" value=""></div>
+            </div>
+
+
+            <div class="modal-dv-row">
+                <p>签约员工</p>
+
+                <div>
+                    <div style="width: 230px;float:left;">
+                        <div type="click" class="fq-xiala secondary-menu" id="historyDpts_Add">
+                            <span class="fq-xiala-sel">不选</span><i class="icon iconfont icon-xiala"></i>
+                            <ul id="simulation">
+                                <li class="cur">不选</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="width: 200px;float:left;">
+                        <div type="click" class="fq-xiala" id="historyEmps_Add">
+                            <span class="fq-xiala-sel">不选</span><i class="icon iconfont icon-xiala"></i>
+                            <ul style="overflow-y: scroll;max-height: 150px;">
+                                <li class="cur">不选</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+
+
+            <div class="modal-dv-row">
+                <p>签约日期<sup>*</sup></p>
+
+                <div class="date-wraper">
+                    <input class="group-date1" type="text" id="historyBargainDate"
+                           value=""><i class="icon iconfont icon-gongzuotai"></i>
+                </div>
+            </div>
+            <div class="modal-dv-row">
+                <p>退租日期<sup>*</sup></p>
+
+                <div class="date-wraper">
+                    <input class="group-date1" type="text" id="historyEndDate"
+                           value=""><i class="icon iconfont icon-gongzuotai"></i>
+                </div>
+            </div>
+            <div class="modal-dv-row">
+                <p>备注</p>
+
+                <div><input type="text" id="historyContractDescription" name=""></div>
+            </div>
+
+        </div>
+        <div class="top-modal-bottom">
+            <button class="btn-cancel">取消</button>
+            <button class="btn-keep history-btn-keep" onclick="HistoryContractAdd()">保存</button>
+        </div>
+        <div><input type="hidden" id="historyCustomerCharId" value=""/></div>
+    </div>
+</div>
+
+
+</body>
+</html>
+<script type="text/javascript" src="js/tools.js"></script>
+<script type="text/javascript" src="libs/jquery.mCustomScrollbar.concat.min.js"></script>
+
+<script type="text/javascript">
+
+    var roomCharId = getUrlParam('curRoomCharId');
+
+    $(function () {
+        ContractAddBind();
+        App.init();
+        ComponentsPickers.init();
+    });
+
+    function CustomerSel() {
+        window.open("customersel.html", '', 'width=500,height=600,top=50,left=400, scrollbars=no, status=no,toolbar=no,menubar=no,location=no,resizable=no,titlebar=no');
+    }
+
+    //房间签约基础信息获取
+    function ContractAddBind() {
+        var data = {
+            requestKey: localStorage.getItem("requestKey"),
+            buildingRoomCharId: roomCharId
+        };
+        $.ajax({
+            type: "GET",
+            url: host + "/contract/add",
+            data: data,
+            dataType: "json",
+            success: function (jdata) {
+                if (jdata.succ) {
+                    var data = jdata.data;
+                    $("#historyBuildingName_Add").text(data.Room.BuildingName + data.Room.FloorName + " 楼 " + data.Room.RoomName + "室");
+                    $("#historySquare_Add").text(data.Room.Square + "㎡");
+                    $("#historyLayout_Add").text(data.Room.Div1 + "室" + data.Room.Div2 + "厅" + data.Room.Div3 + "卫");
+                    $("#historyContractNumber_Add").val(data.RoomNum);
+
+                    var html = "";
+                    for (var i = 0; i < data.PayType.length; i++) {
+                        var style = "";
+                        if (i == 0) {
+                            style = "cur";
+                        }
+                        html += "<li data-value=\"" + data.PayType[i].Key + "\" class='" + style + "'>" + data.PayType[i].Value + "</li>";
+                    }
+                    $("#historyPayType ul").html(html);
+                    $("#historyPayType span").text($("#historyPayType li[class='cur']").text());
+//                    html = "";
+//                    html += "<li value=\"\" class=\"cur\">不选</li>";
+//                    for (var i = 0; i < data.Dpts.length; i++) {
+//                        html += "<li data-value=\"" + data.Dpts[i].CharId + "\">" + data.Dpts[i].Name + "</li>";
+//                    }
+                    html = "";
+                    html += "<li data-value=\"\" class=\"cur\">不选</li>";
+                    for (var j = 0; j < data.Dpts.length; j++) {
+                        html += "<li  data-value=\"" + data.Dpts[j].CharId + "\"  class=\"fq-menu\"><b class=\"icon iconfont icon-iconfontsanjiao01\"></b><span>" + data.Dpts[j].Name + "</span>";
+                        for (var k = 0; k < data.Dpts[j].ChildDpts.length; k++) {
+                            if (k == 0) {
+                                html += "<ul>";
+                            }
+                            html += "<li id=\"" + data.Dpts[j].ChildDpts[k].CharId + "\"   data-value=\"" + data.Dpts[j].ChildDpts[k].CharId + "\" class='menuChildren'><span>" + data.Dpts[j].ChildDpts[k].Name + "</span></li>";
+                            if (k == data.Dpts[j].ChildDpts.length - 1) {
+                                html += "</ul>";
+                            }
+                        }
+                        html += "</li>";
+                    }
+                    $("#historyDpts_Add>ul").html(html);
+                    $("#historyDpts_Add>span").text($("#historyDpts_Add>ul>li[class='cur']").text());
+                    DropdownInit();
+                }
+            },
+            error: function (XMLHttpRequest, txtStatus, errorThrown) {
+                messageBox.show("错误", txtStatus, MessageBoxButtons.OK, MessageBoxIcons.error);
+            }
+        });
+    }
+
+
+    function historyContractAddParams() {
+        var params = {
+            historyCustomerCharId: $("#historyCustomerCharId").val().trim(),
+            historyContractPhone_Add: $("#historyContractPhone_Add").val().trim(),
+            historyCardID_Add: $("#historyCardID_Add").val().trim(),
+            historyContractNumber_Add: $("#historyContractNumber_Add").val().trim(),
+            historyPrice_Add: $("#historyPrice_Add").val().trim(),
+            historyDeposit_Add: $("#historyDeposit_Add").val().trim(),
+            historyInDate: $("#historyInDate").val(),
+            historyOutDate: $("#historyOutDate").val(),
+            historyPeople_Add: parseFloat($("#historyPeople_Add").val()),
+            historyDpts_Add: $("#historyDpts_Add li[class='cur']").attr("data-value"),
+            historyEmps_Add: $("#historyEmps_Add li[class='cur']").attr("data-value"),
+            historyBargainDate: $("#historyBargainDate").val(),
+            historyEndDate: $("#historyEndDate").val()
+        }
+        return params;
+    }
+    function HistoryContractAdd() {
+        var result = false;
+        var historyMessage = "";
+        var params = historyContractAddParams();
+        if (params.historyCustomerCharId == "") {
+            historyMessage = "请选择签约客户";
+        } else if (!regular.PHONE_REG_EXP.test(params.historyContractPhone_Add)) {
+            historyMessage = "手机号码不正确";
+        } else if (params.historyCardID_Add == "") {
+            historyMessage = "证件信息不能为空";
+        } else if (params.historyContractNumber_Add == "") {
+            historyMessage = "合同编号不能为空";
+        } else if (!regular.MONEY_REG_EXP.test(params.historyPrice_Add)) {
+            historyMessage = "租金输入有误";
+        } else if (!regular.MONEY_REG_EXP.test(params.historyDeposit_Add)) {
+            historyMessage = "押金输入有误";
+        } else if (params.historyInDate == "") {
+            historyMessage = "请填写起租日期";
+        } else if (params.historyOutDate == "") {
+            historyMessage = "请填写退租日期";
+        } else if (!regular.CUSTOMER_REG_EXP.test(params.historyPeople_Add)) {
+            historyMessage = "入住人数输入有误";
+        } else if (params.historyDpts_Add == "" || params.historyEmps_Add == "") {
+            historyMessage = "请选择所属员工";
+        } else if (params.historyBargainDate == "") {
+            historyMessage = "请填写签约日期";
+        } else if (params.historyEndDate == "") {
+            historyMessage = "请填写退租日期";
+        } else {
+            result = true;
+        }
+        if (result) {
+            var data = {
+                requestKey: localStorage.getItem("requestKey"),
+                number: $("#historyContractNumber_Add").val().trim(),
+                phone: $("#historyContractPhone_Add").val().trim(),
+                cardID: $("#historyCardID_Add").val().trim(),
+                buildingRoomCharId: roomCharId,
+                customerCharId: $("#historyCustomerCharId").val().trim(),
+                price: parseFloat($("#historyPrice_Add").val().trim()),
+                deposit: parseFloat($("#historyDeposit_Add").val().trim()),
+                payType: parseInt($("#historyPayType li[class='cur']").attr("data-value")),
+                inDate: $("#historyInDate").val().trim(),
+                outDate: $("#historyOutDate").val().trim(),
+                total: parseInt($("#historyPeople_Add").val().trim()),
+                bargainDate: $("#historyBargainDate").val().trim(),
+                endDate: $("#historyEndDate").val().trim(),
+                ownerDepartmentCharId: $("#historyDpts_Add li.cur").attr("data-value"),
+                ownerEmployeeCharId: $("#historyEmps_Add li.cur").attr("data-value"),
+                description: $("#historyContractDescription").val().trim()
+            };
+            $.ajax({
+                type: "POST",
+                url: host + "/contract/historyadd",
+                data: data,
+                dataType: "json",
+                success: function (jdata) {
+                    if (jdata.succ) {
+                        //Rooms();
+                        //RoomDetail($("#CurRoomCharId").val());
+                        messageBox.show("提示", jdata.msg, MessageBoxButtons.OK, MessageBoxIcons.infomation);
+                        window.opener.propertyPage.historyContractPageInit();
+                        window.close();
+                    }
+                    else {
+                        messageBox.show("提示", jdata.msg, MessageBoxButtons.OK, MessageBoxIcons.infomation);
+                    }
+                },
+                error: function (XMLHttpRequest, txtStatus, errorThrown) {
+                    messageBox.show("错误", txtStatus, MessageBoxButtons.OK, MessageBoxIcons.error);
+                }
+            });
+        } else {
+            messageBox.show('提示', historyMessage, MessageBoxButtons.OK, MessageBoxIcons.infomation);
+        }
+
+    }
+
+    //绑定员工下拉列表
+    function EmployeeBind() {
+        if ($("#historyDpts_Add li.cur").attr("data-value") != "") {
+            var charId = $("#historyDpts_Add li.cur").attr("data-value");
+            var data = {
+                requestKey: localStorage.getItem("requestKey"),
+                departmentCharId: charId
+            };
+            $.ajax({
+                type: "GET",
+                url: host + "/employee/employees",
+                data: data,
+                dataType: "json",
+                success: function (jdata) {
+                    if (jdata.succ) {
+                        var data = jdata.data;
+                        var html = "";
+                        html += "<li data-value=\"\" class=\"cur\">不选</li>";
+                        for (var i = 0; i < data.length; i++) {
+                            html += "<li data-value=\"" + data[i].CharId + "\" >" + data[i].Name + "</li>";
+                        }
+                        $("#historyEmps_Add > ul").html(html);
+                        $("#historyEmps_Add > span").text($("#historyEmps_Add>ul>li.cur").text());
+                        DropdownInit();
+                    }
+                    else {
+                        messageBox.show("提示", jdata.msg, MessageBoxButtons.OK, MessageBoxIcons.infomation);
+                    }
+                },
+                error: function (XMLHttpRequest, txtStatus, errorThrown) {
+                    messageBox.show("错误", txtStatus, MessageBoxButtons.OK, MessageBoxIcons.error);
+                }
+            });
+        }
+        else {
+            var html = "";
+            html += "<li value=\"\" class=\"cur\">不选</li>";
+            $("#historyEmps_Add > ul").html(html);
+            $("#historyEmps_Add > span").text("不选");
+            DropdownInit();
+        }
+    }
+
+
+    //部门下拉切换员工列表
+    $("#historyDpts_Add").on("click", "li", function () {
+        EmployeeBind($(this).attr("data-value"));
+    });
+
+    $(".top-modal-bottom .btn-cancel").click(function () {
+        window.close();
+    })
+
+    //js正则表达式方法获取静态页面传递的参数
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+        if (r != null) return unescape(r[2]);
+        return null; //返回参数值
+    }
+
+
+</script>
+

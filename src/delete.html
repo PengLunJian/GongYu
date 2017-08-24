@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>删除</title>
+
+</head>
+<style>
+*{
+    margin: 0;
+    padding:0;
+}
+   body{
+   }
+  .delete-main{
+    position: absolute;   
+    left: 50%;  
+    top: 50%;  
+    margin-left: -180px;  
+    margin-top: -92px; 
+    width: 360px;
+    height: 185px;
+    box-shadow:  0px 0px 6px #757575;
+  }
+  .delete-main .delete-header{
+    width: 100%;
+    height: 20px;
+    padding:10px 0;
+    border-bottom:1px solid #e6e6e6;
+  }
+  .delete-main .delete-header .delete-left{
+    float:left;
+    margin-left:20px;
+  }
+   .delete-main .delete-header .delete-right{
+    float:right;
+    margin-right:20px;
+  }
+  .delete-center{
+    padding:20px;
+  }
+  .delete-center span{
+    font-size:14px;
+     float:left;
+     margin-left:40px;
+  }
+  .delete-center img{
+    float:left;
+    position: fixed;
+  }
+  .clear{
+    clear:both;
+  }
+  .delete-center .delete-button{
+    padding:0 73px;
+    margin-top:20px;
+  }
+  .delete-center .delete-button button{
+    float:left;
+    width: 60px;
+    height: 30px;
+    border-radius:4px;
+    margin:0 10px;
+  }
+  .delete-center .delete-button button:nth-child(1){
+    background:#427CE7;
+    color:#fff;
+    margin-right:20px;
+  }
+   .delete-center .delete-button button:nth-child(2){
+    background:#fff;
+    color:#646464;
+  }
+</style>
+<body>
+   <div class="delete-main">
+       <div class="delete-header">
+           <div class="delete-left">提示</div>
+           <img class="delete-right" src="images/false.png" alt="">
+       </div>
+       <div class="delete-center">
+           <img src="images/question.png" alt="">
+           <span>删除房号将一同删除所有租客、账单、合同，您确定要删除吗？</span>
+           <div class="clear">
+           </div>
+           <div class="delete-button">
+               <button type="button">确定</button>
+               <button type="button">取消</button>
+           </div>
+       </div>
+   </div>
+</body>
+</html>

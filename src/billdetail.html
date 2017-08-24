@@ -1,0 +1,299 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>账单收款</title>
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="css/plugins.css"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="css/datepicker.css"/>
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+    <!--<link rel="stylesheet" type="text/css" href="css/property.page.css"/>-->
+    <link rel="stylesheet" type="text/css" href="css/jquery.mCustomScrollbar.css"/>
+    <style type="text/css">
+        body {
+            background-color: white;
+        }
+
+        .container {
+            padding-top: 0px;
+            padding-right: 50px;
+            padding-left: 50px;
+            position: relative;
+        }
+
+        .container > div {
+            padding-top: 30px;
+        }
+
+        .top-modal-bottom {
+            position: relative;
+            padding-top: 20px;
+            margin-bottom:35px;
+        }
+
+        .modal-data-table1 {
+            margin-top: 5px;
+            margin-bottom: 25px;
+        }
+
+        .modal-data-table1 tr td {
+            height: 50px;
+        }
+
+        .modal-data-table1 tr td:first-of-type {
+            width: 75px;
+            text-align: right;
+        }
+
+        .modal-data-table1 tr td:nth-of-type(2) {
+            width: 400px;
+            padding-left: 60px;
+            text-align: left;
+            color:#333;
+        }
+
+        .modal-data-table tr td:nth-of-type(2) {
+            width: 30% !important;
+        }
+
+        .modal-data-table tr td:nth-of-type(3) {
+            padding-right: 20px;
+            width: 50px !important;
+        }
+
+
+    </style>
+    <script type="text/javascript" src="libs/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="libs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/components-pickers.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="contract-add">
+        <div>
+            <table class="modal-data-table1">
+                <tr>
+                    <td>账单标识</td>
+                    <td id="Number"></td>
+                </tr>
+                <tr>
+                    <td>账单房源</td>
+                    <td id="BuildingName"></td>
+                </tr>
+                <tr>
+                    <td>租客姓名</td>
+                    <td id="CustomerName"></td>
+                </tr>
+                <tr>
+                    <td>账单周期</td>
+                    <td id="BillDate"></td>
+                </tr>
+                <tr>
+                    <td>账单金额</td>
+                    <td id="TotalPrice"></td>
+                </tr>
+            </table>
+            <div class="modal-property-data-sec"><p>费用项</p>
+                <div class="clear"></div>
+            </div>
+            <table class="modal-data-table" id="Items">
+            </table>
+            <div class="modal-dv-row">
+                <p>实收金额</p>
+                <div><input type="text" name="" id="Progress" value="" placeholder="请输入支付金额"></div>
+            </div>
+            <div class="modal-dv-row">
+                <p>付款方式<sup>*</sup></p>
+                <div>
+                    <div type="click" class="fq-xiala" id="PayType">
+                        <span class="fq-xiala-sel"></span><i class="icon iconfont icon-xiala"></i>
+                        <ul>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-dv-row">
+                <p>支付流水号</p>
+                <div><input type="text" name="" id="SerialNumber" value="" placeholder="请输入支付流水号"></div>
+            </div>
+            <div class="modal-dv-row">
+                <p>支付日期</p>
+                <div class="date-wraper"><input class="group-date1" type="text" id="PayDate" placeholder="请选择支付日期"
+                                                value=""><i class="icon iconfont icon-gongzuotai"></i></div>
+            </div>
+            <div class="modal-dv-row">
+                <p>备注</p>
+                <div><input type="text" id="Description" name="" placeholder="请输入备注"></div>
+            </div>
+        </div>
+        <div class="top-modal-bottom">
+            <button class="btn-cancel" onclick="CloseDiv()">取消</button>
+            <button class="btn-keep" onclick="BillReceive()">收款</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="js/tools.js"></script>
+<!--<script type="text/javascript" src="js/property.page.js"></script>-->
+<!--<script type="text/javascript" src="libs/jquery.mCustomScrollbar.concat.min.js"></script>-->
+<!--<script type="text/javascript" src="js/data/property_data.js"></script>-->
+<script>
+    $(function () {
+        App.init();
+        ComponentsPickers.init();
+        BillBind();
+    });
+
+    //绑定账单基础信息
+    function BillBind() {
+        var billCharId = getUrlParam('billCharId');
+        ;
+        var data = {
+            requestKey: localStorage.getItem("requestKey"),
+            billCharId: billCharId
+        };
+        $.ajax({
+            type: "GET",
+            url: host + "/bill/receive",
+            data: data,
+            dataType: "json",
+            success: function (jdata) {
+                if (jdata.succ) {
+                    var data = jdata.data;
+//                    账单标识
+                    $("#BillCharId").text(data[0].BillCharId);
+//                    账单房源
+                    $("#BuildingName").text(data[0].BuildingName + data[0].FloorName + " 楼 " + data[0].RoomName + "室");
+//                    账单编号
+                    $("#Number").text(data[0].Number);
+//                    客户姓名
+                    $("#CustomerName").text(data[0].CustomerName);
+//                    账单周期
+                    $("#BillDate").text(data[0].PayDate1 + " ~ " + data[0].PayDate2);
+//                   账单金额
+                    $("#TotalPrice").text(data[0].TotalPrice + "元");
+//                    描述
+                    $("#Description").val(data[0].Description);
+
+                    var html = "";
+                    for (var i = 0; i < data.length; i++) {
+                        html += "<tr>";
+                        html += "<td >" + data[i].Item + "</td>";
+                        html += "<td> " + data[i].ItemPrice + " 元</td>";
+                        html += "<td>实收</td>";
+                        html += "<td><input type='text' placeholder='请输入实收金额' class='costItems' data-value=" + data[i].ItemCharId + "></td>";
+                        html += "</tr>";
+                    }
+                    $("#Items").html(html);
+
+                    var exted = jdata.exted;
+                    html = "";
+                    for (var i = 0; i < exted.length; i++) {
+                        var style = "";
+                        if (i == 0) {
+                            style = "cur";
+                        }
+                        html += "<li data-value=\"" + exted[i].Key + "\" class='" + style + "'>" + exted[i].Value + "</li>";
+                    }
+                    $("#PayType ul").html(html);
+                    $("#PayType span").text($("#PayType li[class='cur']").text());
+                    DropdownInit();
+                }
+            },
+            error: function (XMLHttpRequest, txtStatus, errorThrown) {
+                (txtStatus);
+                messageBox.show("错误", txtStatus, MessageBoxButtons.OK, MessageBoxIcons.error);
+            }
+        });
+    }
+
+    //收款
+    function BillReceive() {
+        var arr=new Array();
+        $(".costItems").each(function(){
+            var obj={
+                CharId:$(this).attr("data-value"),
+                Progress:$(this).val()
+            };
+            arr.push(obj);
+        });
+        var jsonStr=JSON.stringify(arr);
+        var billCharId = getUrlParam('billCharId');
+        var data = {
+            requestKey: localStorage.getItem("requestKey"),
+//            账单唯一标示
+            billCharId: billCharId,
+//            实收
+            costItems: jsonStr,
+//            实收金额
+            progress: $("#Progress").val().trim(),
+//            付款方式
+            payType: $("#PayType li.cur").attr("data-value").trim(),
+//            支付流水号
+            serialNumber:$("#SerialNumber").val().trim(),
+//            支付日期
+            payDate: $("#PayDate").val().trim(),
+//            备注
+            description: $("#Description").val().trim()
+        };
+        $.ajax({
+            type: "Post",
+            url: host + "/bill/receive",
+            data: data,
+            dataType: "JSON",
+            success: function (jdata) {
+                if (jdata.succ) {
+                    var r ;
+                    messageBox.show("提醒", jdata.msg, MessageBoxButtons.OK, MessageBoxIcons.infomation);
+                    $(".btn-confirm").click(function () {
+                        r = true;
+                        billReceive();
+                    })
+                    $(".close span").click(function(){
+                        r=false;
+                    })
+                    function billReceive() {
+                    window.opener.cp.billInit();
+                    window.close();
+                    }
+                }
+                else {
+                    messageBox.show("错误", jdata.msg, MessageBoxButtons.OK, MessageBoxIcons.error);
+                }
+            },
+            error: function (XMLHttpRequest, txtStatus, errorThrown) {
+                messageBox.show("错误", txtStatus, MessageBoxButtons.OK, MessageBoxIcons.error);
+            }
+        });
+    }
+
+    //关闭窗口
+    function CloseDiv() {
+        window.close();
+    }
+
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+        if (r != null) return unescape(r[2]);
+        return null; //返回参数值
+    }
+
+    //    求和计算
+    $(".modal-data-table").on("change", "input", function () {
+        var html = 0;
+        $("#Items input").each(function () {
+            html += $(this).val() * 1;
+        })
+        $("#Progress").val(html);
+    })
+</script>

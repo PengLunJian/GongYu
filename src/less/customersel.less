@@ -1,0 +1,71 @@
+@import "variable";
+body {
+  background: #fff;
+}
+
+.fq-contain-dv .fq-contain-dv-customer {
+  height: 50px;
+  line-height: 50px;
+  margin: 0 20px;
+  border-bottom: 1px solid @borderColor;
+  font-size: 14px;
+}
+
+.contain-customer-wraper tr td:nth-last-child(1) {
+  color: #199aff;
+}
+
+
+//引入
+.contain-customer-wraper {
+  width: 100%;
+  padding: 20px 20px;
+}
+
+.contain-customer-wraper table {
+  width: 100%;
+}
+
+.contain-customer-wraper table tr {
+  height: 34px;
+}
+
+.contain-customer-wraper table tr th {
+  background-color: @tableHeader;
+  color: @content;
+  font-size: 14px;
+}
+
+.contain-customer-wraper table tr td {
+  color: @assist;
+}
+
+.contain-customer-wraper table tr td span.btn-customercheck {
+  color: #499df2;
+  cursor: pointer;
+}
+
+.contain-customer-wraper table tr th, .contain-customer-wraper table tr td {
+  text-align: center;
+  border: 1px solid @borderColor;
+}
+
+.contain-customer-wraper table tr td span {
+  color: #169aff;
+  cursor: pointer;
+}
+
+.contain-customer-wraper table tr td:nth-child(3) {
+  cursor: pointer;
+}
+
+
+
+#Name_Add + .tooltip.fade {
+  left: 96px !important;
+}
+
+#Name_Add + .tooltip.fade .tooltip-arrow {
+  left: 65px !important;
+}
+

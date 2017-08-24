@@ -1,0 +1,752 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>员工</title>
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="css/font.css"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="css/employee.page.css"/>
+    <link rel="stylesheet" type="text/css" href="css/datepicker.css"/>
+    <link rel="stylesheet" type="text/css" href="css/jquery.mCustomScrollbar.css"/>
+    <script type="text/javascript" src="libs/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="libs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/components-pickers.js"></script>
+</head>
+<body>
+
+<div class="header">
+    <div class="pull-left">
+        <ul class="left clearfix">
+            <li class="left-title">
+                <h1 class="hidden-xs">天琚人才公寓</h1>
+                <button class="visible-xs navbar-toggle lg-nav">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <button class="visible-xs navbar-toggle ft-bar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <button class="visible-xs navbar-toggle sm-nav">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </li>
+            <li class="left-front">
+                <a href="http://apt.2ma2.cn" target="_blank">官网</a>
+            </li>
+        </ul>
+    </div>
+    <div class="pull-right">
+        <ul class="right clearfix">
+            <li class="hidden-xs"></li>
+            <li class="right-account">
+                <p class="right-phone"></p>
+                <ul class="right-oprea">
+                    <li><a href="ownercenter.html">个人中心</a></li>
+                    <li><a href="javascript:void(0);">安全退出</a></li>
+                </ul>
+            </li>
+            <li class="right-message">
+                <a href="message.html">
+                    <img src="images/yg_icon_07.png?v=9957859eb8"/>
+                    <span class="message-nums">8</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="main">
+    <div class="employee row">
+        <div class="pull-left">
+            <div class="left-container">
+                <div class="left-content">
+                    <div class="left-header"></div>
+                    <div class="left-body">
+                        <div class="drop-container hide" tabIndex="1">
+                            <div class="drop-content">
+                                <div class="drop-header">
+                                    <span class="drop-result">启用</span>
+                                    <i class="drop-icon icon-drop-down"></i>
+                                </div>
+                                <div class="drop-body">
+                                    <ul id="Bind-Enable">
+                                        <li data-value="1" class="drop-option active">启用</li>
+                                        <li data-value="0" class="drop-option">含停用</li>
+                                    </ul>
+                                </div>
+                                <div class="drop-footer"></div>
+                            </div>
+                        </div>
+                        <div class="tree-container">
+                            <div class="tree-content">
+                                <div class="tree-header"></div>
+                                <div class="tree-body">
+                                    <div class="tree-menu" id="Bind_Dpts"></div>
+                                </div>
+                                <div class="tree-footer"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="left-footer">
+                        <button class="btn btn-add department_add btn-hide" data-panel="panel-sm" data-index="0">部门新增</button>
+                        <button class="btn btn-edit department_update btn-hide" onclick="emp.showDptEditModal();">部门编辑</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pull-right">
+            <div class="right-container">
+                <div class="right-content">
+                    <div class="right-header hide">
+                        <div class="form-group">
+                            <div class="drop-container hide" tabIndex="1">
+                                <div class="drop-content">
+                                    <div class="drop-header">
+                                        <span class="drop-result">角色</span>
+                                        <i class="drop-icon icon-drop-down"></i>
+                                    </div>
+                                    <div class="drop-body">
+                                        <ul id="roleList"></ul>
+                                    </div>
+                                    <div class="drop-footer"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="drop-container hide" tabIndex="1">
+                                <div class="drop-content">
+                                    <div class="drop-header">
+                                        <span class="drop-result">状态</span>
+                                        <i class="drop-icon icon-drop-down"></i>
+                                    </div>
+                                    <div class="drop-body">
+                                        <ul id="stateList"></ul>
+                                    </div>
+                                    <div class="drop-footer"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="drop-container hide" tabIndex="1">
+                                <div class="drop-content">
+                                    <div class="drop-header">
+                                        <span class="drop-result">职称</span>
+                                        <i class="drop-icon icon-drop-down"></i>
+                                    </div>
+                                    <div class="drop-body">
+                                        <ul id="titleList"></ul>
+                                    </div>
+                                    <div class="drop-footer"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input id="search-input" type="text" class="form-input" placeholder="工号、姓名、手机号码"/>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn search">查询</button>
+                            <button class="btn add employee-add btn-hide" data-panel="panel-sm" data-index="2">员工新增</button>
+                        </div>
+                    </div>
+                    <div class="right-body">
+                        <div class="right-table">
+                            <div class="table-header"></div>
+                            <div class="table-body row"></div>
+                        </div>
+                    </div>
+                    <div class="right-footer">
+                        <div class="pagination btn-hide"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer"></div>
+
+<div class="panel panel-lg hide">
+    <div class="panel-bg"></div>
+    <div class="panel-content">
+        <div class="panel-modal panel-detail">
+            <div class="panel-header">
+                <h3 class="panel-title">员工明细</h3>
+            </div>
+            <div class="panel-body">
+                <div class="panel-group">
+                    <div class="group-row row">
+                        <div class="column-label col-xs-4 col-sm-3">部门</div>
+                        <div class="column-value col-xs-8 col-sm-9">
+                            <span id="DepartmentName_EmpDetail"></span>
+                        </div>
+                    </div>
+                    <div class="group-row row">
+                        <div class="column-label col-xs-4 col-sm-3">权限</div>
+                        <div class="column-value col-xs-8 col-sm-9">
+                            <span id="RoleName_EmpDetail"></span>
+                        </div>
+                    </div>
+                    <div class="group-row row">
+                        <div class="column-label col-xs-4 col-sm-3">职称</div>
+                        <div class="column-value col-xs-8 col-sm-9">
+                            <span id="Title_EmpDetail"></span>
+                        </div>
+                    </div>
+                    <div class="group-row row">
+                        <div class="column-label col-xs-4 col-sm-3">工号</div>
+                        <div class="column-value col-xs-8 col-sm-9">
+                            <span id="Account_EmpDetail"></span>
+                        </div>
+                    </div>
+                    <div class="group-row row">
+                        <div class="column-label col-xs-4 col-sm-3">密码</div>
+                        <div class="column-value col-xs-8 col-sm-9">
+                            <span id="Password_EmpDetail"></span>
+                            <button class="btn btn-password">显示密码</button>
+                        </div>
+                    </div>
+                    <div class="group-row row">
+                        <div class="column-label col-xs-4 col-sm-3">状态</div>
+                        <div class="column-value col-xs-8 col-sm-9">
+                            <span id="State_EmpDetail"></span>
+                        </div>
+                    </div>
+                    <div class="group-row row">
+                        <div class="column-label col-xs-4 col-sm-3">姓名</div>
+                        <div class="column-value col-xs-8 col-sm-9">
+                            <span id="Name_EmpDetail"></span>
+                        </div>
+                    </div>
+                    <div class="group-row row">
+                        <div class="column-label col-xs-4 col-sm-3">性别</div>
+                        <div class="column-value col-xs-8 col-sm-9">
+                            <span id="Gender_EmpDetail"></span>
+                        </div>
+                    </div>
+                    <div class="group-row row">
+                        <div class="column-label col-xs-4 col-sm-3">手机号码</div>
+                        <div class="column-value col-xs-8 col-sm-9">
+                            <span id="Phone_EmpDetail"></span>
+                        </div>
+                    </div>
+                    <div class="group-row row">
+                        <div class="column-label col-xs-4 col-sm-3">身份证</div>
+                        <div class="column-value col-xs-8 col-sm-9">
+                            <span id="CardID_EmpDetail"></span>
+                        </div>
+                    </div>
+                    <div class="group-row row">
+                        <div class="column-label col-xs-4 col-sm-3">地址</div>
+                        <div class="column-value col-xs-8 col-sm-9">
+                            <span id="Address_EmpDetail"></span>
+                        </div>
+                    </div>
+                    <div class="group-row row">
+                        <div class="column-label col-xs-4 col-sm-3">学历</div>
+                        <div class="column-value col-xs-8 col-sm-9">
+                            <span id="Education_EmpDetail"></span>
+                        </div>
+                    </div>
+                    <div class="group-row row">
+                        <div class="column-label col-xs-4 col-sm-3">婚否</div>
+                        <div class="column-value col-xs-8 col-sm-9">
+                            <span id="IsMarry_EmpDetail"></span>
+                        </div>
+                    </div>
+                    <div class="group-row row">
+                        <div class="column-label col-xs-4 col-sm-3">身份证是否复印</div>
+                        <div class="column-value col-xs-8 col-sm-9">
+                            <span id="CardIDIsCopy_EmpDetail"></span>
+                        </div>
+                    </div>
+                    <div class="group-row row">
+                        <div class="column-label col-xs-4 col-sm-3">入职时间</div>
+                        <div class="column-value col-xs-8 col-sm-9">
+                            <span id="InDate_EmpDetail"></span>
+                        </div>
+                    </div>
+                    <div class="group-row row">
+                        <div class="column-label col-xs-4 col-sm-3">离职时间</div>
+                        <div class="column-value col-xs-8 col-sm-9">
+                            <span id="OutDate_EmpDetail"></span>
+                        </div>
+                    </div>
+                    <div class="group-row row">
+                        <div class="column-label col-xs-4 col-sm-3">紧急联系人</div>
+                        <div class="column-value col-xs-8 col-sm-9">
+                            <span id="Contact_EmpDetail"></span>
+                        </div>
+                    </div>
+                    <div class="group-row row">
+                        <div class="column-label col-xs-4 col-sm-3">紧急联系人号码</div>
+                        <div class="column-value col-xs-8 col-sm-9">
+                            <span id="ContactPhone_EmpDetail"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <button class="btn cancel">取消</button>
+                <button class="btn delete employee_delete btn-hide" onclick="emp.exeDeleteEmployee();">删除</button>
+                <button class="btn confirm employee_update btn-hide" onclick="emp.showEditEmployee();">编辑</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel panel-sm hide">
+    <div class="panel-bg"></div>
+    <div class="panel-content">
+        <div class="panel-modal dpt-add show">
+            <div class="panel-header">
+                <h3 class="panel-title">部门新增</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="form-label">上级部门</label>
+                    <div class="form-select hide" tabIndex="1">
+                        <i class="icon-drop-down"></i>
+                        <div class="select-result" id="Dpts_Add_Result">请选择部门</div>
+                        <div class="select-option">
+                            <div class="tree-container">
+                                <div class="tree-content">
+                                    <div class="tree-header"></div>
+                                    <div class="tree-body">
+                                        <div class="tree-menu" id="Dpts_Add"></div>
+                                    </div>
+                                    <div class="tree-footer"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="Dpts_Add_Name">部门名称</label>
+                    <input class="form-input form-text" type="text" id="Dpts_Add_Name" placeholder="请输入部门名称"/>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <button class="btn cancel">取消</button>
+                <button class="btn confirm" onclick="emp.exeDepartmentAdd();">保存</button>
+            </div>
+        </div>
+        <div class="panel-modal dpt-edit">
+            <div class="panel-header">
+                <h3 class="panel-title">部门编辑</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="form-label">上级部门</label>
+                    <div class="form-select hide" tabIndex="1">
+                        <i class="icon-drop-down"></i>
+                        <div class="select-result" id="Dpts_Edit_Result">请选择部门</div>
+                        <div class="select-option">
+                            <div class="tree-container">
+                                <div class="tree-content">
+                                    <div class="tree-header"></div>
+                                    <div class="tree-body">
+                                        <div class="tree-menu" id="Dpts_Edit"></div>
+                                    </div>
+                                    <div class="tree-footer"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="Dpts_Edit_Name">部门名称</label>
+                    <input class="form-input form-text" type="text" id="Dpts_Edit_Name" placeholder="请输入部门名称"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="Dpts_Edit_Enable">启用</label>
+                    <div class="drop-container hide" tabIndex="1">
+                        <div class="drop-content">
+                            <div class="drop-header">
+                                <span class="drop-result">正常</span>
+                                <i class="drop-icon icon-drop-down"></i>
+                            </div>
+                            <div class="drop-body">
+                                <ul id="Dpts_Edit_Enable">
+                                    <li class="drop-option active">正常</li>
+                                    <li class="drop-option">关闭</li>
+                                </ul>
+                            </div>
+                            <div class="drop-footer"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <button class="btn cancel">取消</button>
+                <button class="btn confirm" onclick="emp.exeDepartmentEdit();">保存</button>
+                <button class="btn delete btn-hide department_delete" onclick="emp.exeDeleteDepartment();">删除</button>
+            </div>
+        </div>
+        <div class="panel-modal emp-add">
+            <div class="panel-header">
+                <h3 class="panel-title">员工新增</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="form-label">部门</label>
+                    <div class="form-select hide" tabIndex="1">
+                        <i class="icon-drop-down"></i>
+                        <div class="select-result">请选择部门</div>
+                        <div class="select-option">
+                            <div class="tree-container">
+                                <div class="tree-content">
+                                    <div class="tree-header"></div>
+                                    <div class="tree-body">
+                                        <div class="tree-menu" id="Dpts_EmpAdd"></div>
+                                    </div>
+                                    <div class="tree-footer"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">权限</label>
+                    <div class="drop-container hide" tabindex="1">
+                        <div class="drop-content">
+                            <div class="drop-header">
+                                <span class="drop-result">请选择角色</span>
+                                <i class="drop-icon icon-drop-down"></i>
+                            </div>
+                            <div class="drop-body">
+                                <ul id="Roles_EmpAdd"></ul>
+                            </div>
+                            <div class="drop-footer"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">职称</label>
+                    <div class="drop-container hide" tabindex="1">
+                        <div class="drop-content">
+                            <div class="drop-header">
+                                <span class="drop-result">请选择职称</span>
+                                <i class="drop-icon icon-drop-down"></i>
+                            </div>
+                            <div class="drop-body">
+                                <ul id="Titles_EmpAdd"></ul>
+                            </div>
+                            <div class="drop-footer"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="Account_EmpAdd">工号</label>
+                    <input id="Account_EmpAdd" class="form-input form-text" type="text" placeholder="请输入工号"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="Password_EmpAdd">密码</label>
+                    <input id="Password_EmpAdd" class="form-input form-text" type="password" placeholder="请输入密码"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="Name_EmpAdd">姓名</label>
+                    <input id="Name_EmpAdd" class="form-input form-text" type="text" placeholder="请输入姓名"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">性别</label>
+                    <div class="drop-container hide" tabindex="1">
+                        <div class="drop-content">
+                            <div class="drop-header">
+                                <span class="drop-result">请选择性别</span>
+                                <i class="drop-icon icon-drop-down"></i>
+                            </div>
+                            <div class="drop-body">
+                                <ul id="Genders_EmpAdd">
+                                    <li data-value="1" class="drop-option">男</li>
+                                    <li data-value="2" class="drop-option">女</li>
+                                </ul>
+                            </div>
+                            <div class="drop-footer"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="Phone_EmpAdd">手机号码</label>
+                    <input id="Phone_EmpAdd" class="form-input form-text" type="text" placeholder="请输入手机号码"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="CardID_EmpAdd">身份证</label>
+                    <input id="CardID_EmpAdd" class="form-input form-text" type="text" placeholder="请输入身份证"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="Address_EmpAdd">地址</label>
+                    <input id="Address_EmpAdd" class="form-input form-text" type="text" placeholder="请输入地址"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">入/离职日期</label>
+                    <input id="InDate_EmpAdd" class="form-input group-date1" type="text" placeholder="请选择入职日期"/>
+                    <input id="OutDate_EmpAdd" class="form-input group-date1" type="text" placeholder="请选择离职日期"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">学历</label>
+                    <div class="drop-container hide" tabindex="1">
+                        <div class="drop-content">
+                            <div class="drop-header">
+                                <span class="drop-result">请选择学历</span>
+                                <i class="drop-icon icon-drop-down"></i>
+                            </div>
+                            <div class="drop-body">
+                                <ul id="Educations_EmpAdd"></ul>
+                            </div>
+                            <div class="drop-footer"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">婚否</label>
+                    <div class="drop-container hide" tabindex="1">
+                        <div class="drop-content">
+                            <div class="drop-header">
+                                <span class="drop-result">否</span>
+                                <i class="drop-icon icon-drop-down"></i>
+                            </div>
+                            <div class="drop-body">
+                                <ul id="IsMarry_EmpAdd">
+                                    <li data-value="0" class="drop-option active">否</li>
+                                    <li data-value="1" class="drop-option">是</li>
+                                </ul>
+                            </div>
+                            <div class="drop-footer"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">身份证是否复印</label>
+                    <div class="drop-container hide" tabindex="1">
+                        <div class="drop-content">
+                            <div class="drop-header">
+                                <span class="drop-result">否</span>
+                                <i class="drop-icon icon-drop-down"></i>
+                            </div>
+                            <div class="drop-body">
+                                <ul id="IsCopy_EmpAdd">
+                                    <li data-value="0" class="drop-option active">否</li>
+                                    <li data-value="1" class="drop-option">是</li>
+                                </ul>
+                            </div>
+                            <div class="drop-footer"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="Contact_Add">紧急联系人</label>
+                    <input id="Contact_Add" class="form-input form-text" type="text" placeholder="请输入紧急联系人姓名"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="ContactPhone_Add">紧急联系人号码</label>
+                    <input id="ContactPhone_Add" class="form-input form-text" type="text" placeholder="请输入紧急联系人号码"/>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <button class="btn cancel">取消</button>
+                <button class="btn confirm" onclick="emp.exeEmployeeAdd();">保存</button>
+            </div>
+        </div>
+        <div class="panel-modal emp-edit">
+            <div class="panel-header">
+                <h3 class="panel-title">员工编辑</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="form-label">部门</label>
+                    <div class="form-select hide" tabIndex="1">
+                        <i class="icon-drop-down"></i>
+                        <div class="select-result">请选择部门</div>
+                        <div class="select-option">
+                            <div class="tree-container">
+                                <div class="tree-content">
+                                    <div class="tree-header"></div>
+                                    <div class="tree-body">
+                                        <div class="tree-menu" id="Dpts_EmpEdit"></div>
+                                    </div>
+                                    <div class="tree-footer"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">权限</label>
+                    <div class="drop-container hide" tabindex="1">
+                        <div class="drop-content">
+                            <div class="drop-header">
+                                <span class="drop-result">请选择角色</span>
+                                <i class="drop-icon icon-drop-down"></i>
+                            </div>
+                            <div class="drop-body">
+                                <ul id="Roles_EmpEdit"></ul>
+                            </div>
+                            <div class="drop-footer"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">职称</label>
+                    <div class="drop-container hide" tabindex="1">
+                        <div class="drop-content">
+                            <div class="drop-header">
+                                <span class="drop-result">请选择职称</span>
+                                <i class="drop-icon icon-drop-down"></i>
+                            </div>
+                            <div class="drop-body">
+                                <ul id="Titles_EmpEdit"></ul>
+                            </div>
+                            <div class="drop-footer"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="Account_EmpEdit">工号</label>
+                    <input id="Account_EmpEdit" class="form-input form-text" type="text" placeholder="请输入工号"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="Password_EmpEdit">密码</label>
+                    <input id="Password_EmpEdit" class="form-input form-text" type="password" placeholder="请输入密码"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">状态</label>
+                    <div class="drop-container hide" tabindex="1">
+                        <div class="drop-content">
+                            <div class="drop-header">
+                                <span class="drop-result">请选择状态</span>
+                                <i class="drop-icon icon-drop-down"></i>
+                            </div>
+                            <div class="drop-body">
+                                <ul id="States_EmpEdit">
+                                    <li data-value="1" class="drop-option">在职</li>
+                                    <li data-value="2" class="drop-option">离职</li>
+                                </ul>
+                            </div>
+                            <div class="drop-footer"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="Name_EmpEdit">姓名</label>
+                    <input id="Name_EmpEdit" class="form-input form-text" type="text" placeholder="请输入姓名"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">性别</label>
+                    <div class="drop-container hide" tabindex="1">
+                        <div class="drop-content">
+                            <div class="drop-header">
+                                <span class="drop-result">请选择性别</span>
+                                <i class="drop-icon icon-drop-down"></i>
+                            </div>
+                            <div class="drop-body">
+                                <ul id="Genders_EmpEdit">
+                                    <li data-value="1" class="drop-option">男</li>
+                                    <li data-value="2" class="drop-option">女</li>
+                                </ul>
+                            </div>
+                            <div class="drop-footer"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="Phone_EmpEdit">手机号码</label>
+                    <input id="Phone_EmpEdit" class="form-input form-text" type="text" placeholder="请输入手机号码"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="CardID_EmpEdit">身份证</label>
+                    <input id="CardID_EmpEdit" class="form-input form-text" type="text" placeholder="请输入身份证"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="Address_EmpEdit">地址</label>
+                    <input id="Address_EmpEdit" class="form-input form-text" type="text" placeholder="请输入地址"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">入/离职日期</label>
+                    <input id="InDate_EmpEdit" class="form-input group-date1" type="text" placeholder="请选择入职日期"/>
+                    <input id="OutDate_EmpEdit" class="form-input group-date1" type="text" placeholder="请选择离职日期"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">学历</label>
+                    <div class="drop-container hide" tabindex="1">
+                        <div class="drop-content">
+                            <div class="drop-header">
+                                <span class="drop-result">请选择学历</span>
+                                <i class="drop-icon icon-drop-down"></i>
+                            </div>
+                            <div class="drop-body">
+                                <ul id="Educations_EmpEdit"></ul>
+                            </div>
+                            <div class="drop-footer"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">婚否</label>
+                    <div class="drop-container hide" tabindex="1">
+                        <div class="drop-content">
+                            <div class="drop-header">
+                                <span class="drop-result">否</span>
+                                <i class="drop-icon icon-drop-down"></i>
+                            </div>
+                            <div class="drop-body">
+                                <ul id="IsMarry_EmpEdit">
+                                    <li data-value="0" class="drop-option active">否</li>
+                                    <li data-value="1" class="drop-option">是</li>
+                                </ul>
+                            </div>
+                            <div class="drop-footer"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">身份证是否复印</label>
+                    <div class="drop-container hide" tabindex="1">
+                        <div class="drop-content">
+                            <div class="drop-header">
+                                <span class="drop-result">否</span>
+                                <i class="drop-icon icon-drop-down"></i>
+                            </div>
+                            <div class="drop-body">
+                                <ul id="IsCopy_EmpEdit">
+                                    <li data-value="0" class="drop-option active">否</li>
+                                    <li data-value="1" class="drop-option">是</li>
+                                </ul>
+                            </div>
+                            <div class="drop-footer"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="Contact_EmpEdit">紧急联系人</label>
+                    <input id="Contact_EmpEdit" class="form-input form-text" type="text" placeholder="请输入紧急联系人姓名"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="ContactPhone_EmpEdit">紧急联系人号码</label>
+                    <input id="ContactPhone_EmpEdit" class="form-input form-text" type="text" placeholder="请输入紧急联系人号码"/>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <button class="btn cancel">取消</button>
+                <button class="btn confirm" onclick="emp.exeUpdateEmployee();">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="js/tools.js"></script>
+<script type="text/javascript" src="js/employee.page.js"></script>
+</body>
+</html>
+
+

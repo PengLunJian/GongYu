@@ -1,0 +1,173 @@
+@import "variable";
+
+@media screen and (max-width: 1367px) {
+  .container {
+    padding-left: 0px;
+  }
+}
+
+body {
+  .container {
+    padding-left: 0px;
+    .fq-nav2 {
+      .property-nav2-top {
+        #Buildings {
+          overflow-y: auto;
+          height: 100%;
+          display: none;
+        }
+        .property-list {
+          height: 36px;
+          line-height: 36px;
+          border-bottom: 1px solid #e6e6e6;
+          span {
+            margin-left: 35px;
+            color: #333;
+            font-size: 16px;
+          }
+        }
+        .lists {
+          height: 100%;
+          padding-bottom: 176px;
+        }
+        height: 100%;
+      }
+      .fq-nav2-bottom {
+        .btn-propertyadd {
+          display: none;
+        }
+      }
+    }
+    .fq-contain-dv {
+      display: none;
+      #Rooms {
+        .property-room-status {
+          cursor: pointer;
+        }
+        .property-room-status1 {
+          cursor: pointer;
+        }
+      }
+      .floorword {
+        color: @content !important;
+        font-size: 12px !important;
+      }
+    }
+  }
+  .alert-modal-wraper {
+    .hsitory-contractadd {
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      text-align: center;
+      width: 120px;
+      height: 36px;
+      line-height: 36px;
+      background-color: @query;
+      color: #ffffff;
+      margin: 20px 35px;
+    }
+    #btn-order {
+      display: none;
+    }
+    .right-modal {
+      .property-detail {
+        .property-modal-content {
+          .property-contract-content {
+            height: 100% !important;
+            .history-modaldv-tabelwrap {
+              margin-left: 25px;
+              .table-history {
+                tr {
+                  th {
+                    &:first-of-type {
+                      text-align: center !important;
+                    }
+                  }
+                  td {
+                    &:first-of-type {
+                      text-align: center !important;
+                    }
+                  }
+                  td {
+                    &:nth-of-type(2) {
+                      text-align: center !important;
+                      padding-left: 0px !important;
+                    }
+                  }
+                }
+
+              }
+            }
+            .history-fy-wrap {
+              bottom: 90px !important;
+            }
+            .history-button {
+              border-top: 1px solid @borderColor;
+              margin-top: 40px;
+            }
+          }
+          height: 100%;
+        }
+      }
+    }
+    .property-room-ul1 {
+      display: none;
+    }
+    .but-roomEdit {
+      display: none;
+    }
+    .btn-roomdel {
+      display: none;
+    }
+    .serviceInit {
+      display: none;
+    }
+    //抄表记录的隐藏
+    .readInit {
+      display: none;
+    }
+    .btn-repairadd {
+      display: none;
+    }
+    //抄表记录新增的隐藏
+    .btn-checktableadd {
+      display: none;
+    }
+    .property-checktable-content {
+      table {
+        tr {
+          td {
+            &:nth-of-type(2) {
+              text-align: center !important;
+            }
+          }
+        }
+      }
+    }
+  }
+  .historyLook {
+    cursor: pointer;
+  }
+}
+
+//.property-floor-wrap{
+//  position: relative;
+//}
+//
+//.property-content{
+//  padding-top: 0px;
+//  margin-top: 56px;
+//  overflow: hidden;
+//}
+
+
+
+
+
+
+
+
+
+
+

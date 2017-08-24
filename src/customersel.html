@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>员工选择</title>
+    <link rel="stylesheet" type="text/css" href="iconfont/iconfont.css"/>
+    <link href="css/plugins.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="css/customersel.css"/>
+    <script type="text/javascript" src="libs/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="libs/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="fq-contain-dv">
+    <div class="fq-contain-dv-customer">选取客户</div>
+    <div class="property-search-ip">
+        <input id="Key" placeholder="姓名 、手机号码" type="text">
+        <span class="property-search-sp">
+                <i class="icon iconfont icon-sousuo_sousuo" onclick="DoSearch()"></i>
+            </span>
+    </div>
+    <div style="height:10px"></div>
+    <div class="contain-customer-wraper">
+        <table cellpadding="0" cellspacing="0" id="Customers">
+            <tr>
+                <th>姓名</th>
+                <th>电话</th>
+                <th>身份证</th>
+                <th>操作</th>
+            </tr>
+        </table>
+        <div class="fy-wrap">
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<!--<script type="text/javascript" src="js/gycom.js"></script>-->
+<script type="text/javascript" src="js/tools.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var color = "#fbfcff"
+        $("#Customers tr:even td").css("background-color", color);  //改变偶数行背景色
+        /* 把背景色保存到属性中 */
+        $(".data_list tr:even").attr("bg", color);
+        $(".data_list tr:odd").attr("bg", "#fff");
+    });
+
+</script>
+<script type="text/javascript">
+    //移除本地缓存
+    localStorage.removeItem("isAlert");
+    var pageSize = 10;
+    $(function () {
+        DoSearch();
+    });
+
+    //查询
+    function DoSearch() {
+        PageInit();
+        CustomersBind(1);
+    }
+
+    //初始化分页控件
+    function PageInit() {
+        var data = {
+            requestKey: localStorage.getItem("requestKey"),
+            pageIndex: 1,
+            pageSize: pageSize,
+            key: $("#Key").val()
+        };
+        $.ajax({
+            type: "GET",
+            url: host + "/customer/sel",
+            data: data,
+            dataType: "json",
+            success: function (data) {
+                if (data.succ) {
+                    //清空分页控件
+                    $(".fy-wrap").html("");
+                    //绑定分页控件
+                    var pageinit = new fyfoo(pageSize, data.exted.totalNum, function (num) {
+                        CustomersBind(num);
+                    });
+                }
+                else {
+                    messageBox.show("提示", data.msg, MessageBoxButtons.OK, MessageBoxIcons.infomation);
+                }
+            },
+            error: function (XMLHttpRequest, txtStatus, errorThrown) {
+                messageBox.show("错误", txtStatus, MessageBoxButtons.OK, MessageBoxIcons.error);
+            }
+        });
+    }
+
+    //绑定人员列表页面
+    function CustomersBind(pageIndex) {
+        var data = {
+            requestKey: localStorage.getItem("requestKey"),
+            pageIndex: pageIndex,
+            pageSize: pageSize,
+            key: $("#Key").val()
+        };
+        $.ajax({
+            type: "GET",
+            url: host + "/customer/sel",
+            data: data,
+            dataType: "json",
+            success: function (data) {
+                if (data.succ) {
+                    var jdata = data.data;
+                    var html = "";
+                    for (var i = 0; i < jdata.length; i++) {
+                        html += "<tr>";
+                        html += "<td id=\"name_" + jdata[i].CharId + "\">" + jdata[i].Name + "</td>";
+                        html += "<td id=\"phone_" + jdata[i].CharId + "\">" + jdata[i].Phone + "</td>";
+                        html += "<td id=\"cardID_" + jdata[i].CharId + "\">" + jdata[i].CardID + "</td>";
+                        html += "<td><span onclick=\"SelectCustomer('" + jdata[i].CharId + "')\">选择</span></td>";
+                        html += "</tr>";
+                    }
+                    $("#Customers tr:first").nextAll().remove();
+                    $("#Customers").append(html);
+                }
+                else {
+                    messageBox.show("提示", data.msg, MessageBoxButtons.OK, MessageBoxIcons.infomation);
+                }
+            },
+            error: function (XMLHttpRequest, txtStatus, errorThrown) {
+                messageBox.show("错误", txtStatus, MessageBoxButtons.OK, MessageBoxIcons.error);
+            }
+        });
+    }
+
+    //选择客户
+    function SelectCustomer(charId) {
+        if (window.opener.document.getElementById("CustomerCharId")) {
+            window.opener.document.getElementById("CustomerCharId").value = charId;
+            window.opener.document.getElementById("CustomerName_Add").innerText = $("#name_" + charId).text();
+            window.opener.document.getElementById("ContractPhone_Add").value = $("#phone_" + charId).text();
+            window.opener.document.getElementById("CardID_Add").value = $("#cardID_" + charId).text();
+            window.close();
+
+        } else {
+            window.opener.document.getElementById("historyCustomerCharId").value = charId;
+            window.opener.document.getElementById("historyCustomerName_Add").innerText = $("#name_" + charId).text();
+            window.opener.document.getElementById("historyContractPhone_Add").value = $("#phone_" + charId).text();
+            window.opener.document.getElementById("historyCardID_Add").value = $("#cardID_" + charId).text();
+            window.close();
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,309 @@
+@import "variable";
+
+body{
+  .container{
+    .fq-nav2 {
+      .role-list{
+        height: 100%;
+        padding-bottom: 180px;
+      }
+      .nav2-power {
+        width: 100%;
+        height: 100%;
+        ul {
+          width: 100%;
+          height: 100%;
+          overflow-y: auto;
+          li {
+            padding-left: 50px;
+            height: 36px;
+            line-height: 36px;
+            cursor: pointer;
+            span {
+              color: #646464;
+              margin-left: 12px;
+            }
+            i {
+              display: inline-block;
+              vertical-align: sub;
+              width: 14px;
+              height: 14px;
+              background: url('../images/qx_icon_23.png') 0 0 no-repeat;
+            }
+            b {
+              display: none;
+              float: right;
+              margin-right: 18px;
+              font-size: 16px;
+              vertical-align: top;
+              color: #1a8ff0;
+              font-weight: normal !important;
+            }
+            &:hover {
+              b {
+                display: block;
+              }
+              background-color: #e6e6e6;
+            }
+          }
+          .sel{
+            i {
+              background: url('../images/qx_icon_15.png') 0 0 no-repeat;
+            }
+          }
+        }
+        .sel{
+          span {
+            color: #1a8ff0;
+          }
+        }
+        p {
+          width: 100%;
+          height: 40px;
+          line-height: 40px;
+          padding-left: 20px;
+          margin-bottom: 0;
+          border-bottom: 1px solid #e6e6e6;
+          span {
+            margin-left: 14px;
+            color: #333;
+            position: relative;
+            top: 3px;
+          }
+        }
+        //角色查看
+        #roles {
+          display: none;
+        }
+      }
+      .fq-nav2-bottom {
+        height: 140px;
+        display: none;
+        .fq-btn-size-30 {
+          margin-left: 10px;
+          margin-top: 20px;
+        }
+        .btn-roleadd{
+          display: none;
+        }
+
+      }
+    }
+    .fq-contain{
+      .fq-contain-src {
+        background: #fff;
+        border: 10px solid @tableHeader;
+        overflow: auto;
+        max-height: 100%;
+        //权限查看
+        .fq-contain-dv {
+          display: none;
+          padding: 20px 30px!important;
+        }
+        .power-desk{
+          margin-top: 20px;
+          padding-top: 30px;
+          border-top: 1px solid @borderColor;
+          .desk-left {
+            width: 108px;
+            height: 16px;
+            display: inline-block;
+            float: left;
+            font-weight: bold;
+            .propertyt {
+              display: inline-block;
+              width: 16px;
+              height: 19px;
+              vertical-align: middle;
+              margin-right: 10px;
+              position: relative;
+              background: url('../images/yg_icon_14.png') 0 0 no-repeat;
+            }
+            span {
+              vertical-align: middle;
+            }
+            i {
+              display: inline-block;
+              vertical-align: middle;
+              margin-right: 10px;
+              position: relative;
+              color: #cae3ff;
+              font-weight: 100;
+              //background: url('../images/yg_icon_03.png') 0 0 no-repeat;
+            }
+          }
+          .desk-right{
+            .power-right-bill {
+              width: 100%;
+            }
+            #menu-content {
+              ul {
+                li {
+                  margin-bottom: 6px;
+                }
+              }
+              width: 60%;
+              margin-left: -40px !important;
+            }
+            .uncollectedBill {
+              float: left;
+              font-size: 14px;
+              color: @weaken;
+            }
+            ul {
+              display: inline-block;
+              li {
+                float: left;
+                margin-left: 50px;
+                margin-right: -8px;
+                position: relative;
+                span {
+                  margin-left: 10px;
+                  font-size: 14px;
+                }
+                i {
+                  display: inline-block;
+                  display: none;
+                  width: 16px;
+                  height: 16px;
+                  vertical-align: middle;
+                  position: absolute;
+                  top: 3px;
+                  left: -10px;
+                  background: url('../images/icon_02.png') 0 0 no-repeat;
+                }
+                .zd-blue {
+                  font-size: 14px;
+                  color: @menuText;
+                  b {
+                    display: inline-block;
+                    width: 16px;
+                    height: 16px;
+                    vertical-align: middle;
+                    position: absolute;
+                    top: 7px;
+                    left: -8px;
+                    background: url('../images/qx_icon_07.png') 0 0 no-repeat;
+                  }
+                }
+              }
+            }
+            li{
+              color: #666;
+            }
+            float: left;
+            margin-left: 15px;
+            margin-bottom: 15px;
+            width: 80%;
+          }
+          .zd-blue {
+            color: @menuText;
+          }
+          .menu {
+            display: inline-block;
+            width: 16px;
+            height: 15px;
+            vertical-align: middle;
+            margin-right: 10px;
+            position: relative;
+            background: url('../images/qx_menu.png') 0 0 no-repeat;
+          }
+        }
+      }
+      .contain-power-top {
+        display: none;
+        width: 100%;
+        .power-top-sec {
+          height: 50px;
+          line-height: 50px;
+          background-color: #fff;
+          .power-top-sec-right {
+            float: right;
+            p {
+              width: 80px;
+              height: 36px;
+              line-height: 36px;
+              border: 1px solid #c8e4ff;
+              text-align: center;
+              border-radius: 6px;
+              cursor: pointer;
+              background-color:#417de6 ;
+              color: #fff;
+              font-size:14px;
+              &:hover {
+                background-color: #1c68ed;
+              }
+              i {
+                display: inline-block;
+                width: 16px;
+                height: 16px;
+                vertical-align: middle;
+                margin-right: 10px;
+                position: relative;
+                top: -3px;
+                background: url('../images/yg_photo_20.png') 0 0 no-repeat;
+              }
+            }
+            .power-edit-ul{
+              display: none;
+              li {
+                display: inline-block;
+                width: 60px;
+                height: 30px;
+                line-height: 28px;
+                text-align: center;
+                color: #c8e4ff;
+                border-radius: 4px;
+                border: 1px solid @menuHover;
+                margin-left: 16px;
+                cursor: pointer;
+                color: @menuHover;
+              }
+              .hov {
+                color: #FFFFFF;
+                background-color: @query;
+                border: 0;
+                &:hover {
+                  background-color: #1c68ed;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  //悬停效果
+  .alert-modal-wraper{
+    #roleName_Add {
+      ul {
+        overflow: hidden;
+        height: 200px !important;
+      }
+    }
+    .role-dv-row {
+      top: 50px;
+    }
+    .top-modal-bottom{
+      >span{
+        background-color: #fff;
+        border: 1px solid @menuHover;
+        border-radius: 4px;
+        color: @assist;
+        cursor: pointer;
+        font-size: 14px;
+        height: 30px;
+        line-height: 30px;
+        margin-top: 8px;
+        text-align: center;
+        width: 60px;
+        float: left;
+        display: none;
+      }
+    }
+  }
+}
+
+
+
+

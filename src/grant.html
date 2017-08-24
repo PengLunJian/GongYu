@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>权限</title>
+    <link rel="stylesheet" type="text/css" href="iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="css/grant.page.css"/>
+    <link rel="stylesheet" type="text/css" href="css/jquery.mCustomScrollbar.css"/>
+    <script type="text/javascript" src="libs/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="libs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/components-pickers.js"></script>
+</head>
+<body>
+<div class="header">
+    <div class="pull-left">
+        <ul class="left clearfix">
+            <li class="left-title">
+                <h1 class="hidden-xs">天琚人才公寓</h1>
+                <button class="visible-xs navbar-toggle lg-nav">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </li>
+            <li class="left-front">
+                <a href="http://apt.2ma2.cn" target="_blank">官网</a>
+            </li>
+        </ul>
+    </div>
+    <div class="pull-right">
+        <ul class="right clearfix">
+            <li class="hidden-xs"></li>
+            <li class="right-account">
+                <p class="right-phone"></p>
+                <ul class="right-oprea">
+                    <li><a href="ownercenter.html">个人中心</a></li>
+                    <li><a href="javascript:void(0);">安全退出</a></li>
+                </ul>
+            </li>
+            <li class="right-message">
+                <a href="message.html">
+                    <img src="images/yg_icon_07.png?v=9957859eb8"/>
+                    <span class="message-nums">8</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="container">
+    <div class="fq-nav2">
+
+        <div class="nav2-power">
+            <p><img src="images/qx_icon_03.png"><span type="role-detail" dir="top">角色</span></p>
+            <div class="role-list">
+                <ul id="roles">
+                </ul>
+            </div>
+        </div>
+        <div class="fq-nav2-bottom">
+            <div class="fq-nav2-customer-bottom">
+                <ul>
+                    <li dir="top" type="role-add" class="fq-btn fq-btn-size-30 btn-roleadd">
+                        <button>
+                            角色新增
+                        </button>
+                    </li>
+                    <div class="clear"></div>
+                </ul>
+                <input type="hidden" id="btnType" value="add"/>
+            </div>
+        </div>
+    </div>
+    <div class="fq-contain">
+        <!-- ***4.7添加代码 -->
+        <div class="fq-contain-src">
+            <div class="fq-contain-in">
+                <div class="fq-contain-dv">
+                    <div class="contain-power-wraper">
+                        <div class="contain-power-top">
+                            <div class="power-top-sec">
+                                <div class="power-top-sec-right">
+                                    <p><span>职务编辑</span></p>
+                                    <ul class="power-edit-ul">
+                                        <li>取消</li>
+                                        <li class="hov" onclick="powerSave()">保存</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!--权限菜单-->
+                        <div class="power-desk">
+                            <div class="desk-left"><i class="menu"></i><span>菜单</span></div>
+                            <div class="desk-right">
+                                <div class="power-right-bill" id="menu-content">
+                                    <!--<ul>-->
+                                    <!--<li><i></i><span class="zd-blue"><b></b>浏览</span></li>-->
+                                    <!--<li><i></i><span><b></b>忽略</span></li>-->
+                                    <!--<li><i></i><span><b></b>催款</span></li>-->
+                                    <!--</ul>-->
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+
+                            <!--权限内容-->
+                            <div id="power-content">
+                                <!--桌面-->
+                                <!--<div class="power-desk">-->
+                                <!--<div class="desk-left">-->
+                                <!--<i class="icon iconfont icon-Desktop"></i><span>桌面</span>-->
+                                <!--</div>-->
+                                <!--<div class="desk-right">-->
+                                <!--<div class="power-right-bill">-->
+                                <!--<span class="uncollectedBill" style="float:left;">待收账单</span>-->
+                                <!--<ul style="float:left;">-->
+                                <!--<li style="float:left;"><i></i><span class="zd-blue"><b></b>浏览</span></li>-->
+                                <!--<li style="float:left;"><i></i><span><b></b>忽略</span></li>-->
+                                <!--<li style="float:left;"><i></i><span><b></b>催款</span></li>-->
+                                <!--</ul>-->
+                                <!--</div>-->
+
+                                <!--<div class="power-right-bill">-->
+                                <!--<span class="uncollectedBill" style="float:left;">待收账单</span>-->
+                                <!--<ul style="float:left;">-->
+                                <!--<li style="float:left;"><i></i><span class="zd-blue"><b></b>浏览</span></li>-->
+                                <!--<li style="float:left;"><i></i><span><b></b>忽略</span></li>-->
+                                <!--<li style="float:left;"><i></i><span><b></b>催款</span></li>-->
+                                <!--</ul>-->
+                                <!--</div>-->
+
+                                <!--</div>-->
+                                <!--<div class="clear"></div>-->
+                                <!--111111-->
+                                <!--<div class="power-desk">-->
+                                <!--<div class="desk-left">-->
+                                <!--<i class="icon iconfont icon-Desktop"></i><span>桌面</span>-->
+                                <!--</div>-->
+                                <!--<div class="desk-right">-->
+                                <!--<div class="power-right-bill">-->
+                                <!--<span class="uncollectedBill" style="float:left;">待收账单</span>-->
+                                <!--<ul style="float:left;">-->
+                                <!--<li style="float:left;"><i></i><span class="zd-blue"><b></b>浏览</span>-->
+                                <!--</li>-->
+                                <!--<li style="float:left;"><i></i><span><b></b>忽略</span></li>-->
+                                <!--<li style="float:left;"><i></i><span><b></b>催款</span></li>-->
+                                <!--</ul>-->
+                                <!--</div>-->
+
+                                <!--<div class="power-right-bill">-->
+                                <!--<span class="uncollectedBill" style="float:left;">待收账单</span>-->
+                                <!--<ul style="float:left;">-->
+                                <!--<li style="float:left;"><i></i><span class="zd-blue"><b></b>浏览</span>-->
+                                <!--</li>-->
+                                <!--<li style="float:left;"><i></i><span><b></b>忽略</span></li>-->
+                                <!--<li style="float:left;"><i></i><span><b></b>催款</span></li>-->
+                                <!--</ul>-->
+                                <!--</div>-->
+
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--</div>-->
+                            </div>
+                        </div>
+                        <!--<div class="fq-contain-dv2">-->
+                        <!--行政-->
+                        <!--</div>-->
+                        <!--<div class="fq-contain-dv3">-->
+                        <!--财务-->
+                        <!--</div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="alert-modal-wraper">
+    <div class="modal-mask"></div>
+    <div></div>
+    <div class="top-modal fq-modal">
+        <!--角色新增-->
+        <div class="modal-con role-add">
+            <div class="fq-modal-title"><p>角色新增</p>
+                <p><i class="icon iconfont icon-shezhi"></i></p></div>
+            <div class="mCustomScrollbar" style="height: 100%;">
+                <div class="top-modal-container">
+                    <div class="modal-dv-row">
+                        <p>角色名称<sup>*</sup></p>
+                        <div><input type="text" id="roleName_Add" name="" placeholder="请输入角色名称"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="top-modal-bottom">
+                <button class="btn-cancel">取消</button>
+                <button class="btn-keep" onclick="roleAdd()">保存</button>
+            </div>
+        </div>
+        <!--角色编辑-->
+        <div class="modal-con role-detail">
+            <div class="fq-modal-title"><p>角色编辑</p>
+                <p><i class="icon iconfont icon-shezhi"></i></p></div>
+            <div>
+
+                <div class="top-modal-container ">
+                    <div class="modal-dv-row role-dv-row">
+                        <p>角色名称<sup>*</sup></p>
+                        <div><input type="text" id="roleName_Edit" name="" placeholder="请输入角色名称"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="top-modal-bottom">
+                <span class="" onclick="roleDptDel()"><botton>删除</botton></span>
+                <button class="btn-cancel">取消</button>
+                <button class="btn-keep" onclick="roleEditSave()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="js/tools.js"></script>
+<script type="text/javascript" src="js/grant.page.js"></script>
+<script type="text/javascript" src="js/data/power_data.js"></script>
+<script type="text/javascript" src="libs/jquery.mCustomScrollbar.concat.min.js"></script>
+</body>
+</html>

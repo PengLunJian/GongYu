@@ -1,0 +1,648 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>合同</title>
+    <link rel="stylesheet" type="text/css" href="iconfont/iconfont.css"/>
+    <link href="css/plugins.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="css/datepicker.css"/>
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="css/contract.page.css"/>
+    <link rel="stylesheet" type="text/css" href="css/jquery.mCustomScrollbar.css"/>
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"/>
+    <script type="text/javascript" src="libs/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="libs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/components-pickers.js"></script>
+</head>
+<body>
+<div class="header">
+    <div class="pull-left">
+        <ul class="left clearfix">
+            <li class="left-title">
+                <h1 class="hidden-xs">天琚人才公寓</h1>
+                <button class="visible-xs navbar-toggle lg-nav">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </li>
+            <li class="left-front">
+                <a href="http://apt.2ma2.cn" target="_blank">官网</a>
+            </li>
+        </ul>
+    </div>
+    <div class="pull-right">
+        <ul class="right clearfix">
+            <li class="hidden-xs"></li>
+            <li class="right-account">
+                <p class="right-phone"></p>
+                <ul class="right-oprea">
+                    <li><a href="ownercenter.html">个人中心</a></li>
+                    <li><a href="javascript:void(0);">安全退出</a></li>
+                </ul>
+            </li>
+            <li class="right-message">
+                <a href="message.html">
+                    <img src="images/yg_icon_07.png?v=9957859eb8"/>
+                    <span class="message-nums">8</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="container">
+    <div class="fq-nav2">
+        <div class="contract-nav2-section">
+            <ul>
+                <li><input type="text" id="Key" name="" placeholder="姓名、手机、合同编号" value=""></li>
+                <li>
+                    <div type="click" class="fq-xiala" id="Buildings">
+                        <span class="fq-xiala-sel">物业不限</span>
+                        <i class="icon iconfont icon-xiala"></i>
+                        <ul>
+                            <li class="cur" data-value="">物业不限</li>
+                        </ul>
+                    </div>
+
+                </li>
+                <li>
+                    <div type="click" class="fq-xiala" id="ContractState" class="btn-hide">
+                        <span class="fq-xiala-sel">状态不限</span><i class="icon iconfont icon-xiala"></i>
+                        <ul>
+
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div type="click" class="fq-xiala" id="DateType">
+                        <span class="fq-xiala-sel">日期不限</span><i class="icon iconfont icon-xiala"></i>
+                        <ul>
+                            <li class="cur" data-value="10">日期不限</li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div class="date-wraper"><input class="group-date1" type="text" id="StartDate"
+                                                    placeholder="开始时间" value=""><i
+                            class="icon iconfont icon-gongzuotai"></i></div>
+                </li>
+                <li>
+                    <div class="date-wraper"><input class="group-date1" type="text" id="EndDate" placeholder="结束时间"
+                                                    value=""><i class="icon iconfont icon-gongzuotai"></i></div>
+                </li>
+                <li>
+                    <button class="fq-btn fq-btn-size-50" onclick="cp.contractList()">查询</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="fq-contain">
+        <div class="fq-contain-in">
+            <div class="fq-contain-dv">
+                <div class="contain-contract-wraper">
+                    <table cellpadding="0" cellspacing="0" id="Contracts">
+                        <tr>
+                            <th>合同编号</th>
+                            <th>状态</th>
+                            <th>姓名</th>
+                            <th>手机号码</th>
+                            <th>房号</th>
+                            <th>租金（月/元）</th>
+                            <th>签约</th>
+                            <th>退租</th>
+                            <th>创建</th>
+                            <th>操作</th>
+                        </tr>
+                    </table>
+                    <div class="fy-wrap fy-wrap-contract btn-hide">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="alert-modal-wraper">
+    <div class="modal-mask"></div>
+    <div class="right-modal fq-modal">
+        <div class="modal-con contract-check" show="1">
+            <div class="fq-modal-title"><p>合同详情<i class="icon iconfont icon-shezhi"></i></p></div>
+            <div class="fq-modal-menu fq-modal-menul3">
+                <ul>
+                    <li class="cur"><span>合同资料</span></li>
+                    <li onclick="cp.billInit()" class="billInit btn-hide"><span>账单列表</span></li>
+                    <li><span>操作日志</span></li>
+                    <div class="clear"></div>
+                </ul>
+            </div>
+            <div class="fq-modal-content">
+                <div class="fq-alert-modal-dv">
+                    <div class="mCustomScrollbar">
+                        <div class="">
+                            <div class="modaldv-tabelwrap">
+                                <p>客户资料</p>
+                                <table class="modal-table table-td2">
+                                    <tr>
+                                        <td>姓名</td>
+                                        <td><span color="lan" id="CustomerName_Detail"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>手机号码</td>
+                                        <td id="Phone_Detail"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>证件号码</td>
+                                        <td id="CardId_Detail"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="modaldv-tabelwrap">
+                                <p>房间资料</p>
+                                <table class="modal-table table-td2">
+                                    <tr>
+                                        <td>物业</td>
+                                        <td id="BuildingName_Detail"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>房号</td>
+                                        <td><span color="lan" id="RoomName_Detail"></span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="modaldv-tabelwrap">
+                                <p>合同资料</p>
+                                <table class="modal-table table-td2">
+                                    <tr>
+                                        <td>编号</td>
+                                        <td id="Number_Detail"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>状态</td>
+                                        <td id="State_Detail"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>租金</td>
+                                        <td id="Price_Detail"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>押金</td>
+                                        <td id="Deposit_Detail"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>起租/退租</td>
+                                        <td id="RentDate_Detail"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>付押方式</td>
+                                        <td id="PayType_Detail"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>收租日期</td>
+                                        <td id="ReceiveDate"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>签约员工</td>
+                                        <td id="EmpName_Detail"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>签约日期</td>
+                                        <td id="BargainDate_Detail"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>备注</td>
+                                        <td id="Description_Detail"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>合同附件</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>创建</td>
+                                        <td id="CreateEmpName_Detail"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-bottom">
+                        <input type="hidden" id="CurContractCharId"/>
+                        <ul>
+                            <li>
+                                <button color="bai" id="btn-abandon" onclick="cp.contractAbandon()" class="btn-hide">
+                                    作废
+                                </button>
+                            </li>
+                            <li class="btn-backrental" type="back-rental" dir="top">
+                                <button color="lv" id="btn-end" class="btn-backrental  btn-hide"
+                                        onclick="cp.ajaxRequestEndBind(cp.getParams(cp.EBD))">退租
+                                </button>
+                            </li>
+                            <li>
+                                <button color="huang" id="id-restart" class="btn-contractadd btn-hide" type="contract-add"
+                                        dir="top" >续签
+                                </button>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <button color="bai" class="btn-cancel">取消</button>
+                            </li>
+                            <li class="contractUpdateBind btn-contractedit btn-hide" type="contract-edit"
+                                dir="top">
+                                <!--<button color="lan" id="btn-contractedit" class="btn-contractedit" type="contract-edit"-->
+                                        <!--dir="top" >编辑-->
+                                <!--</button>-->
+                                <button color="lan" id="btn-contractedit" class="btn-contractedit" type="contract-edit"
+                                        dir="top" onclick="cp.ajaxRequestContractBind(cp.getParams(cp.CUB));">编辑
+                                </button>
+                            </li>
+                        </ul>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="fq-alert-modal-dv">
+                    <div class="mCustomScrollbar">
+                        <div class="Scrollbar-styledv p20">
+                            <div class="modal-needdv btn-billadd btn-hide" type="bill-add" dir="top" >
+                                <button color="lan"
+                                        onclick="cp.ajaxRequestBillBind(cp.getParams(cp.BBD))">单笔新增
+                                </button>
+                                <!--<button color="lan">重新新增</button>--></div>
+                            <table class="modal-table2" id="Bills">
+                                <tr>
+                                    <th>状态</th>
+                                    <th>类型</th>
+                                    <th>账单周期</th>
+                                    <th>应收</th>
+                                    <th>已收</th>
+                                    <th>应支付日</th>
+                                    <th>操作</th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="fy-wrap fy-wrap-bill">
+                    </div>
+                </div>
+                <div class="fq-alert-modal-dv">
+                    <div class="mCustomScrollbar">
+                        <div class="Scrollbar-styledv p20-124">
+                            <table class="modal-tabl">
+                                <tr>
+                                    <td>2017-2-9&nbsp;1:54:15</td>
+                                    <td>修改</td>
+                                    <td>手机号码：13876543261->13524367890。</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="fy-wrap">
+                        <ul>
+                            <li class="fy-page-dir fy-page-prev"><i
+                                    class="icon iconfont icon-prev"></i></li>
+                            <li style="width:30px;" class="cur">1</li>
+                            <li class="fy-page-dir fy-page-next"><i
+                                    class="icon iconfont icon-next"></i></li>
+                            <li>共10条</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="top-modal fq-modal">
+        <div class="modal-con bill-add">
+            <div class="fq-modal-title"><p>账单新增</p>
+
+                <p><i class="icon iconfont icon-shezhi"></i></p></div>
+            <div class="mCustomScrollbar">
+                <div class="Scrollbar-styledv p20-0101">
+                    <div class="modal-dv-row">
+                        <p>项目</p>
+
+                        <div>
+                            <div type="click" class="fq-xiala" id="CostItems">
+                                <span class="fq-xiala-sel"></span><i class="icon iconfont icon-xiala"></i>
+                                <ul>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-dv-row">
+                        <p>类型</p>
+
+                        <div>
+                            <div type="click" class="fq-xiala" id="BillTypes">
+                                <span class="fq-xiala-sel"></span><i class="icon iconfont icon-xiala"></i>
+                                <ul>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-dv-row">
+                        <p>账单周期</p>
+
+                        <div class="dv-wrap-2">
+                            <div class="date-wraper"><input class="group-date1" type="text" id="PayDate1_Add"
+                                                            value=""><i class="icon iconfont icon-Desktop"></i></div>
+                            <div class="date-wraper"><input class="group-date1" type="text" id="PayDate2_Add"
+                                                            value=""><i class="icon iconfont icon-Desktop"></i></div>
+                        </div>
+                    </div>
+                    <div class="modal-dv-row">
+                        <p>金额</p>
+
+                        <div class="ip-wrap p10-0100"><input type="text" name="" id="CostPrice_Add" placeholder="请输入金额"><span>元</span>
+                        </div>
+                    </div>
+                    <div class="modal-dv-row">
+                        <p>应支付日</p>
+
+                        <div class="dv-wrap">
+                            <div class="date-wraper"><input class="group-date1" type="text" id="PayDate3_Add"
+                                                            value=""><i class="icon iconfont icon-Desktop"></i></div>
+                        </div>
+                    </div>
+                    <div class="modal-dv-row">
+                        <p>备注</p>
+                        <div class="ip-wrap p10-0100"><input type="text" name="" id="Description_Add" placeholder="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="top-modal-bottom">
+                <button class="btn-cancel">取消</button>
+                <button class="btn-keep" onclick="cp.billAdd()">保存</button>
+            </div>
+        </div>
+        <div class="modal-con contract-edit">
+            <div class="fq-modal-title"><p>合同编辑</p>
+
+                <p><i class="icon iconfont icon-shezhi"></i></p></div>
+            <div class="mCustomScrollbar">
+                <div class="Scrollbar-styledv p10-0252">
+                    <div class="modaldv-tabelwrap">
+                        <p class="tl-l">客户资料</p>
+                        <table class="modal-table table-td2 td1-w60">
+                            <tr>
+                                <td>姓名</td>
+                                <td id="CustomerName_Update"></td>
+                            </tr>
+                            <tr>
+                                <td>手机号码</td>
+                                <td id="Phone_Update"></td>
+                            </tr>
+                            <tr>
+                                <td>证件号码</td>
+                                <td id="CardId_Update"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modaldv-tabelwrap">
+                        <p class="tl-l">房间资料</p>
+                        <table class="modal-table table-td2 td1-w60">
+                            <tr>
+                                <td>物业</td>
+                                <td id="BuildingName_Update"></td>
+                            </tr>
+                            <tr>
+                                <td>房号</td>
+                                <td id="RoomName_Update"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modaldv-tabelwrap">
+                        <p class="tl-l">合同资料</p>
+                        <table class="modal-table table-td2 td1-w60">
+                            <tr>
+                                <td>编号</td>
+                                <td id="Number_Update"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-dv-row">
+                        <p>租金</p>
+
+                        <div class="ip-wrap p10-0100"><input type="text" name="" id="Price_Update"
+                                                             value=""><span>元</span></div>
+                    </div>
+                    <div class="modal-dv-row">
+                        <p>押金</p>
+
+                        <div class="ip-wrap p10-0100"><input type="text" name="" id="Deposit_Update"
+                                                             value=""><span>元</span></div>
+                    </div>
+                    <div class="modal-dv-row">
+                        <p>付押方式</p>
+
+                        <div type="click" class="fq-xiala" id="PayType">
+                            <span class="fq-xiala-sel"></span><i class="icon iconfont icon-xiala"></i>
+                            <ul>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="modal-dv-row">
+                        <p>入住人数</p>
+
+                        <div class="ip-wrap p10-0100"><input type="text" name="" id="Total_Update" value=""></div>
+                    </div>
+                    <div class="modal-dv-row">
+                        <p>起租/退租<sup>*</sup></p>
+
+                        <div class="dv-wrap-2">
+                            <div class="date-wraper"><input class="group-date1" type="text" id="InDate_Update" value=""><i
+                                    class="icon iconfont icon-Desktop"></i></div>
+                            <div class="date-wraper"><input class="group-date1" type="text" id="OutDate_Update"
+                                                            value=""><i class="icon iconfont icon-Desktop"></i></div>
+                        </div>
+                    </div>
+                    <!--<div class="modal-dv-row">
+                        <p>收租日期<sup>*</sup></p>
+                        <div class="dv-wrapall">
+                            <div type="click" class="fq-xiala">
+                                <span class="fq-xiala-sel">按固定时期收租</span><i class="icon iconfont icon-xiala"></i>
+                                <ul>
+                                    <li class="cur">按固定时期收租</li>
+                                    <li>类型1</li>
+                                    <li>类型2</li>
+                                    <li>类型3</li>
+                                    <li>类型4</li>
+                                </ul>
+                            </div><span>每月</span><div class="ip-wrap"><input type="text" value="20"><span>日</span></div>
+                        </div>
+                    </div>-->
+                    <div class="modal-dv-row">
+                        <p>签约员工</p>
+
+                        <div class="dv-wrap-2">
+                            <div type="click" class="fq-xiala secondary-menu" id="Dpts">
+                                <span class="fq-xiala-sel">不选</span><i class="icon iconfont icon-xiala"></i>
+                                <ul id="simulation">
+                                    <li class="cur">不选</li>
+                                </ul>
+                            </div>
+                            <div type="click" class="fq-xiala" id="Emps">
+                                <span class="fq-xiala-sel">不选</span><i class="icon iconfont icon-xiala"></i>
+                                <ul style="max-height:150px;overflow-y: scroll;">
+                                    <li class="cur">不选</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-dv-row">
+                        <p>签约日期<sup>*</sup></p>
+
+                        <div class="ip-wrap"><input class="group-date1" type="text" id="BargainDate_Update" value=""><i
+                                class="icon iconfont icon-Desktop"></i></div>
+                    </div>
+                    <div class="modal-dv-row">
+                        <p>备注</p>
+
+                        <div class="ip-wrap"><input type="text" id="Description_Update" value=""></div>
+                    </div>
+                </div>
+            </div>
+            <div class="top-modal-bottom">
+                <button class="btn-cancel">取消</button>
+                <button class="btn-keep contractSave" >保存</button>
+                <!--<button class="btn-keep contractSave" onclick="cp.ajaxRequestContractSave(cp.getParams(cp.CSE))">保存</button>-->
+            </div>
+        </div>
+        <div class="modal-con back-rental">
+            <div class="fq-modal-title"><p>退租</p>
+
+                <p><i class="icon iconfont icon-shezhi"></i></p></div>
+            <div class="mCustomScrollbar">
+                <div class="Scrollbar-styledv p20-0101">
+                    <div class="modaldv-tabelwrap">
+                        <p class="tl-l">房间资料</p>
+                        <table class="modal-table table-td2 td1-w60">
+                            <tr>
+                                <td>房间信息</td>
+                                <td id="BuildingName_End"></td>
+                            </tr>
+                            <tr>
+                                <td>租客姓名</td>
+                                <td id="CustomerName_End"></td>
+                            </tr>
+                            <tr>
+                                <td>手机号码</td>
+                                <td id="Phone_End"></td>
+                            </tr>
+                            <tr>
+                                <td>合同周期</td>
+                                <td id="RentsDate_End"></td>
+                            </tr>
+                            <tr>
+                                <td>房间押金</td>
+                                <td id="Deposit_End"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="dv-sec">
+                        <p><span>杂费项目</span>
+                            <button color="lan" class="btn-more">更多</button>
+                        </p>
+                        <ul class="ul-y1" id="CostItem">
+                            <!--<li class="sel">水费</li>
+                            <li class="sel">电费</li>
+                            <li class="sel">煤气费</li>
+                            <li>网费</li>
+                            <li>电视费</li>
+                            <li>保洁费</li>
+                            <li>物业费</li>
+                            <li>服务费</li><div class="clear"></div>-->
+                        </ul>
+
+
+                        <ul class="ul-y1-v" id="CostItemText">
+                            <!--<li>
+                                <p>水费</p>
+                                <div class="modal-dv-row">
+                                    <div type="click" class="fq-xiala">
+                                        <span class="fq-xiala-sel">应收</span><i class="icon iconfont icon-xiala"></i>
+                                        <ul>
+                                            <li class="cur">应收</li>
+                                            <li>应退</li>
+                                        </ul>
+                                    </div><div class="ip-wrap"><input type="text" value="0"><span>元</span></div>
+                                </div>
+                            </li>-->
+                            <div class="clear"></div>
+                        </ul>
+                    </div>
+                    <!--<div class="dv-sec">
+                        <p><span>房租项目</span></p>
+                        <ul class="ul-y1-v">
+                            <li>
+                                <p>房租处理</p>
+                                <div class="modal-dv-row">
+                                    <div type="click" class="fq-xiala billaddtype">
+                                        <span class="fq-xiala-sel"></span><i class="icon iconfont icon-xiala"></i>
+                                        <ul>
+                                            <li class="cur">应收</li>
+                                            <li>应退</li>
+                                        </ul>
+                                    </div><div class="ip-wrap"><input type="text" value="0"><span>元</span></div>
+                                </div>
+                            </li>
+                            <li>
+                                <p>押金处理</p>
+                                <div class="modal-dv-row">
+                                    <div type="click" class="fq-xiala billaddtype">
+                                        <span class="fq-xiala-sel">应收</span><i class="icon iconfont icon-xiala"></i>
+                                        <ul>
+                                            <li class="cur">应收</li>
+                                            <li>应退</li>
+                                        </ul>
+                                    </div><div class="ip-wrap"><input type="text" value="0"><span>元</span></div>
+                                </div>
+                            </li><div class="clear"></div>
+                        </ul>
+                    </div>-->
+                    <p class="total-p">总计 ： <font id="CostPrice">0</font></p>
+
+                    <div class="dv-sec">
+                        <p><span>退租时间</span></p>
+
+                        <div class="modal-dv-row">
+                            <div type="click" class="fq-xiala" id="EndContractType">
+                                <span class="fq-xiala-sel"></span><i class="icon iconfont icon-xiala"></i>
+                                <ul>
+                                </ul>
+                            </div>
+                            <div class="ip-wrap"><input class="group-date1" id="ContractEndDate" type="text"
+                                                        value="2017-02-20"><i class="icon iconfont icon-Desktop"></i>
+                            </div>
+                        </div>
+                        </li>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="modal-dv-row">
+                        <p>备注</p>
+
+                        <div><input type="text" id="Description_End" name=""></div>
+                    </div>
+                </div>
+            </div>
+            <div class="top-modal-bottom">
+                <button class="btn-cancel">取消</button>
+                <button class="btn-keep" onclick="cp.endSave()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="js/tools.js"></script>]
+<script type="text/javascript" src="libs/jquery.mCustomScrollbar.concat.min.js"></script>
+<script type="text/javascript" src="js/contract.page.js"></script>
+</body>
+</html>
+

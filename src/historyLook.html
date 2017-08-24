@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>历史合同查看</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+    <script type="text/javascript" src="libs/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="libs/bootstrap.min.js"></script>
+</head>
+<body>
+<style>
+    body {
+        background: #fff;
+    }
+</style>
+<div class="fq-contain-dv">
+    <div class="modaldv-tabelwrap">
+        <p>合同资料</p>
+        <table class="modal-table table-td2">
+            <tr>
+                <td>编号</td>
+                <td id="Number_Detail"></td>
+            </tr>
+            <tr>
+                <td>状态</td>
+                <td id="State_Detail"></td>
+            </tr>
+            <tr>
+                <td>租金</td>
+                <td id="Price_Detail"></td>
+            </tr>
+            <tr>
+                <td>押金</td>
+                <td id="Deposit_Detail"></td>
+            </tr>
+            <tr>
+                <td>起租/退租</td>
+                <td id="RentDate_Detail"></td>
+            </tr>
+            <tr>
+                <td>付押方式</td>
+                <td id="PayType_Detail"></td>
+            </tr>
+            <tr>
+                <td>签约员工</td>
+                <td id="EmpName_Detail"></td>
+            </tr>
+            <tr>
+                <td>签约日期</td>
+                <td id="BargainDate_Detail"></td>
+            </tr>
+            <tr>
+                <td>退租日期</td>
+                <td id="EndDate_Detail"></td>
+            </tr>
+            <tr>
+                <td>备注</td>
+                <td id="Description_Detail"></td>
+            </tr>
+            <tr>
+                <td>创建</td>
+                <td id="CreateEmpName_Detail"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</div>
+<script type="text/javascript" src="js/tools.js"></script>
+<!--<script type="text/javascript" src="js/tools.js"></script>-->
+<script type="text/javascript" src="libs/jquery.mCustomScrollbar.concat.min.js"></script>
+<script type="text/javascript">
+    var contractCharId = getUrlParam('contractCharId');
+    $(function () {
+        Contract();
+    });
+    function Contract() {
+        var data = {
+            requestKey: localStorage.getItem("requestKey"),
+            charId: contractCharId
+        };
+        $.ajax({
+            type: "GET",
+            url: host + "/contract",
+            data: data,
+            dataType: "json",
+            success: function (jdata) {
+                //绑定明细页面
+                if (jdata.succ) {
+                    var data = jdata.data;
+                    $("#Number_Detail").text(data.Number);
+                    $("#State_Detail").text(data.State);
+                    $("#Price_Detail").text(data.Price + "元/月");
+                    $("#Deposit_Detail").text(data.Deposit + "元/月");
+                    $("#RentDate_Detail").text(data.InDate + "~" + data.OutDate);
+                    $("#PayType_Detail").text(data.PayType1);
+                    $("#EmpName_Detail").text(data.DepartmentName + "." + data.EmployeeName);
+                    $("#BargainDate_Detail").text(data.BargainDate);
+                    $("#EndDate_Detail").text(data.EndDate);
+                    $("#Description_Detail").text(data.Description);
+                    $("#CreateEmpName_Detail").text(data.CreateTime);
+
+                    //$("#CustomerName_Detail").text(data.CustomerName);
+                    //$("#Phone_Detail").text(data.Phone);
+                    //$("#CardId_Detail").text(data.CardID);
+                    //$("#BuildingName_Detail").text(data.BuildingName + data.FloorName + "层");
+                    //$("#RoomName_Detail").text(data.RoomName + "室");
+                }
+            },
+            error: function (XMLHttpRequest, txtStatus, errorThrown) {
+                // 添加本地缓存
+                $("#iFrmMain").load(function () {
+                    if (localStorage.getItem("isAlert")) {
+                    } else {
+                        messageBox.show("错误", txtStatus, MessageBoxButtons.OK, MessageBoxIcons.error);
+                        // 添加本地缓存
+                        localStorage.setItem("isAlert", true);
+                    }
+                });
+            }
+        });
+    }
+
+    //js正则表达式方法获取静态页面传递的参数
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+        if (r != null) return unescape(r[2]); return null; //返回参数值
+    }
+
+
+</script>
+</body>
+</html>
+

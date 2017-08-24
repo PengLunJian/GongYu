@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>个人中心</title>
+    <link rel="stylesheet" type="text/css" href="iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+    <script type="text/javascript" src="libs/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="libs/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="header">
+    <div class="pull-left">
+        <ul class="left clearfix">
+            <li class="left-title">
+                <h1 class="hidden-xs">天琚人才公寓</h1>
+                <button class="visible-xs navbar-toggle lg-nav">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </li>
+            <li class="left-front">
+                <a href="http://apt.2ma2.cn" target="_blank">官网</a>
+            </li>
+        </ul>
+    </div>
+    <div class="pull-right">
+        <ul class="right clearfix">
+            <li class="hidden-xs"></li>
+            <li class="right-account">
+                <p class="right-phone"></p>
+                <ul class="right-oprea">
+                    <li><a href="ownercenter.html">个人中心</a></li>
+                    <li><a href="javascript:void(0);">安全退出</a></li>
+                </ul>
+            </li>
+            <li class="right-message">
+                <a href="message.html">
+                    <img src="images/yg_icon_07.png?v=9957859eb8"/>
+                    <span class="message-nums">8</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="container">
+    <div class="fq-nav2">
+        <div class="nav2-ownercenter">
+            <p><i class="icon iconfont icon-people"></i><span>个人中心</span></p>
+            <ul>
+                <li class="cur"><span>手机认证</span></li>
+                <!--<li><span>手机更换</span></li>-->
+                <li><span>密码修改</span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="fq-contain">
+        <div class="fq-contain-in">
+            <div class="fq-contain-dv">
+                <div class="contain-phonerz ownercenter-dv cur">
+                    <div class="ownercenter-title"><p>手机认证<span id="IsValid"></span></p></div>
+                    <div class="ownercenter-content">
+                        <table class="rz-table">
+                            <tr>
+                                <td>当前号码</td>
+                                <td class="pass-number"><span id="empPhone">18252713292</span>
+                                    <button class="fq-btn fq-btn-yzm fq-btn-yzm1 form-btn code">获取验证码</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>验证码</td>
+                                <td><input type="text" name="" id="validYzm" placeholder="请输入验证码"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <button class="fq-btn" onclick="personal.valid()">提交认证</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+
+                <div class="contain-passwordreset ownercenter-dv">
+                    <div class="ownercenter-title"><p>密码修改</p></div>
+                    <div class="ownercenter-content">
+                        <table class="rz-table">
+                            <tr>
+                                <td>旧密码</td>
+                                <td><input type="text" name="" id="OldPwd" placeholder="请输入旧密码"></td>
+                            </tr>
+                            <tr>
+                                <td>新密码</td>
+                                <td><input type="password" name="" id="NewPwd1" placeholder="请输入新密码"></td>
+                            </tr>
+                            <tr>
+                                <td>重复新密码</td>
+                                <td><input type="password" name="" id="NewPwd2" placeholder="请再次输入新密码"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <button class="fq-btn" onclick="personal.pwdChange()">更新密码</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+</body>
+</html>
+
+<script type="text/javascript" src="js/tools.js"></script>
+<script type="text/javascript" src="js/ownercenter.page.js"></script>
+<!--<script type="text/javascript" src="js/resetpwd.page.js"></script>-->

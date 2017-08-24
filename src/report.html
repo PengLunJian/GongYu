@@ -1,0 +1,324 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>报表</title>
+    <link rel="stylesheet" type="text/css" href="iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="css/font.css"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="css/report.page.css"/>
+    <script type="text/javascript" src="libs/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="libs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/components-pickers.js"></script>
+</head>
+<body>
+<div class="header">
+    <div class="pull-left">
+        <ul class="left clearfix">
+            <li class="left-title">
+                <h1 class="hidden-xs">天琚人才公寓</h1>
+                <button class="visible-xs navbar-toggle lg-nav">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <button class="visible-xs navbar-toggle sm-nav">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </li>
+            <li class="left-front">
+                <a href="http://apt.2ma2.cn" target="_blank">官网</a>
+            </li>
+        </ul>
+    </div>
+    <div class="pull-right">
+        <ul class="right clearfix">
+            <li class="hidden-xs"></li>
+            <li class="right-account">
+                <p class="right-phone"></p>
+                <ul class="right-oprea">
+                    <li><a href="ownercenter.html">个人中心</a></li>
+                    <li><a href="javascript:void(0);">安全退出</a></li>
+                </ul>
+            </li>
+            <li class="right-message">
+                <a href="message.html">
+                    <img src="images/yg_icon_07.png?v=9957859eb8"/>
+                    <span class="message-nums">8</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="main">
+    <div class="report row">
+        <div class="pull-left">
+            <div class="pull-container">
+                <div class="pull-content">
+                    <div class="left-header">
+                        <p><i class="icon-Report"></i><span type="role-detail" dir="top">营业报告</span></p>
+                    </div>
+                    <div class="left-body">
+                        <ul class="report-list">
+                            <li class="active">月度报表</li>
+                            <li>季度报表</li>
+                            <li>半年报表</li>
+                            <li>年度报表</li>
+                        </ul>
+                    </div>
+                    <div class="footer"></div>
+                </div>
+            </div>
+
+        </div>
+        <div class="pull-right">
+            <div class="right-container">
+                <div class="right-content">
+                    <div class="right-body">
+                        <div class="right-header">
+                            <div class="selected-date">
+                                <div class="form-group select-year">
+                                    <div class="drop-container hide year" tabIndex="1">
+                                        <div class="drop-content">
+                                            <div class="drop-header">
+                                                <span class="drop-result">2017年</span>
+                                                <i class="drop-icon icon-drop-down"></i>
+                                            </div>
+                                            <div class="drop-body">
+                                                <ul>
+                                                    <li class="drop-option" data-value="">2016年</li>
+                                                    <li class="drop-option active" data-value="">2017年</li>
+                                                </ul>
+                                            </div>
+                                            <div class="drop-footer"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group select-month">
+                                    <div class="drop-container hide month" tabIndex="1">
+                                        <div class="drop-content" id="month-lists">
+                                            <div class="drop-header">
+                                                <span class="drop-result">6月</span>
+                                                <i class="drop-icon icon-drop-down"></i>
+                                            </div>
+                                            <div class="drop-body">
+                                                <ul>
+                                                    <li class="drop-option" data-value="">1月</li>
+                                                    <li class="drop-option" data-value="">2月</li>
+                                                    <li class="drop-option" data-value="">3月</li>
+                                                    <li class="drop-option" data-value="">4月</li>
+                                                    <li class="drop-option" data-value="">5月</li>
+                                                    <li class="drop-option active" data-value="">6月</li>
+                                                    <li class="drop-option" data-value="">7月</li>
+                                                    <li class="drop-option" data-value="">8月</li>
+                                                    <li class="drop-option" data-value="">9月</li>
+                                                    <li class="drop-option" data-value="">10月</li>
+                                                    <li class="drop-option" data-value="">11月</li>
+                                                    <li class="drop-option" data-value="">12月</li>
+
+
+                                                </ul>
+                                            </div>
+                                            <div class="drop-footer"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group select-month">
+                                    <div class="drop-container hide month" tabIndex="1">
+                                        <div class="drop-content" id="quarter-lists">
+                                            <div class="drop-header">
+                                                <span class="drop-result">第一季度</span>
+                                                <i class="drop-icon icon-drop-down"></i>
+                                            </div>
+                                            <div class="drop-body">
+                                                <ul>
+                                                    <li class="drop-option active" data-quarter="1">第一季度</li>
+                                                    <li class="drop-option" data-quarter="2">第二季度</li>
+                                                    <li class="drop-option" data-quarter="3">第三季度</li>
+                                                    <li class="drop-option" data-quarter="4">第四季度</li>
+                                                </ul>
+                                            </div>
+                                            <div class="drop-footer"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group select-month">
+                                    <div class="drop-container hide month" tabIndex="1">
+                                        <div class="drop-content" id="half-lists">
+                                            <div class="drop-header">
+                                                <span class="drop-result">上半年</span>
+                                                <i class="drop-icon icon-drop-down"></i>
+                                            </div>
+                                            <div class="drop-body">
+                                                <ul>
+                                                    <li class="drop-option active" data-half="1">上半年</li>
+                                                    <li class="drop-option" data-half="2">下半年</li>
+                                                </ul>
+                                            </div>
+                                            <div class="drop-footer"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group select-month">
+                                    <div class="drop-container hide month" tabIndex="1">
+                                        <div class="drop-content">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <header>运营状况</header>
+                        <!--房源状况-->
+                        <div class="room-conditions">
+                            <div class="chart-box">房源状况</div>
+                            <div class="room-number">
+                                <div class="table-item col-xs-12 col-sm-6 col-md-12">
+                                    <div class="row-content row">
+                                        <div class="row-header col-xs-6 col-md-12">
+                                            <div class="column col-xs-12 col-md-3 twenty">总房间数</div>
+                                            <div class="column col-xs-12 col-md-3 twenty">新增房间数</div>
+                                            <div class="column col-xs-12 col-md-3 twenty">删除房间数</div>
+                                            <div class="column col-xs-12 col-md-3 twenty">在租房间数</div>
+                                            <div class="column col-xs-12 col-md-3 twenty">入住率</div>
+                                        </div>
+                                        <div class="row-body col-xs-6 col-md-12">
+                                            <div class="column col-xs-12 col-md-3 twenty TotalRoomNum"><span>584</span>间
+                                            </div>
+                                            <div class="column col-xs-12 col-md-3 twenty AddRoomNum"><span>10</span>间
+                                            </div>
+                                            <div class="column col-xs-12 col-md-3 twenty DelRoomNum"><span>3</span>间
+                                            </div>
+                                            <div class="column col-xs-12 col-md-3 twenty RentRoomNum"><span>115</span>间
+                                            </div>
+                                            <div class="column col-xs-12 col-md-3 twenty Occupancy"><span>19.69%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-item col-xs-12 col-sm-6 col-md-12 row-empty">
+                                    <div class="row-content row">
+                                        <div class="row-header col-xs-6 col-md-12">
+                                            <div class="column col-xs-12 col-md-3">空置房间数</div>
+                                            <div class="column col-xs-12 col-md-3">新租房间</div>
+                                            <div class="column col-xs-12 col-md-3">续租房间</div>
+                                            <div class="column col-xs-12 col-md-3">平均出房价格</div>
+                                        </div>
+                                        <div class="row-body col-xs-6 col-md-12">
+                                            <div class="column col-xs-12 col-md-3 VacancyRoomNum"><span>115</span>间</div>
+                                            <div class="column col-xs-12 col-md-3 NewRentRoomNum"><span>115</span>间</div>
+                                            <div class="column col-xs-12 col-md-3 ReletRoomNum"><span>115</span>间</div>
+                                            <div class="column col-xs-12 col-md-3 RentAvgPrice"><span>115</span>元</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="clear"></div>
+                        </div>
+                        <!--业务情况-->
+                        <div class="business-situation">
+                            <div class="chart-box">业务情况</div>
+                            <div class="business-number">
+                                <div class="table-item col-xs-12 col-sm-12 col-md-12">
+                                    <div class="row-content row">
+                                        <div class="row-header col-xs-6 col-md-12">
+                                            <div class="column col-xs-12 col-md-4">新增客户数</div>
+                                            <div class="column col-xs-12 col-md-4">跟进中</div>
+                                            <div class="column col-xs-12 col-md-4">签约数</div>
+                                        </div>
+                                        <div class="row-body col-xs-6 col-md-12">
+                                            <div class="column col-xs-12 col-md-4 AddCustomerNum"><span>4</span>人</div>
+                                            <div class="column col-xs-12 col-md-4 AddFollowNum"><span>1</span>人</div>
+                                            <div class="column col-xs-12 col-md-4 AddContractNum"><span>1</span>人</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <!--账单情况-->
+                        <div class="bill-situation">
+                            <div class="chart-box">账单情况</div>
+                            <div class="business-number">
+                                <div class="table-item col-xs-12 col-sm-12 col-md-12">
+                                    <div class="row-content row">
+                                        <div class="row-header col-xs-6 col-md-12">
+                                            <div class="column col-xs-12 col-md-3 twenty">总账单数</div>
+                                            <div class="column col-xs-12 col-md-3 twenty">应收款账单数</div>
+                                            <div class="column col-xs-12 col-md-3 twenty">应付款账单数</div>
+                                            <div class="column col-xs-12 col-md-3 twenty">待收款账单数</div>
+                                            <div class="column col-xs-12 col-md-3 twenty">待付款账单数</div>
+                                        </div>
+                                        <div class="row-body col-xs-6 col-md-12">
+                                            <div class="column col-xs-12 col-md-3 twenty TotalCount"><span>4</span>个
+                                            </div>
+                                            <div class="column col-xs-12 col-md-3 twenty ReceiveCount"><span>1</span>个
+                                            </div>
+                                            <div class="column col-xs-12 col-md-3 twenty PayCount"><span>1</span>个</div>
+                                            <div class="column col-xs-12 col-md-3 twenty NoReceiveCount"><span>1</span>个
+                                            </div>
+                                            <div class="column col-xs-12 col-md-3 twenty NoPayCount"><span>1</span>个
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <!--财务流水-->
+                        <div class="financial-flow">
+                            <div class="chart-box">财务流水</div>
+                            <div class="financial-number">
+                                <div class="table-item col-xs-12 col-sm-12 col-md-12">
+                                    <div class="row-content row">
+                                        <div class="row-header col-xs-6 col-md-12">
+                                            <div class="column col-xs-12 col-md-4">当月现金收支</div>
+                                            <div class="column col-xs-12 col-md-4">现金收入</div>
+                                            <div class="column col-xs-12 col-md-4">现金支出</div>
+                                        </div>
+                                        <div class="row-body col-xs-6 col-md-12">
+                                            <div class="column col-xs-12 col-md-4 col-financial">
+                                                <div class="row real-income">实际收入：<span>2900</span>元</div>
+                                                <div class="row real-spending">实际支出：<span>3100</span>元</div>
+                                                <div class="row costAll">实际收支：<span>-200</span>元</div>
+                                            </div>
+                                            <div class="column col-xs-12 col-md-4 col-financial">
+                                                <div class="row AllReceive">应收入：<span>92143</span>元</div>
+                                                <div class="row HasReceive">已收入：<span>92143</span>元</div>
+                                                <div class="row UnReceive">未收入：<span>92143</span>元</div>
+                                            </div>
+                                            <div class="column col-xs-12 col-md-4 col-financial">
+                                                <div class="row AllPay">应支出：<span>92143</span>元</div>
+                                                <div class="row HasPay">已支出：<span>92143</span>元</div>
+                                                <div class="row UnPay">未支出：<span>92143</span>元</div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer"></div>
+<script type="text/javascript" src="js/tools.js"></script>
+<script type="text/javascript" src="js/report.page.js"></script>
+</body>
+</html>
