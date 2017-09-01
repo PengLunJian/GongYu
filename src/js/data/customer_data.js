@@ -197,7 +197,7 @@ function AddConditionBind() {
                         var html = "";
                         html += "<li data-value=\"\" class=\"cur\">不选</li>";
                         for (var j = 0; j < jdata[i].Value.length; j++) {
-                            html += "<li  data-value=\"" + jdata[i].Value[j].CharId + "\"  class=\"fq-menu\"><b class=\"icon iconfont icon-iconfontsanjiao01\"></b><span>" + jdata[i].Value[j].Name + "</span>";
+                            html += "<li  data-value=\"" + jdata[i].Value[j].CharId + "\"  class=\"fq-menu\"><b class=\"icon icon-right-triangle\"></b><span>" + jdata[i].Value[j].Name + "</span>";
                             for (var k = 0; k < jdata[i].Value[j].ChildDpts.length; k++) {
                                 if (k == 0) {
                                     html += "<ul>";
@@ -575,7 +575,7 @@ function CustomerUpdateDetail(charId) {
                     html += "<li data-value=\"\" >不选</li>";
                     for (var j = 0; j < exted.Dpts.length; j++) {
                         // html += "<li value=\"" + exted.Dpts[j].CharId + "\">" + exted.Dpts[j].Name + "</li>";
-                        html += "<li  data-value=\"" + exted.Dpts[j].CharId + "\"  class=\"fq-menu\"><b class=\"icon iconfont icon-iconfontsanjiao01\"></b><span>" + exted.Dpts[j].Name + "</span>";
+                        html += "<li  data-value=\"" + exted.Dpts[j].CharId + "\"  class=\"fq-menu\"><b class=\"icon icon-right-triangle\"></b><span>" + exted.Dpts[j].Name + "</span>";
                         for (var k = 0; k < exted.Dpts[j].ChildDpts.length; k++) {
                             if (k == 0) {
                                 html += "<ul>";

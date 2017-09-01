@@ -14,7 +14,7 @@ $('.tag-ul').on('click', 'li', function () {
  * Date:2017-05-10
  * @param null
  */
-$(".fq-modal-bottom2 .icon").removeClass('icon-xiala').addClass('icon-zhankai');
+$(".fq-modal-bottom2 .icon").removeClass('icon-drop-down').addClass('icon-drop-up');
 $("#FollowType").hover(function () {
     DropupInit();
 });
@@ -35,7 +35,7 @@ fq.shangla = function (data, obj) {
         obj.hover(function () {
             if ($(this).attr('type') == 'hov') {
                 obj.find('ul').hide();
-                $(this).find('i').removeClass('icon-zhankai').addClass('icon-xiala');
+                $(this).find('i').removeClass('icon-drop-up').addClass('icon-drop-down');
                 $(this).addClass('xiala-cur').find('.fq-xiala-sel').css({ 'border-bottom': '0px', 'border-radius': '4px 4px 0px 0px' });
                 $(this).find('ul').slideDown(100);
             }
@@ -43,7 +43,7 @@ fq.shangla = function (data, obj) {
             obj.removeClass('xiala-cur').find('ul').slideUp(100, function () {
                 $(this).parent().find('.fq-xiala-sel').css({ 'border-bottom': '1px solid #e6e6e6', 'border-radius': '4px' });
             });
-            obj.find('i').removeClass('icon-xiala').addClass('icon-zhankai');
+            obj.find('i').removeClass('icon-drop-down').addClass('icon-drop-up');
             // delete o.xiala;
         });
         $('.fq-shangla ul li').hover(function () {
@@ -56,7 +56,7 @@ fq.shangla = function (data, obj) {
             obj.removeClass('xiala-cur').find('ul').slideUp(100, function () {
                 $(this).parent().find('.fq-xiala-sel').css({ 'border-bottom': '1px solid #e6e6e6', 'border-radius': '4px' });
             });
-            obj.find('i').removeClass('icon-xiala').addClass('icon-zhankai');
+            obj.find('i').removeClass('icon-drop-down').addClass('icon-drop-up');
 
             if ($(this).parent().parent().attr('id') == "DptEnable") {
                 DptBind($(this).attr("data-value"));
@@ -67,7 +67,7 @@ fq.shangla = function (data, obj) {
             if ($(this).parent().attr('type') == 'click') {
                 o.clickflag = !o.clickflag;
                 o.xiala = $(this).parent();
-                o.xiala.find('i').removeClass('icon-zhankai').addClass('icon-xiala');
+                o.xiala.find('i').removeClass('icon-drop-up').addClass('icon-drop-down');
                 o.xiala.addClass('xiala-cur').find('.fq-xiala-sel').css({ 'border-bottom': '0px', 'border-radius': '4px 4px 0px 0px' });
                 o.xiala.find('ul').slideDown(100);
             }

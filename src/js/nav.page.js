@@ -45,12 +45,6 @@ SideNavMenu.prototype.bindSideNavMenu = function () {
     var LOGIN_DATA = localStorage.getItem("loginData");
     var JSON_MENU = JSON.parse(LOGIN_DATA)['Menus'];
 
-    JSON_MENU.push({
-        Name: '设备',
-        SystemKey: 'Desktop',
-        Url: 'equipment.html'
-    });
-
     var TEMP_HTML = '<ul class="nav-block">'
         + '<li class="nav-item"><span>@</span></li>';
 

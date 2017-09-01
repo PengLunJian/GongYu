@@ -47,6 +47,7 @@ function Employee() {
 
     this.init();
 }
+
 /**
  * BEGIN 加载初始化方法
  * Author:PengLunJian
@@ -64,6 +65,8 @@ Employee.prototype.init = function () {
     this.btnDetailEmployee();
     this.exeBindEmployee();
     this.exeBindDepartment();
+    this.addEmployee();
+    this.addDpt();
 
     tm.clickTreeItem(function () {
         _this.exeBindEmployee();
@@ -292,6 +295,7 @@ Employee.prototype.ajaxRequestBindEmployee = function (params) {
         dataType: "JSON",
         success: function (data) {
             if (data['succ']) {
+                var TEMP_HTML = webApp['NO_RESULT'];
                 var JSON_DATA = data['data'];
                 _this.PAGINATION = new Pagination({
                     PAGE_SIZE: _this.PAGE_SIZE,
@@ -303,7 +307,7 @@ Employee.prototype.ajaxRequestBindEmployee = function (params) {
                     }
                 });
                 if (webApp.grantControl($(".pagination"), "employee_select")) {
-                    var TEMP_HTML = JSON_DATA.length != 0 ? _this.getTemplate(JSON_DATA) : webApp['NO_RESULT'];
+                    TEMP_HTML = JSON_DATA.length != 0 ? _this.getTemplate(JSON_DATA) : TEMP_HTML;
                     $(".table-body").html(TEMP_HTML);
                 } else {
                     webApp.noneGrant();
@@ -938,6 +942,52 @@ Employee.prototype.exeDepartmentEdit = function () {
     }
     return this;
 }
+
+
+/**
+ * Authior:liyong
+ * Date:2017-8-21
+ * 员工新增置空
+ * @returns {Employee}
+ */
+Employee.prototype.addEmployee=function () {
+    $('.employee-add').click(function () {
+        $('.emp-add .select-dep').html('请选择部门');
+        $('.emp-add .select-role').html('请选择角色');
+        $('.emp-add .select-profession').html('请选择职称');
+        $('.emp-add #Account_EmpAdd').val('');
+        $('.emp-add #Password_EmpAdd').val('');
+        $('.emp-add #Name_EmpAdd').val('');
+        $('.emp-add .select-sex').html('请选择性别');
+        $('.emp-add #Phone_EmpAdd').val('');
+        $('.emp-add #CardID_EmpAdd').val('');
+        $('.emp-add #Address_EmpAdd').val('');
+        $('.emp-add #InDate_EmpAdd').val('');
+        $('.emp-add #OutDate_EmpAdd').val('');
+        $('.emp-add .selecr-education').html('请选择学历');
+        $('.emp-add .select-marry').html('否');
+        $('.emp-add .copy-id').html('否');
+        $('.emp-add #Contact_Add').val('');
+        $('.emp-add #ContactPhone_Add').val('');
+        $('.emp-add .tree-item').removeClass('active');
+    })
+    return this;
+}
+
+/**
+ * Authior:liyong
+ * Date:2017-8-21
+ * 部门新增置空
+ * @returns {Employee}
+ */
+Employee.prototype.addDpt=function () {
+    $('.department_add').click(function () {
+        $('.dpt-add #Dpts_Add_Result').html('请选择部门');
+        $('.dpt-add #Dpts_Add_Name').val('');
+        $('.dpt-add .tree-item').removeClass('active');
+    })
+    return this;
+}
 /**
  * BEGIN 执行员工添加
  * Author:PengLunJian
@@ -1116,6 +1166,5 @@ Employee.prototype.getParams = function (name) {
  * @type {Employee} 员工类型
  */
 var emp = new Employee();
-
 
 

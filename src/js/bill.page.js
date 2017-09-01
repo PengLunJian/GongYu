@@ -1,5 +1,4 @@
-﻿var pageSize = 10;
-//移除本地缓存
+﻿//移除本地缓存
 localStorage.removeItem("isAlert");
 
 /**
@@ -11,6 +10,7 @@ localStorage.removeItem("isAlert");
 function BillPage() {
     var arguments = arguments.length != 0 ? arguments[0] : arguments;
     this.QUERY_CONDITION = arguments['QUERY_CONDITION'] ? arguments['QUERY_CONDITION'] : 'QUERY_CONDITION';
+    this.PAGE_SIZE= arguments['PAGE_SIZE'] ? arguments['PAGE_SIZE'] :10;
     this.BILL_PAGE = arguments['BILL_PAGE'] ? arguments['BILL_PAGE'] : 'BILL_PAGE';
     this.BILL_LIST = arguments['BILL_LIST'] ? arguments['BILL_LIST'] : 'BILL_LIST';
     this.BILL_DETAIL = arguments['BILL_DETAIL'] ? arguments['BILL_DETAIL'] : 'BILL_DETAIL';
@@ -20,7 +20,7 @@ function BillPage() {
         QUERY: "/bill/billrecords/condition",
         BILL_LIST: "/bill/billrecords",
         BILL_DETAIL: "/bill/billrecord",
-        BILL_RECORD_DEL:"/bill/billrecord/delete"
+        BILL_RECORD_DEL: "/bill/billrecord/delete"
     };
     this.init();
 }
@@ -62,7 +62,7 @@ BillPage.prototype.getParams = function (name) {
                 url: "/bill/billrecords",
                 requestKey: localStorage.getItem("requestKey"),
                 pageIndex: 1,
-                pageSize: 10,
+                pageSize:this.PAGE_SIZE,
                 buildingCharId: $("#Buildings li[class='cur']").length > 0 ? $("#Buildings li[class='cur']").attr("data-value") : "",
                 billSate: $("#BillState li[class='cur']").length > 0 ? parseInt($("#BillState li[class='cur']").attr("data-value")) : 0,
                 billType: $("#BillType li[class='cur']").length > 0 ? parseInt($("#BillType li[class='cur']").attr("data-value")) : 0,
@@ -77,7 +77,7 @@ BillPage.prototype.getParams = function (name) {
             params = {
                 requestKey: localStorage.getItem("requestKey"),
                 pageIndex: this.pageIndex,
-                pageSize: pageSize,
+                pageSize: this.PAGE_SIZE,
                 buildingCharId: $("#Buildings li.active").length > 0 ? $("#Buildings li.active").attr("data-value") : "",
                 billSate: $("#BillState li.active").length > 0 ? parseInt($("#BillState li.active").attr("data-value")) : 0,
                 billType: $("#BillType li.active").length > 0 ? parseInt($("#BillType li.active").attr("data-value")) : 0,
@@ -184,20 +184,21 @@ BillPage.prototype.getTemplate = function (params) {
         var className = i >= 1 ? " visible-xs visible-sm" : "";
         TEMP_HTML += '<div class="table-item col-xs-12 col-sm-6 col-md-12"><div class="row-content row">'
             + '<div class="row-header col-xs-3 col-md-12"><div class="row-title' + className + ' row">'
-            + '<div class="col-xs-12 col-md-4"><div class="row"><div class="column col-xs-12 col-md-3">状态</div><div class="column col-xs-12 col-md-2">类型</div>'
-            + '<div class="column col-xs-12 col-md-2">类别</div><div class="column col-xs-12 col-md-3">物业房号</div>'
-            + '<div class="column col-xs-12 col-md-2">姓名</div></div></div><div class="col-xs-12 col-md-5"><div class="row"><div class="column col-xs-12 col-md-6">合同编号</div>'
-            + '<div class="column col-xs-12 col-md-6">周期</div></div></div><div class="col-xs-12 col-md-3"><div class="row"><div class="column col-xs-12 col-md-4">收付日期</div>'
-            + '<div class="column col-xs-12 col-md-3">计划收付</div><div class="column col-xs-12 col-md-3">实际收付</div>'
-            + '<div class="column col-xs-12 col-md-2">操作</div></div></div></div></div>'
+            + '<div class="col-xs-12 col-md-4"><div class="row"><div class="column col-xs-12 col-md-3"><span>状态</span></div><div class="column col-xs-12 col-md-2"><span>类型</span></div>'
+            + '<div class="column col-xs-12 col-md-2"><span>类别</span></div><div class="column col-xs-12 col-md-2"><span>物业房号</span></div>'
+            + '<div class="column col-xs-12 col-md-3"><span>姓名</span></div></div></div><div class="col-xs-12 col-md-5"><div class="row"><div class="column col-xs-12 col-md-7"><span>合同编号</span></div>'
+            + '<div class="column col-xs-12 col-md-5"><span>周期</span></div></div></div><div class="col-xs-12 col-md-3"><div class="row"><div class="column col-xs-12 col-md-3"><span>收付日期</span></div>'
+            + '<div class="column col-xs-12 col-md-3"><span>计划收付</span></div><div class="column col-xs-12 col-md-3"><span>实际收付</span></div>'
+            + '<div class="column col-xs-12 col-md-3"><span>操作</span></div></div></div></div></div>'
             + '<div class="row-body col-xs-9 col-md-12"><div class="row-item row">'
-            + '<div class="col-xs-12 col-md-4"><div class="row"><div class="column col-xs-12 col-md-3">' + JSON_DATA['State'] + '</div><div class="column col-xs-12 col-md-2">' + JSON_DATA['Type'] + '</div>'
-            + '<div class="column col-xs-12 col-md-2">' + JSON_DATA['ItemName'] + '</div><div class="column col-xs-12 col-md-3">' + JSON_DATA['RoomName'] + '</div>'
-            + '<div class="column col-xs-12 col-md-2">' + JSON_DATA['CustomerName'] + '</div></div></div><div class="col-xs-12 col-md-5"><div class="row"><div class="column col-xs-12 col-md-6">' + JSON_DATA['ContractNumber'] + '</div>'
-            + '<div class="column col-xs-12 col-md-6">' + JSON_DATA['PayDate1'] + '~' + JSON_DATA['PayDate2'] + '</div></div></div><div class="col-xs-12 col-md-3"><div class="row"><div class="column col-xs-12 col-md-4">' + JSON_DATA['PayDate'] + '</div>'
-            + '<div class="column col-xs-12 col-md-3">' + JSON_DATA['Price'] + '</div><div class="column col-xs-12 col-md-3">' + JSON_DATA['Progress'] + '</div>'
-            + '<div class="column col-xs-12 col-md-2">'
-            + '<a data-id="' + JSON_DATA['CharId'] + '" href="javascript:void(0)" class="btn-detail">查看</a></div></div></div></div></div></div></div>'
+            + '<div class="col-xs-12 col-md-4"><div class="row"><div class="column col-xs-12 col-md-3"><span>' + JSON_DATA['State'] + '</span></div><div class="column col-xs-12 col-md-2"><span>' + JSON_DATA['Type'] + '</span></div>'
+            + '<div class="column col-xs-12 col-md-2"><span>' + JSON_DATA['ItemName'] + '</span></div><div class="column col-xs-12 col-md-2"><span>' + JSON_DATA['RoomName'] + '</span></div>'
+            + '<div class="column col-xs-12 col-md-3"><span>' + JSON_DATA['CustomerName'] + '</span></div></div></div><div class="col-xs-12 col-md-5"><div class="row">'
+            + '<div class="column col-xs-12 col-md-7"><span>' + JSON_DATA['ContractNumber'] + '</span></div>'
+            + '<div class="column col-xs-12 col-md-5"><span>' + JSON_DATA['PayDate1'] + '~' + JSON_DATA['PayDate2'] + '</span></div></div></div><div class="col-xs-12 col-md-3"><div class="row"><div class="column col-xs-12 col-md-3"><span>' + JSON_DATA['PayDate'] + '</span></div>'
+            + '<div class="column col-xs-12 col-md-3"><span>' + JSON_DATA['Price'] + '</span></div><div class="column col-xs-12 col-md-3"><span>' + JSON_DATA['Progress'] + '</span></div>'
+            + '<div class="column col-xs-12 col-md-3"><span>'
+            + '<a data-id="' + JSON_DATA['CharId'] + '" href="javascript:void(0)" class="btn-detail">查看</a></span></div></div></div></div></div></div></div>'
     }
     return TEMP_HTML;
 }
@@ -233,7 +234,7 @@ BillPage.prototype.ajaxRequestBillList = function (params) {
                     $(".table-body").html(TEMP_HTML);
                 } else {
                     // 无权限查看
-                   webApp.noneGrant();
+                    webApp.noneGrant();
                 }
 
             } else {

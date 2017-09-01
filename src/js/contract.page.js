@@ -44,9 +44,7 @@ function ContractPage() {
         BILL_DEL: '/bill/delete',
         BILL_BIND: '/bill/add',
         BILL_ADD_SAVE: '/bill/add',
-        EMPLOYEE_BIND:'/employee/employees'
-
-
+        EMPLOYEE_BIND: '/employee/employees'
     }
     this.init();
 }
@@ -472,28 +470,44 @@ ContractPage.prototype.sundrySwitch = function () {
  * Date:2017-7-24
  * @returns {ContractPage}
  */
-ContractPage.prototype.sum = function () {
-    $("#CostItemText").on("change", function () {
-        var total, val1, val2, val3;
-        if ($("#CostItemText span:eq(0)").html() == "应收") {
-            val1 = $("#CostItemText input:eq(0)").val() - 0;
-        } else {
-            val1 = 0 - $("#CostItemText input:eq(0)").val();
 
-        }
-        if ($("#CostItemText span:eq(2)").html() == "应收") {
-            val2 = $("#CostItemText input:eq(1)").val() - 0;
-        } else {
-            val2 = 0 - $("#CostItemText input:eq(1)").val();
-        }
-        if ($("#CostItemText span:eq(4)").html() == "应收") {
-            val3 = $("#CostItemText input:eq(2)").val() - 0;
-        } else {
-            val3 = 0 - $("#CostItemText input:eq(2)").val();
-        }
-        var total = val1 + val2 + val3 - 0;
-        $("#CostPrice").text(total);
+ContractPage.prototype.sum = function () {
+    var _this = this;
+    $('#CostItemText').on('click', 'li', function () {
+        _this.calculate();
     })
+    $("#CostItemText").on("change", function () {
+        _this.calculate();
+    })
+
+    return this;
+}
+
+/**
+ * Author:liyong
+ * Date:2017-8-17
+ * 计算
+ * @returns {ContractPage}
+ */
+ContractPage.prototype.calculate = function () {
+    var total, val1, val2, val3;
+    if ($("#CostItemText span:eq(0)").html() == "应收") {
+        val1 = $("#CostItemText input:eq(0)").val() - 0;
+    } else {
+        val1 = 0 - $("#CostItemText input:eq(0)").val();
+    }
+    if ($("#CostItemText span:eq(2)").html() == "应收") {
+        val2 = $("#CostItemText input:eq(1)").val() - 0;
+    } else {
+        val2 = 0 - $("#CostItemText input:eq(1)").val();
+    }
+    if ($("#CostItemText span:eq(4)").html() == "应收") {
+        val3 = $("#CostItemText input:eq(2)").val() - 0;
+    } else {
+        val3 = 0 - $("#CostItemText input:eq(2)").val();
+    }
+    var total = val1 + val2 + val3 - 0;
+    $("#CostPrice").text(total);
     return this;
 }
 /**AJAX
@@ -779,7 +793,7 @@ ContractPage.prototype.ajaxRequestContractBind = function (params) {
                     TEMP_HTML += "<li data-value=\"\" >不选</li>";
                     for (var j = 0; j < TEMP_DATA['Dpts'].length; j++) {
                         // html += "<li value=\"" + exted.Dpts[j].CharId + "\">" + exted.Dpts[j].Name + "</li>";
-                        TEMP_HTML += "<li  data-value=\"" + TEMP_DATA.Dpts[j].CharId + "\"  class=\"fq-menu\"><b class=\"icon iconfont icon-iconfontsanjiao01\"></b><span>" + TEMP_DATA.Dpts[j].Name + "</span>";
+                        TEMP_HTML += "<li  data-value=\"" + TEMP_DATA.Dpts[j].CharId + "\"  class=\"fq-menu\"><b class=\"icon  icon-right-triangle\"></b><span>" + TEMP_DATA.Dpts[j].Name + "</span>";
                         for (var k = 0; k < TEMP_DATA['Dpts'][j].ChildDpts.length; k++) {
                             if (k == 0) {
                                 TEMP_HTML += "<ul>";
@@ -905,6 +919,7 @@ ContractPage.prototype.ajaxRequestContractAbandon = function (params) {
  * @returns {ContractPage}
  */
 ContractPage.prototype.ajaxRequestEndBind = function (params) {
+    var _this=this;
     $.ajax({
         type: "GET",
         url: host + this.API_CONFIG['END_BIND'],
@@ -935,7 +950,7 @@ ContractPage.prototype.ajaxRequestEndBind = function (params) {
                     TEMP_HTML += "	<p data-value=\"" + TEMP_DATA['CostItem'][i]['Key'] + "\">" + TEMP_DATA['CostItem'][i]['Value'] + "</p>";
                     TEMP_HTML += "	<div class=\"modal-dv-row\">";
                     TEMP_HTML += "		<div type=\"click\" class=\"fq-xiala\">";
-                    TEMP_HTML += "			<span class=\"fq-xiala-sel\">" + TEMP_DATA['BillAddType'][0]['Value'] + "</span><i class=\"icon iconfont icon-xiala\"></i>";
+                    TEMP_HTML += "			<span class=\"fq-xiala-sel\">" + TEMP_DATA['BillAddType'][0]['Value'] + "</span><i class=\"icon-drop-down\"></i>";
                     TEMP_HTML += "			<ul>";
 
                     for (var j = 0; j < TEMP_DATA['BillAddType'].length; j++) {
@@ -967,6 +982,7 @@ ContractPage.prototype.ajaxRequestEndBind = function (params) {
                 $("#EndContractType span").text(TEMP_DATA['EndContractType'][0]['Value']);
                 //绑定租金、押金下拉
                 $("#EndContractType ul").html(TEMP_HTML);
+                _this.calculate();
                 DropdownInit();
             }
             else {
@@ -1133,11 +1149,8 @@ ContractPage.prototype.ajaxRequestBillList = function (params) {
                         "<td>" + JSON_DATA[i]['Progress'] + "</td>" +
                         "<td>" + JSON_DATA[i]['PayDate3'] + "</td>";
                     if (webApp.grantControl($(".billDel"), "bill_delete")) {
-                        // TEMP_HTML += "<td><button color=\"lan\" onclick=\"OpenDialog('" + JSON_DATA[i].CharId + "')\">收款</button><button color=\"lan\"  onclick=\"BillDel('" + JSON_DATA[i].CharId + "')\" class='billDel'>删除</button></td>";
-                        // TEMP_HTML += "<td><button color=\"lan\" onclick=\"OpenDialog('" + JSON_DATA[i].CharId + "')\">收款</button><button color=\"lan\" data-value='" + JSON_DATA[i].CharId + "' onclick=\"BillDel('" + JSON_DATA[i].CharId + "')\" class='billDel'>删除</button></td>";
                         TEMP_HTML += "<td><button color=\"lan\" data-value='" + JSON_DATA[i].CharId + "' class=\"collection\" >收款</button><button color=\"lan\" data-value='" + JSON_DATA[i].CharId + "' class='billDel' onclick='cp.billDelete()'>删除</button></td>";
                     } else {
-                        // TEMP_HTML += "<td><button color=\"lan\" onclick=\"OpenDialog('" + JSON_DATA[i].CharId + "')\">收款</button></td>";
                         TEMP_HTML += "<td><button color=\"lan\"  data-value='" + JSON_DATA[i].CharId + "' class=\"collection\">收款</button></td>";
                     }
                     TEMP_HTML += "</tr>";
@@ -1242,7 +1255,7 @@ ContractPage.prototype.ajaxRequestBillBind = function (params) {
 ContractPage.prototype.ajaxRequestBillAdd = function (params) {
     $.ajax({
         type: "POST",
-        url: host+this.API_CONFIG['BILL_ADD_SAVE'],
+        url: host + this.API_CONFIG['BILL_ADD_SAVE'],
         data: params,
         dataType: "JSON",
         success: function (data) {

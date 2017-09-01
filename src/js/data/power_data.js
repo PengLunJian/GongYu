@@ -20,7 +20,7 @@ function DptBind() {
                 var html = "";
                 for (var i = 0; i < jdata.length; i++) {
                     if ( webApp.grantControl($(".btn-roledetail"), "role_update")) {
-                        html += " <li data-value=\"" + jdata[i].CharId + "\" data-system=\"" + jdata[i].IsSystem + "\"><i></i><span>" + jdata[i].Name + "</span><b type=\"role-detail\" dir=\"top\" onclick=\"roleEdit()\" class=\"icon iconfont icon-Set_up btn-roledetail\"></b></li>";
+                        html += " <li data-value=\"" + jdata[i].CharId + "\" data-system=\"" + jdata[i].IsSystem + "\"><i></i><span>" + jdata[i].Name + "</span><b type=\"role-detail\" dir=\"top\" onclick=\"roleEdit()\" class=\"icon iconfont icon-Param btn-roledetail\"></b></li>";
                     } else {
                         html += " <li data-value=\"" + jdata[i].CharId + "\" data-system=\"" + jdata[i].IsSystem + "\"><i></i><span>" + jdata[i].Name + "</span></li>";
                     }

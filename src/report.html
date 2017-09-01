@@ -7,16 +7,11 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>报表</title>
-    <link rel="stylesheet" type="text/css" href="iconfont/iconfont.css"/>
     <link rel="stylesheet" type="text/css" href="css/font.css"/>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css" href="css/common.css"/>
     <link rel="stylesheet" type="text/css" href="css/report.page.css"/>
-    <script type="text/javascript" src="libs/jquery-1.11.3.js"></script>
-    <script type="text/javascript" src="libs/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
-    <script type="text/javascript" src="js/app.js"></script>
-    <script type="text/javascript" src="js/components-pickers.js"></script>
+
 </head>
 <body>
 <div class="header">
@@ -87,6 +82,22 @@
                     <div class="right-body">
                         <div class="right-header">
                             <div class="selected-date">
+                                <div class="form-group select-property">
+                                    <div class="drop-container hide buildings" tabIndex="1">
+                                        <div class="drop-content">
+                                            <div class="drop-header">
+                                                <span class="drop-result">选择物业</span>
+                                                <i class="drop-icon icon-drop-down"></i>
+                                            </div>
+                                            <div class="drop-body">
+                                                <ul id="Buildings">
+
+                                                </ul>
+                                            </div>
+                                            <div class="drop-footer"></div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="form-group select-year">
                                     <div class="drop-container hide year" tabIndex="1">
                                         <div class="drop-content">
@@ -95,9 +106,8 @@
                                                 <i class="drop-icon icon-drop-down"></i>
                                             </div>
                                             <div class="drop-body">
-                                                <ul>
-                                                    <li class="drop-option" data-value="">2016年</li>
-                                                    <li class="drop-option active" data-value="">2017年</li>
+                                                <ul id="Years">
+
                                                 </ul>
                                             </div>
                                             <div class="drop-footer"></div>
@@ -112,20 +122,7 @@
                                                 <i class="drop-icon icon-drop-down"></i>
                                             </div>
                                             <div class="drop-body">
-                                                <ul>
-                                                    <li class="drop-option" data-value="">1月</li>
-                                                    <li class="drop-option" data-value="">2月</li>
-                                                    <li class="drop-option" data-value="">3月</li>
-                                                    <li class="drop-option" data-value="">4月</li>
-                                                    <li class="drop-option" data-value="">5月</li>
-                                                    <li class="drop-option active" data-value="">6月</li>
-                                                    <li class="drop-option" data-value="">7月</li>
-                                                    <li class="drop-option" data-value="">8月</li>
-                                                    <li class="drop-option" data-value="">9月</li>
-                                                    <li class="drop-option" data-value="">10月</li>
-                                                    <li class="drop-option" data-value="">11月</li>
-                                                    <li class="drop-option" data-value="">12月</li>
-
+                                                <ul id="Months">
 
                                                 </ul>
                                             </div>
@@ -225,26 +222,6 @@
 
                             <div class="clear"></div>
                         </div>
-                        <!--业务情况-->
-                        <div class="business-situation">
-                            <div class="chart-box">业务情况</div>
-                            <div class="business-number">
-                                <div class="table-item col-xs-12 col-sm-12 col-md-12">
-                                    <div class="row-content row">
-                                        <div class="row-header col-xs-6 col-md-12">
-                                            <div class="column col-xs-12 col-md-4">新增客户数</div>
-                                            <div class="column col-xs-12 col-md-4">跟进中</div>
-                                            <div class="column col-xs-12 col-md-4">签约数</div>
-                                        </div>
-                                        <div class="row-body col-xs-6 col-md-12">
-                                            <div class="column col-xs-12 col-md-4 AddCustomerNum"><span>4</span>人</div>
-                                            <div class="column col-xs-12 col-md-4 AddFollowNum"><span>1</span>人</div>
-                                            <div class="column col-xs-12 col-md-4 AddContractNum"><span>1</span>人</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="clear"></div>
                         <!--账单情况-->
                         <div class="bill-situation">
@@ -309,6 +286,27 @@
                             </div>
                         </div>
                         <div class="clear"></div>
+                        <!--业务情况-->
+                        <div class="business-situation">
+                            <div class="chart-box">业务情况</div>
+                            <div class="business-number">
+                                <div class="table-item col-xs-12 col-sm-12 col-md-12">
+                                    <div class="row-content row">
+                                        <div class="row-header col-xs-6 col-md-12">
+                                            <div class="column col-xs-12 col-md-4">新增客户数</div>
+                                            <div class="column col-xs-12 col-md-4">跟进中</div>
+                                            <div class="column col-xs-12 col-md-4">签约数</div>
+                                        </div>
+                                        <div class="row-body col-xs-6 col-md-12">
+                                            <div class="column col-xs-12 col-md-4 AddCustomerNum"><span>4</span>人</div>
+                                            <div class="column col-xs-12 col-md-4 AddFollowNum"><span>1</span>人</div>
+                                            <div class="column col-xs-12 col-md-4 AddContractNum"><span>1</span>人</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
                     </div>
 
                 </div>
@@ -316,8 +314,13 @@
         </div>
     </div>
 </div>
-
 <div class="footer"></div>
+<script type="text/javascript" src="libs/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="libs/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/components-pickers.js"></script>
+<script type="text/javascript" src="js/host.js"></script>
 <script type="text/javascript" src="js/tools.js"></script>
 <script type="text/javascript" src="js/report.page.js"></script>
 </body>

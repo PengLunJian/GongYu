@@ -1,11 +1,3 @@
-var HOST_CONFIG = {
-    ON_LINE: "http://apt.xpchina.net",//线上
-    ON_TEST: "http://apttest.xpchina.net",//测试
-    ON_DEVELOP: "http://aptdevelop.xpchina.net",//开发
-}
-
-window.host = HOST_CONFIG.ON_DEVELOP;
-
 var LOGIN_DATA = JSON.parse(localStorage.getItem('loginData'));
 /**
  * BEGIN 权限控制功能
@@ -764,7 +756,14 @@ WebApp.prototype.propertyGrantControl = function () {
     this.grantControl($(".employee_delete"), "employee_delete");
     // 账务删除
     this.grantControl($(".billrecord_delete"), "billrecord_delete");
-
+    // 角色查看
+    this.grantControl($("#roles"), "role_select");
+    // 角色新增
+    this.grantControl($(".role_add"), "role_add");
+    // 权限编辑
+    this.grantControl($(".post-edit"), "auth_update");
+    //角色删除
+    this.grantControl($(".role-del"), "role_delete");
     return this;
 }
 
@@ -831,7 +830,81 @@ WebApp.prototype.noneGrant = function () {
     $(".table-body").html(TEMP_HTML);
     return this;
 }
+/**
+ *
+ * @param params
+ * @returns {Array}
+ */
+WebApp.prototype.parseArray = function (params) {
+    var arr = [];
+    for (var KEY in params) {
+        arr.push({
+            key: KEY,
+            value: params[KEY]
+        })
+    }
+    return arr;
+}
+/**
+ *
+ * @param params
+ * @returns {Array}
+ */
+WebApp.prototype.pageGetDataSet = function (params) {
+    var DATA_SET = [];
+    var PAGE_CODE = params['pageCode'];
+    var PAGE_DATA = params['pageData'];
+    var PAGE_SIZE = params['pageSize'];
+    var BEN_INDEX = (PAGE_CODE - 1) * PAGE_SIZE;
+    var END_INDEX = PAGE_CODE * PAGE_SIZE;
+    for (var i = BEN_INDEX; i < END_INDEX; i++) {
+        if (PAGE_DATA[i]) {
+            DATA_SET.push(PAGE_DATA[i]);
+        } else {
+            return DATA_SET;
+        }
+    }
+    return DATA_SET;
+}
+/**
+ *
+ * @param params
+ * @returns {string}
+ */
+WebApp.prototype.parseDate = function (params) {
+    var DATE_STRING = '';
+    var TEMP_DATE = new Date(params);
+    if (params) {
+        var TEMP_YEAR = TEMP_DATE.getFullYear();
+        var TEMP_MONTH = TEMP_DATE.getMonth() + 1;
+        var TEMP_DAY = TEMP_DATE.getDate();
+        var TEMP_HOURS = TEMP_DATE.getHours();
+        var TEMP_MINUTES = TEMP_DATE.getMinutes();
+        var TEMP_SECONDS = TEMP_DATE.getSeconds();
 
+        TEMP_DAY = TEMP_DAY > 9 ? TEMP_DAY : '0' + TEMP_DAY;
+        TEMP_MONTH = TEMP_MONTH > 9 ? TEMP_MONTH : '0' + TEMP_MONTH;
+        TEMP_HOURS = TEMP_HOURS > 9 ? TEMP_HOURS : '0' + TEMP_HOURS;
+        TEMP_MINUTES = TEMP_MINUTES > 9 ? TEMP_MINUTES : '0' + TEMP_MINUTES;
+        TEMP_SECONDS = TEMP_SECONDS > 9 ? TEMP_SECONDS : '0' + TEMP_SECONDS;
+
+        DATE_STRING = TEMP_YEAR + '-' + TEMP_MONTH + '-' + TEMP_DAY
+            + ' ' + TEMP_HOURS + ':' + TEMP_MINUTES + ':' + TEMP_SECONDS;
+    }
+    TEMP_DATE = null;
+    return DATE_STRING;
+}
+/**
+ *
+ * @param params
+ * @returns {number}
+ */
+WebApp.prototype.parseTime = function (params) {
+    var TEMP_DATE = new Date(params);
+    var TEMP_TIME = TEMP_DATE.getTime() / 1000;
+    TEMP_DATE = null;
+    return TEMP_TIME;
+}
 /**
  *
  * @type {WebApp}
@@ -965,9 +1038,9 @@ MessageBox.prototype.show = function (title, message, MessageBoxButtons, Message
     var TEMP_HTML = '<div class="modal fade" id="msgModal">'
         + '<div class="modal-dialog"><div class="modal-content"><div class="modal-header">'
         + '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
-        + '<h4 class="modal-title">' + title + '</h4></div><div class="modal-body">'
-        + '<div class="pull-left"><img src="images/messageBox/' + MessageBoxIcons + '"/></div><div class="pull-left">'
-        + '<p class="modal-info">' + message + '</p></div><div class="clearfix"></div></div><div class="modal-footer">' + MessageBoxButtons + '</div></div></div></div>';
+        + '<h4 class="modal-title">' + title + '</h4></div><div class="modal-body"><div class="modal-info row">'
+        + '<div class="modal-column col-xs-2"><img src="images/messageBox/' + MessageBoxIcons + '"/></div><div class="modal-column col-xs-10">'
+        + '<p class="modal-text">' + message + '</p></div></div></div><div class="modal-footer">' + MessageBoxButtons + '</div></div></div></div>';
 
     $('body').prepend(TEMP_HTML);
     $(this.element).modal('toggle');
@@ -1124,7 +1197,6 @@ $(".fq-xiala").click(function () {
         }
     })
 })
-
 $('.fq-xiala').on('click', 'b', function (event) {
     if ($(this).parent('li').children("ul")[0]) {
         $(this).parent('li').siblings('li').children('b').removeClass('icon-shangsanjiaoxing-copy');
@@ -1140,7 +1212,6 @@ function addListener(element, e, fn) {
 function removeListener(element, e, fn) {
     element.removeEventListener ? element.removeEventListener(e, fn, false) : element.detachEvent("on" + e, fn)
 };
-
 function alert_yz(mes) {
     mes = mes;
     var str = '<div class="fq-yz-wraper"><div class="fq-yz-mask"></div><div class="fq-yzkuang"><h2>消息</h2><div class="fq-yz-message"><p>' + mes + '</p><button class="fq-btn fq-yz-btn">确定</button></div></div></div>';
@@ -1579,9 +1650,9 @@ function Pagination() {
     this.DATA_NUMS = arguments['DATA_NUMS'] ? arguments['DATA_NUMS'] : 100;
     this.PAGINATION = arguments['PAGINATION'] ? arguments['PAGINATION'] : ".pagination";
     this.TOTAL_PAGES = parseInt((parseInt(this.DATA_NUMS) + this.PAGE_SIZE - 1) / this.PAGE_SIZE);
-    this.PAGINATION_PREV = arguments['PAGINATION_PREV'] ? arguments['PAGINATION_PREV'] : ".pagination-prev";
-    this.PAGINATION_CODE = arguments['PAGINATION_CODE'] ? arguments['PAGINATION_CODE'] : ".pagination-code";
-    this.PAGINATION_NEXT = arguments['PAGINATION_NEXT'] ? arguments['PAGINATION_NEXT'] : ".pagination-next";
+    this.PAGINATION_PREV = arguments['PAGINATION_PREV'] ? arguments['PAGINATION_PREV'] : this.PAGINATION + " .pagination-prev";
+    this.PAGINATION_CODE = arguments['PAGINATION_CODE'] ? arguments['PAGINATION_CODE'] : this.PAGINATION + " .pagination-code";
+    this.PAGINATION_NEXT = arguments['PAGINATION_NEXT'] ? arguments['PAGINATION_NEXT'] : this.PAGINATION + " .pagination-next";
     this.CHANGE_PAGE = arguments['CHANGE_PAGE'] ? arguments['CHANGE_PAGE'] : null;
 
     this.init();
@@ -1620,7 +1691,7 @@ Pagination.prototype.loadPagination = function () {
         TEMP_HTML += '</div><div class="pagination-next">'
             + '<i class="icon-next"></i> </div><div class="pagination-total">共 ' + this.DATA_NUMS + ' 条</div></div>';
 
-        $(".pagination").html(TEMP_HTML);
+        $(this.PAGINATION).html(TEMP_HTML);
     }
     return this;
 }
@@ -1632,9 +1703,8 @@ Pagination.prototype.loadPagination = function () {
  */
 Pagination.prototype.codeButtonPress = function () {
     var _this = this;
-    $(this.PAGINATION_CODE).off().on("click", function () {
+    $(this.PAGINATION_CODE).on("click", function () {
         var ACTIVE_STR = _this.ACTIVE.substring(1);
-
         $(_this.PAGINATION_CODE).removeClass(ACTIVE_STR);
         $(this).addClass(ACTIVE_STR);
 
@@ -1651,7 +1721,7 @@ Pagination.prototype.codeButtonPress = function () {
  */
 Pagination.prototype.prevButtonPress = function () {
     var _this = this;
-    $(this.PAGINATION_PREV).off().on("click", function () {
+    $(this.PAGINATION_PREV).on("click", function () {
         _this.PAGE_CODE--;
         _this.PAGE_CODE = _this.PAGE_CODE <= 1 ? 1 : _this.PAGE_CODE;
         var FIRST_TEXT = parseInt($(_this.PAGINATION_CODE).eq(0).text().trim());
@@ -1673,7 +1743,7 @@ Pagination.prototype.prevButtonPress = function () {
  */
 Pagination.prototype.nextButtonPress = function () {
     var _this = this;
-    $(this.PAGINATION_NEXT).off().on("click", function () {
+    $(this.PAGINATION_NEXT).on("click", function () {
         _this.PAGE_CODE++;
         _this.PAGE_CODE = _this.PAGE_CODE >= _this.TOTAL_PAGES ? _this.TOTAL_PAGES : _this.PAGE_CODE;
         var FIRST_TEXT = parseInt($(_this.PAGINATION_CODE).eq(0).text().trim());
@@ -2450,4 +2520,3 @@ RegularExpress.prototype.labelRegExpCheck = function (params) {
     return result;
 }
 var regular = new RegularExpress();
-

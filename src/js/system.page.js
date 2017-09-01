@@ -579,6 +579,7 @@ SystemPage.prototype.ajaxRequestDeleteLabel = function (params) {
         dataType: "JSON",
         data: params,
         success: function (data) {
+            console.log(data);
             if (data['succ']) {
                 $("#" + _this.DATA_CHARID).parent().remove();
                 messageBox.show("提示", data['msg'], MessageBoxButtons.OK, MessageBoxIcons.infomation);

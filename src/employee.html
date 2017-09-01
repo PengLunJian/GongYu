@@ -8,18 +8,13 @@
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>员工</title>
     <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"/>
-    <link rel="stylesheet" type="text/css" href="iconfont/iconfont.css"/>
     <link rel="stylesheet" type="text/css" href="css/font.css"/>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css" href="css/common.css"/>
     <link rel="stylesheet" type="text/css" href="css/employee.page.css"/>
     <link rel="stylesheet" type="text/css" href="css/datepicker.css"/>
     <link rel="stylesheet" type="text/css" href="css/jquery.mCustomScrollbar.css"/>
-    <script type="text/javascript" src="libs/jquery-1.11.3.js"></script>
-    <script type="text/javascript" src="libs/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
-    <script type="text/javascript" src="js/app.js"></script>
-    <script type="text/javascript" src="js/components-pickers.js"></script>
+
 </head>
 <body>
 
@@ -403,7 +398,7 @@
                     <label class="form-label">部门</label>
                     <div class="form-select hide" tabIndex="1">
                         <i class="icon-drop-down"></i>
-                        <div class="select-result">请选择部门</div>
+                        <div class="select-result select-dep">请选择部门</div>
                         <div class="select-option">
                             <div class="tree-container">
                                 <div class="tree-content">
@@ -422,7 +417,7 @@
                     <div class="drop-container hide" tabindex="1">
                         <div class="drop-content">
                             <div class="drop-header">
-                                <span class="drop-result">请选择角色</span>
+                                <span class="drop-result select-role">请选择角色</span>
                                 <i class="drop-icon icon-drop-down"></i>
                             </div>
                             <div class="drop-body">
@@ -437,7 +432,7 @@
                     <div class="drop-container hide" tabindex="1">
                         <div class="drop-content">
                             <div class="drop-header">
-                                <span class="drop-result">请选择职称</span>
+                                <span class="drop-result select-profession">请选择职称</span>
                                 <i class="drop-icon icon-drop-down"></i>
                             </div>
                             <div class="drop-body">
@@ -464,7 +459,7 @@
                     <div class="drop-container hide" tabindex="1">
                         <div class="drop-content">
                             <div class="drop-header">
-                                <span class="drop-result">请选择性别</span>
+                                <span class="drop-result select-sex">请选择性别</span>
                                 <i class="drop-icon icon-drop-down"></i>
                             </div>
                             <div class="drop-body">
@@ -499,7 +494,7 @@
                     <div class="drop-container hide" tabindex="1">
                         <div class="drop-content">
                             <div class="drop-header">
-                                <span class="drop-result">请选择学历</span>
+                                <span class="drop-result selecr-education">请选择学历</span>
                                 <i class="drop-icon icon-drop-down"></i>
                             </div>
                             <div class="drop-body">
@@ -514,7 +509,7 @@
                     <div class="drop-container hide" tabindex="1">
                         <div class="drop-content">
                             <div class="drop-header">
-                                <span class="drop-result">否</span>
+                                <span class="drop-result select-marry">否</span>
                                 <i class="drop-icon icon-drop-down"></i>
                             </div>
                             <div class="drop-body">
@@ -532,7 +527,7 @@
                     <div class="drop-container hide" tabindex="1">
                         <div class="drop-content">
                             <div class="drop-header">
-                                <span class="drop-result">否</span>
+                                <span class="drop-result copy-id">否</span>
                                 <i class="drop-icon icon-drop-down"></i>
                             </div>
                             <div class="drop-body">
@@ -744,6 +739,12 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="libs/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="libs/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/components-pickers.js"></script>
+<script type="text/javascript" src="js/host.js"></script>
 <script type="text/javascript" src="js/tools.js"></script>
 <script type="text/javascript" src="js/employee.page.js"></script>
 </body>

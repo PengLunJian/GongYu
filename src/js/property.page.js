@@ -676,8 +676,6 @@ PropertyPage.prototype.floorBinds = function () {
 //绑定楼层和房间
 PropertyPage.prototype.floorRoomBind = function () {
     this.ajaxRequestFloors(this.getParams(this.FLOORS));
-    this.ajaxRequestRooms(this.getParams(this.ROOMS));
-
 }
 
 //楼层编辑
@@ -1154,9 +1152,10 @@ PropertyPage.prototype.ajaxRequestRooms = function (params) {
 //物业列表
 PropertyPage.prototype.ajaxRequestBuildings = function (params) {
     var _this = this;
-    $("#Buildings").on("click", ".btn-propertydetail", function () {
+    $("#Buildings").on("click", ".btn-propertydetail", function (event) {
         _this.PROPERTYDETAIL_CHARID = $(this).attr("data-click").trim();
         _this.ajaxRequestBuildingDetail(_this.getParams(_this.BUILDINGDETAIL));
+        event.stopPropagation();
     });
     $.ajax({
         type: "GET",
@@ -1178,7 +1177,7 @@ PropertyPage.prototype.ajaxRequestBuildings = function (params) {
                     // 楼盘（物业）编辑
                     if (webApp.grantControl($(".btn-propertydetail"), "building_update")) {
                         TEMP_DATA = JSON_DATA['Buildings'][i];
-                        TEMP_HTML += "<i type=\"property-detail\" dir=\"right\" class=\"icon iconfont icon-Set_up btn-propertydetail\" data-click='" + TEMP_DATA.CharId + "')></i>";
+                        TEMP_HTML += "<i type=\"property-detail\" dir=\"right\" class=\"icon-Param btn-propertydetail\" data-click='" + TEMP_DATA.CharId + "')></i>";
                     }
                     TEMP_HTML += "</dd>";
                 }
@@ -1793,7 +1792,7 @@ PropertyPage.prototype.ajaxRequestContractAddBind = function (params) {
                 TEMP_HTML = "";
                 TEMP_HTML += "<li data-value=\"\" class=\"cur\">不选</li>";
                 for (var j = 0; j < JSON_DATA.Dpts.length; j++) {
-                    TEMP_HTML += "<li  data-value=\"" + JSON_DATA.Dpts[j].CharId + "\"  class=\"fq-menu\"><b class=\"icon iconfont icon-iconfontsanjiao01\"></b><span>" + JSON_DATA.Dpts[j].Name + "</span>";
+                    TEMP_HTML += "<li  data-value=\"" + JSON_DATA.Dpts[j].CharId + "\"  class=\"fq-menu\"><b class=\"icon icon-right-triangle\"></b><span>" + JSON_DATA.Dpts[j].Name + "</span>";
                     for (var k = 0; k < JSON_DATA.Dpts[j].ChildDpts.length; k++) {
                         if (k == 0) {
                             TEMP_HTML += "<ul>";

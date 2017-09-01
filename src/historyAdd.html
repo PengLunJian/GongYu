@@ -7,9 +7,8 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>历史合同新增</title>
-    <link rel="stylesheet" type="text/css" href="iconfont/iconfont.css"/>
     <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"/>
-    <!--<link rel="stylesheet" type="text/css" href="css/common_css.css" />-->
+    <link rel="stylesheet" type="text/css" href="css/font.css"/>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="css/common.css" />
     <link rel="stylesheet" type="text/css" href="css/datepicker.css" />
@@ -105,7 +104,7 @@
 
                 <div>
                     <div type="click" class="fq-xiala" id="historyPayType">
-                        <span class="fq-xiala-sel"></span><i class="icon iconfont icon-xiala"></i>
+                        <span class="fq-xiala-sel"></span><i class="icon-drop-down"></i>
                         <ul></ul>
                     </div>
                 </div>
@@ -138,7 +137,7 @@
                 <div>
                     <div style="width: 230px;float:left;">
                         <div type="click" class="fq-xiala secondary-menu" id="historyDpts_Add">
-                            <span class="fq-xiala-sel">不选</span><i class="icon iconfont icon-xiala"></i>
+                            <span class="fq-xiala-sel">不选</span><i class="icon-drop-down"></i>
                             <ul id="simulation">
                                 <li class="cur">不选</li>
                             </ul>
@@ -146,7 +145,7 @@
                     </div>
                     <div style="width: 200px;float:left;">
                         <div type="click" class="fq-xiala" id="historyEmps_Add">
-                            <span class="fq-xiala-sel">不选</span><i class="icon iconfont icon-xiala"></i>
+                            <span class="fq-xiala-sel">不选</span><i class="icon-drop-down"></i>
                             <ul style="overflow-y: scroll;max-height: 150px;">
                                 <li class="cur">不选</li>
                             </ul>
@@ -191,6 +190,7 @@
 
 </body>
 </html>
+<script type="text/javascript" src="js/host.js"></script>
 <script type="text/javascript" src="js/tools.js"></script>
 <script type="text/javascript" src="libs/jquery.mCustomScrollbar.concat.min.js"></script>
 
@@ -245,7 +245,7 @@
                     html = "";
                     html += "<li data-value=\"\" class=\"cur\">不选</li>";
                     for (var j = 0; j < data.Dpts.length; j++) {
-                        html += "<li  data-value=\"" + data.Dpts[j].CharId + "\"  class=\"fq-menu\"><b class=\"icon iconfont icon-iconfontsanjiao01\"></b><span>" + data.Dpts[j].Name + "</span>";
+                        html += "<li  data-value=\"" + data.Dpts[j].CharId + "\"  class=\"fq-menu\"><b class=\"icon icon-right-triangle\"></b><span>" + data.Dpts[j].Name + "</span>";
                         for (var k = 0; k < data.Dpts[j].ChildDpts.length; k++) {
                             if (k == 0) {
                                 html += "<ul>";

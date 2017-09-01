@@ -86,13 +86,13 @@ PersonalPage.prototype.validBind = function () {
     var txt = "";
     if (localStorage.getItem("isValid") != 1) {
         txt = "（未认证）";
+        $(".hidden-xs").text(txt);
     }
     else {
         txt = "（已认证）";
         _this.certified();
     }
     $("#IsValid").text(txt);
-    $(".hidden-xs").text(txt);
     return this;
 }
 /**

@@ -7,7 +7,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>合同</title>
-    <link rel="stylesheet" type="text/css" href="iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="css/font.css"/>
     <link href="css/plugins.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css" href="css/datepicker.css"/>
@@ -15,11 +15,7 @@
     <link rel="stylesheet" type="text/css" href="css/contract.page.css"/>
     <link rel="stylesheet" type="text/css" href="css/jquery.mCustomScrollbar.css"/>
     <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"/>
-    <script type="text/javascript" src="libs/jquery-1.11.3.js"></script>
-    <script type="text/javascript" src="libs/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
-    <script type="text/javascript" src="js/app.js"></script>
-    <script type="text/javascript" src="js/components-pickers.js"></script>
+
 </head>
 <body>
 <div class="header">
@@ -65,7 +61,7 @@
                 <li>
                     <div type="click" class="fq-xiala" id="Buildings">
                         <span class="fq-xiala-sel">物业不限</span>
-                        <i class="icon iconfont icon-xiala"></i>
+                        <i class="icon-drop-down"></i>
                         <ul>
                             <li class="cur" data-value="">物业不限</li>
                         </ul>
@@ -74,7 +70,7 @@
                 </li>
                 <li>
                     <div type="click" class="fq-xiala" id="ContractState" class="btn-hide">
-                        <span class="fq-xiala-sel">状态不限</span><i class="icon iconfont icon-xiala"></i>
+                        <span class="fq-xiala-sel">状态不限</span><i class="icon-drop-down"></i>
                         <ul>
 
                         </ul>
@@ -82,7 +78,7 @@
                 </li>
                 <li>
                     <div type="click" class="fq-xiala" id="DateType">
-                        <span class="fq-xiala-sel">日期不限</span><i class="icon iconfont icon-xiala"></i>
+                        <span class="fq-xiala-sel">日期不限</span><i class="icon-drop-down"></i>
                         <ul>
                             <li class="cur" data-value="10">日期不限</li>
                         </ul>
@@ -138,7 +134,6 @@
                 <ul>
                     <li class="cur"><span>合同资料</span></li>
                     <li onclick="cp.billInit()" class="billInit btn-hide"><span>账单列表</span></li>
-                    <li><span>操作日志</span></li>
                     <div class="clear"></div>
                 </ul>
             </div>
@@ -291,29 +286,6 @@
                     <div class="fy-wrap fy-wrap-bill">
                     </div>
                 </div>
-                <div class="fq-alert-modal-dv">
-                    <div class="mCustomScrollbar">
-                        <div class="Scrollbar-styledv p20-124">
-                            <table class="modal-tabl">
-                                <tr>
-                                    <td>2017-2-9&nbsp;1:54:15</td>
-                                    <td>修改</td>
-                                    <td>手机号码：13876543261->13524367890。</td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="fy-wrap">
-                        <ul>
-                            <li class="fy-page-dir fy-page-prev"><i
-                                    class="icon iconfont icon-prev"></i></li>
-                            <li style="width:30px;" class="cur">1</li>
-                            <li class="fy-page-dir fy-page-next"><i
-                                    class="icon iconfont icon-next"></i></li>
-                            <li>共10条</li>
-                        </ul>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -329,7 +301,7 @@
 
                         <div>
                             <div type="click" class="fq-xiala" id="CostItems">
-                                <span class="fq-xiala-sel"></span><i class="icon iconfont icon-xiala"></i>
+                                <span class="fq-xiala-sel"></span><i class="icon-drop-down"></i>
                                 <ul>
                                 </ul>
                             </div>
@@ -340,7 +312,7 @@
 
                         <div>
                             <div type="click" class="fq-xiala" id="BillTypes">
-                                <span class="fq-xiala-sel"></span><i class="icon iconfont icon-xiala"></i>
+                                <span class="fq-xiala-sel"></span><i class="icon-drop-down"></i>
                                 <ul>
                                 </ul>
                             </div>
@@ -443,7 +415,7 @@
                         <p>付押方式</p>
 
                         <div type="click" class="fq-xiala" id="PayType">
-                            <span class="fq-xiala-sel"></span><i class="icon iconfont icon-xiala"></i>
+                            <span class="fq-xiala-sel"></span><i class="icon-drop-down"></i>
                             <ul>
                             </ul>
                         </div>
@@ -483,13 +455,13 @@
 
                         <div class="dv-wrap-2">
                             <div type="click" class="fq-xiala secondary-menu" id="Dpts">
-                                <span class="fq-xiala-sel">不选</span><i class="icon iconfont icon-xiala"></i>
+                                <span class="fq-xiala-sel">不选</span><i class="icon-drop-down"></i>
                                 <ul id="simulation">
                                     <li class="cur">不选</li>
                                 </ul>
                             </div>
                             <div type="click" class="fq-xiala" id="Emps">
-                                <span class="fq-xiala-sel">不选</span><i class="icon iconfont icon-xiala"></i>
+                                <span class="fq-xiala-sel">不选</span><i class="icon-drop-down"></i>
                                 <ul style="max-height:150px;overflow-y: scroll;">
                                     <li class="cur">不选</li>
                                 </ul>
@@ -614,7 +586,7 @@
 
                         <div class="modal-dv-row">
                             <div type="click" class="fq-xiala" id="EndContractType">
-                                <span class="fq-xiala-sel"></span><i class="icon iconfont icon-xiala"></i>
+                                <span class="fq-xiala-sel"></span><i class="icon-drop-down"></i>
                                 <ul>
                                 </ul>
                             </div>
@@ -640,6 +612,12 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="libs/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="libs/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/components-pickers.js"></script>
+<script type="text/javascript" src="js/host.js"></script>
 <script type="text/javascript" src="js/tools.js"></script>]
 <script type="text/javascript" src="libs/jquery.mCustomScrollbar.concat.min.js"></script>
 <script type="text/javascript" src="js/contract.page.js"></script>

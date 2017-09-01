@@ -9,6 +9,21 @@ body {
   color: red;
 }
 
+.cleanfont {
+  font-size: 0px;
+}
+
+.clear {
+  margin: 0px !important;
+}
+
+.vertical {
+  max-width: 90%;
+  font-size: 12px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
 iframe {
   border: 0;
 }
@@ -107,6 +122,7 @@ ul, ol, li {
   text-align: center;
   border-bottom: 1px solid #e6e6e6;
   .tab {
+    padding: 0px;
     cursor: pointer;
     position: relative;
     &.active {
@@ -756,14 +772,14 @@ select::-ms-expand {
 
 .property-modal-menu ul li {
   float: left;
-  width: 130px;
+  width: 25%;
   height: 100%;
   color: @assist;
   text-align: center;
   height: 58px;
   line-height: 72px;
   cursor: pointer;
-  margin-left: 20px;
+  //margin-left: 20px;
 }
 
 .property-modal-menu ul li:first-of-type {
@@ -865,7 +881,9 @@ ul.tag-ul li:first-of-type {
 }
 
 .nav2-ownercenter p i {
+  vertical-align: middle;
   color: #1697fe;
+  font-size: 16px;
 }
 
 .nav2-ownercenter p span {
@@ -1470,7 +1488,7 @@ ul.tag-ul li:first-of-type {
   width: 60px;
   height: 30px;
   line-height: 28px;
-  border: 1px solid @borderColor;
+  border: 1px solid @menuHover;
 }
 
 //合同修改(编辑)
@@ -3098,11 +3116,28 @@ ul.ul-sp2 li span:nth-of-type(2) {
 }
 
 #msgModal .modal-info {
-  min-height: 30px;
   font-size: 14px;
   line-height: 20px;
-  margin: 0px !important;
-  padding: 5px 0px 0px 15px;
+  .modal-column {
+    line-height: 15px;
+    &.col-xs-10 {
+      min-height: 30px;
+      font-size: 0px;
+      padding: 0px 15px 0px 0px;
+      &:before {
+        content: '';
+        height: 30px;
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+    .modal-text {
+      margin: 0px;
+      font-size: 14px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
 }
 
 #msgModal .modal-footer {
@@ -3217,13 +3252,14 @@ ul.ul-sp2 li span:nth-of-type(2) {
     padding-left: 40px;
     box-sizing: border-box;
     > .icon {
+      position: absolute;
       left: 15px;
       right: auto;
       color: @query;
-      position: absolute;
       font-size: 12px;
       z-index: 10;
       right: auto;
+      top: 10px;
     }
     > span {
       display: block;
@@ -3370,34 +3406,34 @@ ul.ul-sp2 li span:nth-of-type(2) {
         padding: 0px 35px;
         background-color: #ffffff;
         border-top: 1px solid #e6e6e6;
-        .btn {
-          width: 60px;
-          height: 30px;
-          padding: 0px;
-          color: #666666;
-          cursor: pointer;
-          font-size: 14px;
-          line-height: 28px;
-          margin-left: 16px;
-          text-align: center;
-          -webkit-border-radius: 4px;
-          -moz-border-radius: 4px;
-          border-radius: 4px;
-          &.cancel {
-            border: 1px solid #8795ad;
-          }
-          &.confirm {
-            color: #ffffff;
-            background-color: #417de6;
-          }
-          &.delete {
-            float: left;
-            margin: 10px 0px;
-            border: 1px solid #8795ad;
-          }
-          &:focus {
-            outline: none;
-          }
+      }
+      .btn {
+        height: 30px;
+        color: #666666;
+        cursor: pointer;
+        min-width: 60px;
+        padding: 0px 15px;
+        font-size: 14px;
+        line-height: 28px;
+        margin-left: 16px;
+        text-align: center;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        &.cancel {
+          border: 1px solid #8795ad;
+        }
+        &.confirm {
+          color: #ffffff;
+          background-color: #417de6;
+        }
+        &.delete {
+          float: left;
+          margin: 10px 0px;
+          border: 1px solid #8795ad;
+        }
+        &:focus {
+          outline: none;
         }
       }
       &.show {

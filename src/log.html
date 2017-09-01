@@ -7,18 +7,15 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>日志</title>
-    <link rel="stylesheet" type="text/css" href="iconfont/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="css/font.css"/>
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"/>
     <link href="css/plugins.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css" href="css/datepicker.css"/>
     <link rel="stylesheet" type="text/css" href="css/common.css"/>
     <link rel="stylesheet" type="text/css" href="css/fq_nav2_css.css"/>
     <link rel="stylesheet" type="text/css" href="css/log.page.css"/>
-    <script type="text/javascript" src="libs/jquery-1.11.3.js"></script>
-    <script type="text/javascript" src="libs/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
-    <script type="text/javascript" src="js/app.js"></script>
-    <script type="text/javascript" src="js/components-pickers.js"></script>
+
 </head>
 <body>
 <div class="header">
@@ -27,6 +24,11 @@
             <li class="left-title">
                 <h1 class="hidden-xs">天琚人才公寓</h1>
                 <button class="visible-xs navbar-toggle lg-nav">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <button class="visible-xs navbar-toggle sm-nav">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -56,146 +58,186 @@
         </ul>
     </div>
 </div>
-<div class="container">
-    <div class="fq-nav2">
-        <div class="dailyrecord-nav2-section">
-            <ul>
-                <li><input type="text" name="" placeholder="手机号码、姓名、备注"></li>
-                <li>
-                    <div type="click" class="fq-xiala">
-                        <span class="fq-xiala-sel">业务类型</span>
-                        <i class="icon iconfont icon-xiala"></i>
-                        <ul>
-                            <li class="cur">业务类型</li>
-                            <li>物业</li>
-                            <li>客户</li>
-                        </ul>
+<div class="main">
+    <div class="log row">
+        <div class="pull-left">
+            <div class="query-container">
+                <div class="query-content">
+                    <div class="query-header"></div>
+                    <div class="query-body">
+                        <div class="form-group">
+                            <input class="from-input" type="text" name="" id="Key"
+                                   placeholder="手机号码、姓名、备注">
+                        </div>
+                        <div class="form-group">
+                            <div class="drop-container hide" tabIndex="1">
+                                <div class="drop-content">
+                                    <div class="drop-header">
+                                        <span class="drop-result">模块</span>
+                                        <i class="drop-icon icon-drop-down"></i>
+                                    </div>
+                                    <div class="drop-body">
+                                        <ul id="LogMenu">
+                                        </ul>
+                                    </div>
+                                    <div class="drop-footer"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="drop-container hide" tabIndex="1">
+                                <div class="drop-content">
+                                    <div class="drop-header">
+                                        <span class="drop-result">状态</span>
+                                        <i class="drop-icon icon-drop-down"></i>
+                                    </div>
+                                    <div class="drop-body">
+                                        <ul id="LogStatus">
+
+                                        </ul>
+                                    </div>
+                                    <div class="drop-footer"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="drop-container hide" tabIndex="1">
+                                <div class="drop-content">
+                                    <div class="drop-header">
+                                        <span class="drop-result">操作类型</span>
+                                        <i class="drop-icon icon-drop-down"></i>
+                                    </div>
+                                    <div class="drop-body">
+                                        <ul id="OperationType">
+
+                                        </ul>
+                                    </div>
+                                    <div class="drop-footer"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="date-wraper"><input class="group-date1" type="text" id="StartDate"
+                                                            value=""
+                                                            placeholder="开始时间"><i
+                                    class="icon iconfont icon-gongzuotai"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="date-wraper"><input class="group-date1" type="text" id="EndDate"
+                                                            value=""
+                                                            placeholder="结束时间"><i
+                                    class="icon iconfont icon-gongzuotai"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button class="fq-btn query" onclick="lp.logList()">查询</button>
+                        </div>
                     </div>
-                </li>
-            </ul>
-            <ul class="dailyrecord-querydate-ul">
-                <li>
-                    <div type="click" class="fq-xiala">
-                        <span class="fq-xiala-sel">创建日期</span>
-                        <i class="icon iconfont icon-xiala"></i>
-                        <ul>
-                            <li class="cur">创建日期</li>
-                            <li>预约看房日期</li>
-                            <li>计划入住日期</li>
-                        </ul>
-                    </div>
-                </li>
-                <li>
-                    <div class="date-wraper"><input class="group-date1" type="text" id="StartDate" value="2017-01-20"><i
-                            class="icon iconfont icon-gongzuotai"></i></div>
-                </li>
-                <li>
-                    <div class="date-wraper"><input class="group-date1" type="text" value="2017-07-21" id="EndDate"><i
-                            class="icon iconfont icon-gongzuotai"></i></div>
-                </li>
-                <li>
-                    <button class="fq-btn">查询</button>
-                </li>
-            </ul>
+                    <div class="query-footer"></div>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="fq-contain">
-        <div class="fq-contain-in">
-            <div class="fq-contain-dv">
-                <div class="contain-dailyrecord-wraper">
-                    <table cellpadding="0" cellspacing="0">
-                        <tr>
-                            <th>业务类型</th>
-                            <th>日志</th>
-                            <th>操作员工</th>
-                            <th>创建日期</th>
-                        </tr>
-                        <tr>
-                            <td>物业</td>
-                            <td>新增：<a href="javascript:;">上海花园</a>，南山东路99弄</td>
-                            <td>总部.管理员</td>
-                            <td>2017-02-16&nbsp;&nbsp;21:13:15</td>
-                        </tr>
-                        <tr>
-                            <td>客户</td>
-                            <td>维护：<a href="javascript:;">张久久</a>，备注：长租客户，一个人，朝南优先，不差钱。</td>
-                            <td>总部.管理员</td>
-                            <td>2017-02-16&nbsp;&nbsp;21:13:15</td>
-                        </tr>
-                        <tr>
-                            <td>物业</td>
-                            <td>新增：<a href="javascript:;">上海花园</a>，南山东路99弄</td>
-                            <td>总部.管理员</td>
-                            <td>2017-02-16&nbsp;&nbsp;21:13:15</td>
-                        </tr>
-                        <tr>
-                            <td>客户</td>
-                            <td>维护：<a href="javascript:;">张久久</a>，备注：长租客户，一个人，朝南优先，不差钱。</td>
-                            <td>总部.管理员</td>
-                            <td>2017-02-16&nbsp;&nbsp;21:13:15</td>
-                        </tr>
-                        <tr>
-                            <td>物业</td>
-                            <td>新增：<a href="javascript:;">上海花园</a>，南山东路99弄</td>
-                            <td>总部.管理员</td>
-                            <td>2017-02-16&nbsp;&nbsp;21:13:15</td>
-                        </tr>
-                        <tr>
-                            <td>客户</td>
-                            <td>维护：<a href="javascript:;">张久久</a>，备注：长租客户，一个人，朝南优先，不差钱。</td>
-                            <td>总部.管理员</td>
-                            <td>2017-02-16&nbsp;&nbsp;21:13:15</td>
-                        </tr>
-                        <tr>
-                            <td>物业</td>
-                            <td>新增：<a href="javascript:;">上海花园</a>，南山东路99弄</td>
-                            <td>总部.管理员</td>
-                            <td>2017-02-16&nbsp;&nbsp;21:13:15</td>
-                        </tr>
-                        <tr>
-                            <td>客户</td>
-                            <td>维护：<a href="javascript:;">张久久</a>，备注：长租客户，一个人，朝南优先，不差钱。</td>
-                            <td>总部.管理员</td>
-                            <td>2017-02-16&nbsp;&nbsp;21:13:15</td>
-                        </tr>
-                        <tr>
-                            <td>物业</td>
-                            <td>新增：<a href="javascript:;">上海花园</a>，南山东路99弄</td>
-                            <td>总部.管理员</td>
-                            <td>2017-02-16&nbsp;&nbsp;21:13:15</td>
-                        </tr>
-                        <tr>
-                            <td>客户</td>
-                            <td>维护：<a href="javascript:;">张久久</a>，备注：长租客户，一个人，朝南优先，不差钱。</td>
-                            <td>总部.管理员</td>
-                            <td>2017-02-16&nbsp;&nbsp;21:13:15</td>
-                        </tr>
-                    </table>
-                    <div class="fy-wrap">
-                        <ul>
-                            <li class="fy-page-dir fy-page-prev"><i
-                                    class="icon iconfont icon-prev"></i></li>
-                            <li class="cur">1</li>
-                            <li>2</li>
-                            <li>3</li>
-                            <li class="fy-page-dir fy-page-next"><i
-                                    class="icon iconfont icon-next"></i></li>
-                            <li>共32条</li>
-                        </ul>
+        <div class="pull-right">
+            <div class="right-container">
+                <div class="right-content">
+                    <div class="right-body">
+                        <div class="right-table">
+                            <div class="table-header"></div>
+                            <div class="table-body row"></div>
+                        </div>
+                    </div>
+                    <div class="right-footer">
+                        <div class="pagination row btn-hide"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="clear"></div>
 </div>
-</body>
-</html>
+<div class="footer"><input type="text" value=""/></div>
+<div class="panel panel-lg hide">
+    <div class="panel-bg"></div>
+    <div class="panel-content">
+        <div class="panel-modal panel-detail">
+            <div class="panel-header">
+                <h3 class="panel-title">账务信息</h3>
+            </div>
+            <!--<p>流水记录</p>-->
+            <div class="panel-body">
+                <div class="panel-group">
+                    <div class="group-row row">
+                        <div class="column-label col-xs-3">房源</div>
+                        <div class="column-value col-xs-9">
+                            <span id="BuildingName"></span>
+                        </div>
+                    </div>
+                    <div class="group-row row">
+                        <div class="column-label col-xs-3">流水类型</div>
+                        <div class="column-value col-xs-9">
+                            <span id="ItemName"></span>
+                        </div>
+                    </div>
+                    <div class="group-row row">
+                        <div class="column-label col-xs-3">支付方式</div>
+                        <div class="column-value col-xs-9">
+                            <span id="PayType"></span>
+                        </div>
+                    </div>
+                    <div class="group-row row">
+                        <div class="column-label col-xs-3">流水号</div>
+                        <div class="column-value col-xs-9">
+                            <span id="SerialNumber"></span>
+                        </div>
+                    </div>
+                    <div class="group-row row">
+                        <div class="column-label col-xs-3">客户姓名</div>
+                        <div class="column-value col-xs-9">
+                            <span id="CustomerName"></span>
+                        </div>
+                    </div>
+                    <div class="group-row row">
+                        <div class="column-label col-xs-3">账务周期</div>
+                        <div class="column-value col-xs-9">
+                            <span id="BillDate"></span>
+                        </div>
+                    </div>
+                    <div class="group-row row">
+                        <div class="column-label col-xs-3">交易时间</div>
+                        <div class="column-value col-xs-9">
+                            <span id="PayDate"></span>
+                        </div>
+                    </div>
+                    <div class="group-row row">
+                        <div class="column-label col-xs-3">备注</div>
+                        <div class="column-value col-xs-9">
+                            <span id="Description"></span>
+                        </div>
+                    </div>
+                    <div class="group-row row">
+                        <div class="column-label col-xs-3">总计</div>
+                        <div class="column-value col-xs-9">
+                            <span id="Price"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <button class="btn cancel">取消</button>
+                <button class="btn delete billrecord_delete btn-hide" onclick="bp.billRecordDel()">删除</button>
+                <!--<button class="btn confirm" onclick="">编辑</button>-->
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="libs/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="libs/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/components-pickers.js"></script>
+<script type="text/javascript" src="js/host.js"></script>
 <script type="text/javascript" src="js/tools.js"></script>
 <script type="text/javascript" src="js/log.page.js"></script>
-<script>
-    $(function () {
-        App.init();
-        ComponentsPickers.init();
-    });
-</script>
+</body>
+</html>
+
